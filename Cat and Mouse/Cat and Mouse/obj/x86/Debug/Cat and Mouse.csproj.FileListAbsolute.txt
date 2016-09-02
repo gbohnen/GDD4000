@@ -1,0 +1,66 @@
+c:\users\gray\documents\visual studio 2015\Projects\Cat and Mouse\Cat and Mouse\bin\Windows\Debug\Cat and Mouse.exe
+c:\users\gray\documents\visual studio 2015\Projects\Cat and Mouse\Cat and Mouse\bin\Windows\Debug\Cat and Mouse.pdb
+c:\users\gray\documents\visual studio 2015\Projects\Cat and Mouse\Cat and Mouse\bin\Windows\Debug\MonoGame.Framework.dll
+c:\users\gray\documents\visual studio 2015\Projects\Cat and Mouse\Cat and Mouse\bin\Windows\Debug\SharpDX.MediaFoundation.dll
+c:\users\gray\documents\visual studio 2015\Projects\Cat and Mouse\Cat and Mouse\bin\Windows\Debug\SharpDX.dll
+c:\users\gray\documents\visual studio 2015\Projects\Cat and Mouse\Cat and Mouse\bin\Windows\Debug\SharpDX.XAudio2.dll
+c:\users\gray\documents\visual studio 2015\Projects\Cat and Mouse\Cat and Mouse\bin\Windows\Debug\SharpDX.Direct3D11.dll
+c:\users\gray\documents\visual studio 2015\Projects\Cat and Mouse\Cat and Mouse\bin\Windows\Debug\SharpDX.DXGI.dll
+c:\users\gray\documents\visual studio 2015\Projects\Cat and Mouse\Cat and Mouse\bin\Windows\Debug\SharpDX.Direct2D1.dll
+c:\users\gray\documents\visual studio 2015\Projects\Cat and Mouse\Cat and Mouse\bin\Windows\Debug\SharpDX.XInput.dll
+c:\users\gray\documents\visual studio 2015\Projects\Cat and Mouse\Cat and Mouse\bin\Windows\Debug\SharpDX.RawInput.dll
+c:\users\gray\documents\visual studio 2015\Projects\Cat and Mouse\Cat and Mouse\bin\Windows\Debug\SharpDX.Direct3D9.dll
+c:\users\gray\documents\visual studio 2015\Projects\Cat and Mouse\Cat and Mouse\bin\Windows\Debug\MonoGame.Framework.xml
+c:\users\gray\documents\visual studio 2015\Projects\Cat and Mouse\Cat and Mouse\bin\Windows\Debug\SharpDX.MediaFoundation.xml
+c:\users\gray\documents\visual studio 2015\Projects\Cat and Mouse\Cat and Mouse\bin\Windows\Debug\SharpDX.xml
+c:\users\gray\documents\visual studio 2015\Projects\Cat and Mouse\Cat and Mouse\bin\Windows\Debug\SharpDX.XAudio2.xml
+c:\users\gray\documents\visual studio 2015\Projects\Cat and Mouse\Cat and Mouse\bin\Windows\Debug\SharpDX.Direct3D11.xml
+c:\users\gray\documents\visual studio 2015\Projects\Cat and Mouse\Cat and Mouse\bin\Windows\Debug\SharpDX.DXGI.xml
+c:\users\gray\documents\visual studio 2015\Projects\Cat and Mouse\Cat and Mouse\bin\Windows\Debug\SharpDX.Direct2D1.xml
+c:\users\gray\documents\visual studio 2015\Projects\Cat and Mouse\Cat and Mouse\bin\Windows\Debug\SharpDX.XInput.xml
+c:\users\gray\documents\visual studio 2015\Projects\Cat and Mouse\Cat and Mouse\bin\Windows\Debug\SharpDX.RawInput.xml
+c:\users\gray\documents\visual studio 2015\Projects\Cat and Mouse\Cat and Mouse\bin\Windows\Debug\SharpDX.Direct3D9.xml
+c:\users\gray\documents\visual studio 2015\Projects\Cat and Mouse\Cat and Mouse\obj\x86\Debug\Cat and Mouse.csprojResolveAssemblyReference.cache
+c:\users\gray\documents\visual studio 2015\Projects\Cat and Mouse\Cat and Mouse\obj\x86\Debug\Cat and Mouse.exe
+c:\users\gray\documents\visual studio 2015\Projects\Cat and Mouse\Cat and Mouse\obj\x86\Debug\Cat and Mouse.pdb
+C:\Users\Gray\Documents\Visual Studio 2015\Projects\Cat and Mouse\Cat and Mouse\bin\Windows\Debug\Assets\cat_nan.png
+C:\Users\Gray\Documents\Visual Studio 2015\Projects\Cat and Mouse\Cat and Mouse\bin\Windows\Debug\Assets\mouse_nan.png
+C:\Users\Gray\Documents\Visual Studio 2015\Projects\Cat and Mouse\Cat and Mouse\bin\Windows\Debug\Content\MyFont.xnb
+C:\Users\Gray\Documents\Visual Studio 2015\Projects\Cat and Mouse\Cat and Mouse\bin\Windows\Debug\Assets\Blank.png
+C:\Users\Gray\Documents\Visual Studio 2015\Projects\Cat and Mouse\Cat and Mouse\bin\Windows\Debug\Assets\tank.png
+C:\Users\Gray\Documents\Visual Studio 2015\Projects\Cat and Mouse\Cat and Mouse\bin\Windows\Debug\Assets\cycle.png
+C:\Users\Gray\Desktop\Dropbox\Cat and Mouse\Cat and Mouse\obj\x86\Debug\Cat and Mouse.exe
+C:\Users\Gray\Desktop\Dropbox\Cat and Mouse\Cat and Mouse\obj\x86\Debug\Cat and Mouse.pdb
+C:\Users\Gray\Desktop\Dropbox\Cat and Mouse\Cat and Mouse\obj\x86\Debug\Cat and Mouse.csprojResolveAssemblyReference.cache
+C:\Users\Gray\Desktop\Cat and Mouse\Cat and Mouse\obj\x86\Debug\Cat and Mouse.exe
+C:\Users\Gray\Desktop\Cat and Mouse\Cat and Mouse\obj\x86\Debug\Cat and Mouse.pdb
+C:\Users\Gray\Desktop\Cat and Mouse\Cat and Mouse\obj\x86\Debug\Cat and Mouse.csprojResolveAssemblyReference.cache
+C:\Users\Gray\Desktop\Cat and Mouse\Cat and Mouse\bin\Windows\Debug\Cat and Mouse.exe.config
+C:\Users\Gray\Desktop\Cat and Mouse\Cat and Mouse\bin\Windows\Debug\Assets\cat_nan.png
+C:\Users\Gray\Desktop\Cat and Mouse\Cat and Mouse\bin\Windows\Debug\Assets\Blank.png
+C:\Users\Gray\Desktop\Cat and Mouse\Cat and Mouse\bin\Windows\Debug\Assets\cycle.png
+C:\Users\Gray\Desktop\Cat and Mouse\Cat and Mouse\bin\Windows\Debug\Assets\tank.png
+C:\Users\Gray\Desktop\Cat and Mouse\Cat and Mouse\bin\Windows\Debug\Assets\mouse_nan.png
+C:\Users\Gray\Desktop\Cat and Mouse\Cat and Mouse\bin\Windows\Debug\Content\MyFont.xnb
+C:\Users\Gray\Desktop\Cat and Mouse\Cat and Mouse\bin\Windows\Debug\Cat and Mouse.exe
+C:\Users\Gray\Desktop\Cat and Mouse\Cat and Mouse\bin\Windows\Debug\Cat and Mouse.pdb
+C:\Users\Gray\Desktop\Cat and Mouse\Cat and Mouse\bin\Windows\Debug\MonoGame.Framework.dll
+C:\Users\Gray\Desktop\Cat and Mouse\Cat and Mouse\bin\Windows\Debug\SharpDX.MediaFoundation.dll
+C:\Users\Gray\Desktop\Cat and Mouse\Cat and Mouse\bin\Windows\Debug\SharpDX.dll
+C:\Users\Gray\Desktop\Cat and Mouse\Cat and Mouse\bin\Windows\Debug\SharpDX.XAudio2.dll
+C:\Users\Gray\Desktop\Cat and Mouse\Cat and Mouse\bin\Windows\Debug\SharpDX.DXGI.dll
+C:\Users\Gray\Desktop\Cat and Mouse\Cat and Mouse\bin\Windows\Debug\SharpDX.Direct3D11.dll
+C:\Users\Gray\Desktop\Cat and Mouse\Cat and Mouse\bin\Windows\Debug\SharpDX.Direct2D1.dll
+C:\Users\Gray\Desktop\Cat and Mouse\Cat and Mouse\bin\Windows\Debug\SharpDX.XInput.dll
+C:\Users\Gray\Desktop\Cat and Mouse\Cat and Mouse\bin\Windows\Debug\SharpDX.RawInput.dll
+C:\Users\Gray\Desktop\Cat and Mouse\Cat and Mouse\bin\Windows\Debug\SharpDX.Direct3D9.dll
+C:\Users\Gray\Desktop\Cat and Mouse\Cat and Mouse\bin\Windows\Debug\MonoGame.Framework.xml
+C:\Users\Gray\Desktop\Cat and Mouse\Cat and Mouse\bin\Windows\Debug\SharpDX.MediaFoundation.xml
+C:\Users\Gray\Desktop\Cat and Mouse\Cat and Mouse\bin\Windows\Debug\SharpDX.xml
+C:\Users\Gray\Desktop\Cat and Mouse\Cat and Mouse\bin\Windows\Debug\SharpDX.XAudio2.xml
+C:\Users\Gray\Desktop\Cat and Mouse\Cat and Mouse\bin\Windows\Debug\SharpDX.DXGI.xml
+C:\Users\Gray\Desktop\Cat and Mouse\Cat and Mouse\bin\Windows\Debug\SharpDX.Direct3D11.xml
+C:\Users\Gray\Desktop\Cat and Mouse\Cat and Mouse\bin\Windows\Debug\SharpDX.Direct2D1.xml
+C:\Users\Gray\Desktop\Cat and Mouse\Cat and Mouse\bin\Windows\Debug\SharpDX.XInput.xml
+C:\Users\Gray\Desktop\Cat and Mouse\Cat and Mouse\bin\Windows\Debug\SharpDX.RawInput.xml
+C:\Users\Gray\Desktop\Cat and Mouse\Cat and Mouse\bin\Windows\Debug\SharpDX.Direct3D9.xml
