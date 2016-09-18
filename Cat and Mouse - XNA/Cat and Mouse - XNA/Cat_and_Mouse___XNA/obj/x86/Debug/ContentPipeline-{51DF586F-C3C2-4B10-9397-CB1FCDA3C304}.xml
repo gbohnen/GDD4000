@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline">
+  <Asset Type="Pipeline:BuildItemCollection">
+    <Item>
+      <Source>Assets\Blank.png</Source>
+      <Name>Assets\Blank</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNA\bin\x86\Debug\Content\Assets\Blank.xnb</Output>
+      <Time>2016-09-16T01:44:29.2870504-06:00</Time>
+    </Item>
+    <Item>
+      <Source>Assets\cycle.png</Source>
+      <Name>Assets\cycle</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNA\bin\x86\Debug\Content\Assets\cycle.xnb</Output>
+      <Time>2016-09-16T01:44:29.2890504-06:00</Time>
+    </Item>
+    <Item>
+      <Source>Assets\mouse_nan.png</Source>
+      <Name>Assets\mouse_nan</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNA\bin\x86\Debug\Content\Assets\mouse_nan.xnb</Output>
+      <Time>2016-09-16T01:44:29.2900508-06:00</Time>
+    </Item>
+    <Item>
+      <Source>Assets\tank.png</Source>
+      <Name>Assets\tank</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNA\bin\x86\Debug\Content\Assets\tank.xnb</Output>
+      <Time>2016-09-16T01:44:29.2910504-06:00</Time>
+    </Item>
+    <Item>
+      <Source>Assets\cat_nan.png</Source>
+      <Name>Assets\cat_nan</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNA\bin\x86\Debug\Content\Assets\cat_nan.xnb</Output>
+      <Time>2016-09-16T01:44:29.2880505-06:00</Time>
+    </Item>
+    <Item>
+      <Source>MyFont.spritefont</Source>
+      <Name>MyFont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNA\bin\x86\Debug\Content\MyFont.xnb</Output>
+      <Time>2016-09-18T12:59:19.431679-06:00</Time>
+    </Item>
+    <BuildSuccessful>true</BuildSuccessful>
+    <Settings>
+      <ContentProjectGUID>{51DF586F-C3C2-4B10-9397-CB1FCDA3C304}</ContentProjectGUID>
+      <TargetPlatform>Windows</TargetPlatform>
+      <TargetProfile>Reach</TargetProfile>
+      <BuildConfiguration>Debug</BuildConfiguration>
+      <CompressContent>false</CompressContent>
+      <RootDirectory>C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNAContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNA\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNA\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNA\bin\x86\Debug\Content\</OutputDirectory>
+    </Settings>
+    <Assemblies>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.XImporter.dll</Key>
+        <Value>2011-09-01T16:22:30-06:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.VideoImporters.dll</Key>
+        <Value>2011-09-01T16:22:30-06:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.TextureImporter.dll</Key>
+        <Value>2011-09-01T16:22:30-06:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.FBXImporter.dll</Key>
+        <Value>2011-09-01T16:22:30-06:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.EffectImporter.dll</Key>
+        <Value>2011-09-01T16:22:30-06:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.AudioImporters.dll</Key>
+        <Value>2011-09-01T16:22:30-06:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
+        <Value>2016-09-16T01:39:33.303608-06:00</Value>
+      </Assembly>
+    </Assemblies>
+  </Asset>
+</XnaContent>

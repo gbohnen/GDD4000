@@ -64,3 +64,5 @@ C:\Users\Gray\Desktop\Cat and Mouse\Cat and Mouse\bin\Windows\Debug\SharpDX.Dire
 C:\Users\Gray\Desktop\Cat and Mouse\Cat and Mouse\bin\Windows\Debug\SharpDX.XInput.xml
 C:\Users\Gray\Desktop\Cat and Mouse\Cat and Mouse\bin\Windows\Debug\SharpDX.RawInput.xml
 C:\Users\Gray\Desktop\Cat and Mouse\Cat and Mouse\bin\Windows\Debug\SharpDX.Direct3D9.xml
+C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse\Cat and Mouse\bin\Windows\Debug\Cat and Mouse.exe.config
+C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse\Cat and Mouse\obj\x86\Debug\Cat and Mouse.pdb
