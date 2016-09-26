@@ -5,10 +5,11 @@ using System;
 
 namespace Cat_and_Mouse___XNA
 {
-    class User : Sprite
+    class User : MovingSprite
     {
         #region Fields
 
+        bool jumpReady = false;
 
         #endregion
 
@@ -39,19 +40,19 @@ namespace Cat_and_Mouse___XNA
             direction = new Vector2(0, 0);
 
             // change direction based on keypresses
-            if (state.IsKeyDown(Keys.W))
+            if (state.IsKeyDown(Keys.W) || state.IsKeyDown(Keys.Up))
             {
                 direction.Y -= 1;
             }
-            if (state.IsKeyDown(Keys.D))
+            if (state.IsKeyDown(Keys.D) || state.IsKeyDown(Keys.Right))
             {
                 direction.X += 1;
             }
-            if (state.IsKeyDown(Keys.A))
+            if (state.IsKeyDown(Keys.A) || state.IsKeyDown(Keys.Left))
             {
                 direction.X -= 1;
             }
-            if (state.IsKeyDown(Keys.S))
+            if (state.IsKeyDown(Keys.S) || state.IsKeyDown(Keys.Down))
             {
                 direction.Y += 1;
             }
@@ -63,12 +64,19 @@ namespace Cat_and_Mouse___XNA
                 if (jumpTimer >= GameConstants.MOUSE_JUMP_START_VALUE)
                 {
                     Jump();
+                    AudioManager.Instance.PlaySound(SoundKeys.HappyMouse);
+                    jumpReady = false;
                     jumpTimer = 0;
                 }
 
             // update the jump timer
             if (jumpTimer < GameConstants.MOUSE_JUMP_START_VALUE)
                 jumpTimer += gameTime.ElapsedGameTime.Milliseconds;
+            else if (!jumpReady)
+            {
+                jumpReady = true;
+                AudioManager.Instance.PlaySound(SoundKeys.SadMouse);
+            }           
         }
 
         #endregion

@@ -23,7 +23,7 @@ namespace Cat_and_Mouse___XNA
         protected float maxVelocity;              // object's maximum speed
         protected float maxAccel;                 // object's maximum acceleration
 
-        protected int jumpTimer = 0;                        // timer that limits the frequency of the mouse jumping
+        protected float jumpTimer = 0;            // timer that limits the frequency of the mouse jumping
 
         #endregion
 
@@ -59,38 +59,16 @@ namespace Cat_and_Mouse___XNA
         #region Public Methods
 
         /// <summary>
-        /// Updates the position and of the object bsaed on a position
-        /// </summary>
-        public virtual void Update(Sprite user, GameTime gameTime) { }
-
-        /// <summary>
-        /// Updates the position of the object based on keyboard input
-        /// </summary>
-        /// <param name="state"> the current state of the keyboard </param>
-        public virtual void Update(KeyboardState state, GameTime gameTime) { }
-
-        /// <summary>
         /// draws the entity
         /// </summary>
-        public virtual void Draw(SpriteBatch spritebatch)
+        /// <param name="gameTime"></param>
+        public override void Draw(GameTime gameTime)
         {
-            spritebatch.Draw(sprite, drawRect, sourceRect, Color.White, rotation, origin, SpriteEffects.None, 0);
-        }
+            SpriteBatch spriteBatch = Game.Services.GetService(typeof(SpriteBatch)) as SpriteBatch;
 
-        /// <summary>
-        /// moves the character to a random position within the game window
-        /// </summary>
-        public virtual void Jump()
-        {
-            // create a new random
-            Random rand = new Random();
-
-            // set new location
-            drawRect.X = rand.Next(0, GameConstants.WINDOW_WIDTH);
-            drawRect.Y = rand.Next(0, GameConstants.WINDOW_HEIGHT);
-
-            // bring the character back within the window bounds
-            Clamp();
+            spriteBatch.Begin();
+            spriteBatch.Draw(sprite, drawRect, sourceRect, Color.White, rotation, origin, SpriteEffects.None, 0);
+            spriteBatch.End();
         }
 
         #endregion
@@ -151,6 +129,7 @@ namespace Cat_and_Mouse___XNA
         public float JumpTimerValue
         {
             get { return jumpTimer; }
+            set { jumpTimer = value; }
         }
 
         /// <summary>
@@ -160,6 +139,7 @@ namespace Cat_and_Mouse___XNA
         {
             get { return velocity; }
         }
+
         #endregion
     }
 }

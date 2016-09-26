@@ -4,8 +4,10 @@ using System;
 
 namespace Cat_and_Mouse___XNA
 {
-    class Agent : Sprite
+    class Agent : MovingSprite
     {
+        bool tracking;
+
         #region Constructors
 
         /// <summary>
@@ -35,19 +37,22 @@ namespace Cat_and_Mouse___XNA
             // set the direction based on the mouse position
             direction = user.Position - Position;
 
-            // currently bugged arrive code
-            //// set the speed based on proximity to the mouse
-            //if (Vector2.Distance(Position, pos) >= GameConstants.CAT_ARRIVE_RANGE)
-            //{
-            //    topSpeed = GameConstants.CAT_TOP_SPEED;
-            //}
-            //else
-            //{
-            //    topSpeed = GameConstants.CAT_TOP_SPEED - Vector2.Distance(pos, origin) / GameConstants.CAT_TIME_TO_TARGET;
-            //}
 
-            // move the object
-            Move(direction, gameTime);
+            if (Vector2.Distance(Position, user.Position) < GameConstants.CAT_DETECTION_RANGE)
+            {
+                Move(direction, gameTime);
+
+                if (tracking == false)
+                {
+                    tracking = true;
+                    AudioManager.Instance.PlaySound(SoundKeys.HappyCat);
+                }
+            }
+            else if (tracking == true)
+            {
+                tracking = false;
+                AudioManager.Instance.PlaySound(SoundKeys.SadCat);
+            }            
 
             // make the cat face the direction the cat is moving
             rotation = (float)Math.Atan2(velocity.Y, velocity.X);

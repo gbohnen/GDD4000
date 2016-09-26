@@ -78,13 +78,19 @@ namespace Cat_and_Mouse___XNA
         /// draws the background and foreground of the bar
         /// </summary>
         /// <param name="spriteBatch"> spritebatch </param>
-        public override void Draw(SpriteBatch spriteBatch)
+        public override void Draw(GameTime gameTime)
         {
+            SpriteBatch spriteBatch = Game.Services.GetService(typeof(SpriteBatch)) as SpriteBatch;
+
+            spriteBatch.Begin();
+
             if (active == ActiveBar.Enabled)
             {
                 spriteBatch.Draw(background, backRect, sourceRect, backColor, rotation, origin, SpriteEffects.None, 0);
                 spriteBatch.Draw(foreground, foreRect, sourceRect, foreColor, rotation, origin, SpriteEffects.None, 1);
             }
+
+            spriteBatch.End();
         }
 
 

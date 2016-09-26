@@ -11,6 +11,15 @@
       <Time>2016-09-16T01:44:29.2870504-06:00</Time>
     </Item>
     <Item>
+      <Source>Assets\cat_nan.png</Source>
+      <Name>Assets\cat_nan</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNA\bin\x86\Debug\Content\Assets\cat_nan.xnb</Output>
+      <Time>2016-09-16T01:44:29.2880505-06:00</Time>
+    </Item>
+    <Item>
       <Source>Assets\cycle.png</Source>
       <Name>Assets\cycle</Name>
       <Importer>TextureImporter</Importer>
@@ -38,15 +47,6 @@
       <Time>2016-09-16T01:44:29.2910504-06:00</Time>
     </Item>
     <Item>
-      <Source>Assets\cat_nan.png</Source>
-      <Name>Assets\cat_nan</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNA\bin\x86\Debug\Content\Assets\cat_nan.xnb</Output>
-      <Time>2016-09-16T01:44:29.2880505-06:00</Time>
-    </Item>
-    <Item>
       <Source>MyFont.spritefont</Source>
       <Name>MyFont</Name>
       <Importer>FontDescriptionImporter</Importer>
@@ -54,6 +54,72 @@
       <Options>None</Options>
       <Output>C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNA\bin\x86\Debug\Content\MyFont.xnb</Output>
       <Time>2016-09-18T12:59:19.431679-06:00</Time>
+    </Item>
+    <Item>
+      <Source>Music\benny.mp3</Source>
+      <Name>Music\benny</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNA\bin\x86\Debug\Content\Music\benny.xnb</Output>
+      <Extra>C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNA\bin\x86\Debug\Content\Music\benny.wma</Extra>
+      <Time>2016-09-25T20:13:31.7313086-06:00</Time>
+    </Item>
+    <Item>
+      <Source>Music\happycat.wav</Source>
+      <Name>Music\happycat</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNA\bin\x86\Debug\Content\Music\happycat.xnb</Output>
+      <Time>2016-09-25T20:23:02.8202438-06:00</Time>
+    </Item>
+    <Item>
+      <Source>Music\happymouse.wav</Source>
+      <Name>Music\happymouse</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNA\bin\x86\Debug\Content\Music\happymouse.xnb</Output>
+      <Time>2016-09-25T20:23:02.8262483-06:00</Time>
+    </Item>
+    <Item>
+      <Source>Music\sadcat.wav</Source>
+      <Name>Music\sadcat</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNA\bin\x86\Debug\Content\Music\sadcat.xnb</Output>
+      <Time>2016-09-25T20:23:02.832243-06:00</Time>
+    </Item>
+    <Item>
+      <Source>Music\sadmouse.wav</Source>
+      <Name>Music\sadmouse</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNA\bin\x86\Debug\Content\Music\sadmouse.xnb</Output>
+      <Time>2016-09-25T20:24:15.6340937-06:00</Time>
+    </Item>
+    <Item>
+      <Source>Music\fanfare.mp3</Source>
+      <Name>Music\fanfare</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNA\bin\x86\Debug\Content\Music\fanfare.xnb</Output>
+      <Extra>C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNA\bin\x86\Debug\Content\Music\fanfare.wma</Extra>
+      <Time>2016-09-25T21:03:07.1101406-06:00</Time>
+    </Item>
+    <Item>
+      <Source>Music\gameover.mp3</Source>
+      <Name>Music\gameover</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNA\bin\x86\Debug\Content\Music\gameover.xnb</Output>
+      <Extra>C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNA\bin\x86\Debug\Content\Music\gameover.wma</Extra>
+      <Time>2016-09-25T21:10:37.4957204-06:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

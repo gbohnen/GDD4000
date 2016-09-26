@@ -9,7 +9,7 @@ namespace Cat_and_Mouse___XNA
     class GameConstants
     {
         // movement
-        public const float CAT_TOP_SPEED = .5f;
+        public const float CAT_TOP_SPEED = .4f;
         public const float CAT_MAX_ACCEL = .003f;
 
         public const float MOUSE_TOP_SPEED = .6f;
@@ -21,12 +21,18 @@ namespace Cat_and_Mouse___XNA
         public const float CYCLE_MAX_ACCEL = .001f;
         public const float CYCLE_TOP_SPEED = .7f;
 
-        // sprite dimensions
-        public const int MOUSE_WIDTH = 32;
-        public const int MOUSE_HEIGHT = 32;
+        // unit data
+        public const int TOTAL_ENEMIES = 12;
+        public const float CAT_DETECTION_RANGE = 250;
+        public const float CAT_NEIGHBOR_THRESHOLD = 50;
+        public const float CAT_PLAYER_THRESHOLD = 100; 
 
-        public const int CAT_WIDTH = 32;
-        public const int CAT_HEIGHT = 32;
+        // sprite dimensions
+        public const int MOUSE_WIDTH = 13;
+        public const int MOUSE_HEIGHT = 13;
+
+        public const int CAT_WIDTH = 25;
+        public const int CAT_HEIGHT = 25;
 
         public const int TANK_WIDTH = 64;
         public const int TANK_HEIGHT = 64;

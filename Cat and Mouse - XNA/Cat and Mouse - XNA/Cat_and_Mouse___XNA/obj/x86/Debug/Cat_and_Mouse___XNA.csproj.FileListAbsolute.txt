@@ -14,6 +14,15 @@ c:\users\gray\documents\visual studio 2015\Projects\Cat and Mouse - XNA\Cat and 
 c:\users\gray\documents\visual studio 2015\Projects\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNA\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 c:\users\gray\documents\visual studio 2015\Projects\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNA\obj\x86\Debug\Cat_and_Mouse___XNA.exe
 c:\users\gray\documents\visual studio 2015\Projects\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNA\obj\x86\Debug\Cat_and_Mouse___XNA.pdb
+C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNA\bin\x86\Debug\Content\Assets\Blank.xnb
+C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNA\bin\x86\Debug\Content\Assets\cat_nan.xnb
+C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNA\bin\x86\Debug\Content\Assets\cycle.xnb
+C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNA\bin\x86\Debug\Content\Assets\mouse_nan.xnb
+C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNA\bin\x86\Debug\Content\Assets\tank.xnb
+C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNA\bin\x86\Debug\Content\MyFont.xnb
+C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNA\bin\x86\Debug\Content\Assets\cycle.png
+C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNA\bin\x86\Debug\Content\Assets\mouse_nan.png
+C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNA\bin\x86\Debug\Content\Assets\tank.png
 C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNA\bin\x86\Debug\Cat_and_Mouse___XNA.exe
 C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNA\bin\x86\Debug\Cat_and_Mouse___XNA.pdb
 C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNA\bin\x86\Debug\Microsoft.Xna.Framework.dll
@@ -26,16 +35,17 @@ C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse - XNA\Cat and Mouse - XNA\C
 C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNA\bin\x86\Debug\Microsoft.Xna.Framework.Graphics.xml
 C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNA\bin\x86\Debug\Microsoft.Xna.Framework.GamerServices.xml
 C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNA\bin\x86\Debug\Microsoft.Xna.Framework.Input.Touch.xml
-C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNA\obj\x86\Debug\Cat_and_Mouse___XNA.csprojResolveAssemblyReference.cache
 C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNA\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNA\obj\x86\Debug\Cat_and_Mouse___XNA.exe
 C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNA\obj\x86\Debug\Cat_and_Mouse___XNA.pdb
-C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNA\bin\x86\Debug\Content\Assets\cycle.png
-C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNA\bin\x86\Debug\Content\Assets\mouse_nan.png
-C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNA\bin\x86\Debug\Content\Assets\tank.png
-C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNA\bin\x86\Debug\Content\Assets\Blank.xnb
-C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNA\bin\x86\Debug\Content\Assets\cycle.xnb
-C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNA\bin\x86\Debug\Content\Assets\mouse_nan.xnb
-C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNA\bin\x86\Debug\Content\Assets\tank.xnb
-C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNA\bin\x86\Debug\Content\Assets\cat_nan.xnb
-C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNA\bin\x86\Debug\Content\MyFont.xnb
+C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNA\obj\x86\Debug\Cat_and_Mouse___XNA.csprojResolveAssemblyReference.cache
+C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNA\bin\x86\Debug\Content\Music\benny.xnb
+C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNA\bin\x86\Debug\Content\Music\benny.wma
+C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNA\bin\x86\Debug\Content\Music\happycat.xnb
+C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNA\bin\x86\Debug\Content\Music\happymouse.xnb
+C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNA\bin\x86\Debug\Content\Music\sadcat.xnb
+C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNA\bin\x86\Debug\Content\Music\sadmouse.xnb
+C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNA\bin\x86\Debug\Content\Music\fanfare.xnb
+C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNA\bin\x86\Debug\Content\Music\fanfare.wma
+C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNA\bin\x86\Debug\Content\Music\gameover.xnb
+C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNA\bin\x86\Debug\Content\Music\gameover.wma
