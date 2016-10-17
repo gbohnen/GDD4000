@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
@@ -10,11 +7,11 @@ namespace Cat_and_Mouse___XNA
 {
     public enum SpriteType { BLANK, CAT, MOUSE, CYCLE, TANK }
 
-    class UIManager
+    class GraphicsManager
     {
         #region Fields
 
-        private static UIManager instance;                      // singleton instance of the manager
+        private static GraphicsManager instance;                      // singleton instance of the manager
         Dictionary<SpriteType, Texture2D> spriteLibrary;        // library that holds values for each version of the sprite enumeration
         SpriteFont defaultFont;                                 // the default UI font
 
@@ -34,7 +31,7 @@ namespace Cat_and_Mouse___XNA
         /// <summary>
         /// basic constructor. performs all logic that needs to be done before initialization
         /// </summary>
-        private UIManager()
+        private GraphicsManager()
         {
             spriteLibrary = new Dictionary<SpriteType, Texture2D>();
         }
@@ -46,12 +43,12 @@ namespace Cat_and_Mouse___XNA
         /// <summary>
         /// accesses the singleton instance of the manager
         /// </summary>
-        public static UIManager Instance
+        public static GraphicsManager Instance
         {
             get
             {
                 if (instance == null)
-                    instance = new UIManager();
+                    instance = new GraphicsManager();
 
                 return instance;
             }
@@ -96,6 +93,7 @@ namespace Cat_and_Mouse___XNA
         public void DrawGameTimer(SpriteBatch spriteBatch, float timer)
         {
             spriteBatch.DrawString(defaultFont, "Time Remaining: " + (int)(timer / 1000 + 1), new Vector2(10, 10), Color.White);
+            spriteBatch.DrawString(defaultFont, "Button Config: " + InputManager.Instance.HandednessConfig, new Vector2(10, 40), Color.White);
         }
 
         public void EndGame(Winner win, float timer)

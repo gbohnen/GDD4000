@@ -55,8 +55,9 @@ namespace Cat_and_Mouse___XNA
             // TODO: Add your initialization logic here        
 
             // initialize each game manager instance
+            InputManager.Instance.Initialize();
             AudioManager.Instance.Initialize(Content);
-            UIManager.Instance.Initialize(Content);
+            GraphicsManager.Instance.Initialize(Content);
             EntityManager.Instance.Initialize(this);
 
             base.Initialize();
@@ -97,6 +98,9 @@ namespace Cat_and_Mouse___XNA
             // update the keyboard state
             KeyboardState state = Keyboard.GetState();
 
+            // update the input manager
+            InputManager.Instance.Update(state, gameTime);
+
             // update in gameplay mode
             if (gameState == GameState.Play)
             {
@@ -108,7 +112,7 @@ namespace Cat_and_Mouse___XNA
                 // check if time has run out
                 if (timer <= 0)
                 {
-                    UIManager.Instance.EndGame(Winner.Mouse, timer);
+                    GraphicsManager.Instance.EndGame(Winner.Mouse, timer);
                 }
             }
 
@@ -142,12 +146,12 @@ namespace Cat_and_Mouse___XNA
             spriteBatch.Begin();
 
             // draw timer
-            UIManager.Instance.DrawGameTimer(spriteBatch, timer);
+            GraphicsManager.Instance.DrawGameTimer(spriteBatch, timer);
 
             // draw messages
             if (gameState == GameState.GameOver)
             {
-                UIManager.Instance.DrawEndMessage(spriteBatch);
+                GraphicsManager.Instance.DrawEndMessage(spriteBatch);
             }
 
             spriteBatch.End();

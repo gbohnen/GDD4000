@@ -18,6 +18,8 @@ namespace Cat_and_Mouse___XNA
 
         User mouse;
 
+        float elapsedMilliseconds;                      // time since last frame. derived from gameTime and used for event calculations
+
         #endregion
 
         #region Constructors
@@ -57,23 +59,41 @@ namespace Cat_and_Mouse___XNA
         public void Initialize(Game game)
         {
             // add the mouse
-            mouse = new User(UIManager.Instance.GetSprite(SpriteType.MOUSE), game);
+            mouse = new User(GraphicsManager.Instance.GetSprite(SpriteType.MOUSE), game);
             game.Components.Add(mouse);
             players.Add(mouse);
 
-
             // add the mouse jump timer
-            TimerBar jumpTimer = new TimerBar(UIManager.Instance.GetSprite(SpriteType.BLANK), UIManager.Instance.GetSprite(SpriteType.BLANK), 0, GameConstants.MOUSE_JUMP_START_VALUE, mouse, game);
+            TimerBar jumpTimer = new TimerBar(GraphicsManager.Instance.GetSprite(SpriteType.BLANK), GraphicsManager.Instance.GetSprite(SpriteType.BLANK), 0, GameConstants.MOUSE_JUMP_START_VALUE,
+                GameConstants.JUMP_TIMER_BACKGROUND_COLOR, GameConstants.JUMP_TIMER_FOREGROUND_COLOR, mouse, game);
             game.Components.Add(jumpTimer);
             bars.Add(jumpTimer);
-            
+
+            // add the mouse boost timer
+            TimerBar boostTimer = new BoostTimerBar(GraphicsManager.Instance.GetSprite(SpriteType.BLANK), GraphicsManager.Instance.GetSprite(SpriteType.BLANK), 0, GameConstants.MOUSE_BOOST_TIMER,
+                GameConstants.BOOST_TIMER_BACKGROUND_COLOR, GameConstants.BOOST_TIMER_FOREGROUND_COLOR, mouse, game);
+            game.Components.Add(boostTimer);
+            bars.Add(boostTimer);
+
+            // add the mouse attack timer
+            TimerBar attackTimer = new AttackTimerBar(GraphicsManager.Instance.GetSprite(SpriteType.BLANK), GraphicsManager.Instance.GetSprite(SpriteType.BLANK), 0, GameConstants.MOUSE_ATTACK_TIMER,
+                GameConstants.ATTACK_TIMER_BACKGROUND_COLOR, GameConstants.ATTACK_TIMER_FOREGROUND_COLOR, mouse, game);
+            game.Components.Add(attackTimer);
+            bars.Add(attackTimer);         
+             
             // add some cats
             for (int i = 0; i < GameConstants.TOTAL_ENEMIES; i++)
             {
-                Agent cat = new Agent(UIManager.Instance.GetSprite(SpriteType.CAT), game);
+                Agent cat = new Agent(GraphicsManager.Instance.GetSprite(SpriteType.CAT), game);
                 game.Components.Add(cat);
                 enemies.Add(cat);
             }
+
+            // register movementkeys event
+            InputManager.Instance.MoveKeysPressed += new EventHandler<MovementArgs>(MoveMouse);
+
+            // 
+            elapsedMilliseconds = 0;
 
             // place each object in scene
             PlaceObjects();
@@ -85,11 +105,21 @@ namespace Cat_and_Mouse___XNA
         public void ResetGame()
         {
             mouse.JumpTimerValue = 0;
+            mouse.BoostTimerValue = 0;
+            mouse.AttackTimerValue = 0;
             PlaceObjects();
         }
 
+        /// <summary>
+        /// updates the state of the entity manager
+        /// </summary>
+        /// <param name="state"> the keyboard state from the current frame </param>
+        /// <param name="gameTime"> GameTime object from Game1 </param>
         public void Update(KeyboardState state, GameTime gameTime)
         {
+            // update time
+            elapsedMilliseconds = gameTime.ElapsedGameTime.Milliseconds;
+
             // update the players
             foreach (MovingSprite player in players)
             {
@@ -104,14 +134,19 @@ namespace Cat_and_Mouse___XNA
                 // check collisions
                 if (mouse.DrawRectangle.Intersects(cat.DrawRectangle))
                 {
-                    UIManager.Instance.EndGame(Winner.Cats, Game1.timer);
+                    if (!mouse.Attacking)
+                        GraphicsManager.Instance.EndGame(Winner.Cats, Game1.timer);
+                    else
+                    {
+                        cat.JumpToFarCorner();
+                    }
                 }
             }
 
             // update all health/timerbars
-            foreach (Bar bar in bars)
+            for (int i = 0; i < bars.Count; i++)
             {
-                bar.Update();
+                bars[i].Update(i);
             }
         }
 
@@ -119,6 +154,9 @@ namespace Cat_and_Mouse___XNA
 
         #region Private/Protected Members
 
+        /// <summary>
+        /// sets all entities within the scene
+        /// </summary>
         protected void PlaceObjects()
         {
             // place the mouse in the center of the screen
@@ -152,6 +190,33 @@ namespace Cat_and_Mouse___XNA
                     }
                 } while (!validSpawn && Vector2.Distance(mouse.Position, agent.Position) < GameConstants.CAT_PLAYER_THRESHOLD);
             }
+        }
+
+        /// <summary>
+        /// moves the mouse when the movementkeys event is fired
+        /// </summary>
+        /// <param name="sender"> object that triggered the event </param>
+        /// <param name="e"> movement vector received from the event </param>
+        public void MoveMouse(object sender, MovementArgs e)
+        {
+            Vector2 direction = e.Direction;
+            
+            direction.X *= elapsedMilliseconds;
+            direction.Y *= elapsedMilliseconds;
+
+            if (InputManager.Instance.IsShiftPressed && mouse.BoostTimerValue > 0 && !mouse.Attacking)
+            {
+                direction.X *= GameConstants.MOUSE_SHIFT_MODIFIER;
+                direction.Y *= GameConstants.MOUSE_SHIFT_MODIFIER;
+            }
+
+            if (mouse.Attacking)
+            {
+                direction.X *= GameConstants.MOUSE_ATTACK_SPEED_MODIFIER;
+                direction.Y *= GameConstants.MOUSE_ATTACK_SPEED_MODIFIER;
+            }
+
+            mouse.Move(direction);
         }
 
         #endregion

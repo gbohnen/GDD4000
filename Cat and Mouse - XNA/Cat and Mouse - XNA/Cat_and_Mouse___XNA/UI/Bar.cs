@@ -65,10 +65,10 @@ namespace Cat_and_Mouse___XNA
         /// <summary>
         /// updates the bar based on the attached objects position
         /// </summary>
-        public virtual void Update()
+        public virtual void Update(int index)
         {
             // set position of bar relative to the target
-            backRect.Y = target.DrawRectangle.Y - target.DrawRectangle.Height / 2 - GameConstants.BAR_VERTICAL_OFFSET - GameConstants.MAX_BAR_HEIGHT;
+            backRect.Y = target.DrawRectangle.Y - target.DrawRectangle.Height / 2 - ((index + 1) * (GameConstants.BAR_VERTICAL_OFFSET + GameConstants.MAX_BAR_HEIGHT));
             backRect.X = target.DrawRectangle.X - backRect.Width / 2;
 
             foreRect = backRect;
@@ -93,14 +93,10 @@ namespace Cat_and_Mouse___XNA
             spriteBatch.End();
         }
 
-
-        #endregion
-
-        #region Private/Protected Methods
-
         #endregion
 
         #region Properties
+
         /// <summary>
         /// exposes the object to which the bar is attached
         /// </summary>
@@ -109,6 +105,7 @@ namespace Cat_and_Mouse___XNA
             get { return target; }
             set { target = value; }
         }
+
         #endregion
     }
 }

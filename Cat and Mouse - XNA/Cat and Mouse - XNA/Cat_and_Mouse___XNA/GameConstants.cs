@@ -12,7 +12,9 @@ namespace Cat_and_Mouse___XNA
         public const float CAT_TOP_SPEED = .4f;
         public const float CAT_MAX_ACCEL = .003f;
 
-        public const float MOUSE_TOP_SPEED = .6f;
+        public const float MOUSE_DEFAULT_SPEED = .6f;
+        public const float MOUSE_ATTACK_SPEED_MODIFIER = .75f;
+        public const float MOUSE_SHIFT_MODIFIER = 1.25f;
 
         public const float TANK_TOP_SPEED = .05f;
         public const float TANK_MAX_ACCEL = .01f;
@@ -30,6 +32,8 @@ namespace Cat_and_Mouse___XNA
         // sprite dimensions
         public const int MOUSE_WIDTH = 13;
         public const int MOUSE_HEIGHT = 13;
+        public const int MOUSE_ATTACK_WIDTH = 50;
+        public const int MOUSE_ATTACK_HEIGHT = 50;
 
         public const int CAT_WIDTH = 25;
         public const int CAT_HEIGHT = 25;
@@ -40,6 +44,10 @@ namespace Cat_and_Mouse___XNA
         public const int CYCLE_WIDTH = 48;
         public const int CYCLE_HEIGHT = 24;
 
+        // sprite colors
+        public static Color SPRITE_DEFAULT_COLOR = Color.White;
+        public static Color SPRITE_BLINK_COLOR = Color.Yellow;
+
         // window dimensions
         public const int WINDOW_WIDTH = 1024;
         public const int WINDOW_HEIGHT = 768;
@@ -47,13 +55,27 @@ namespace Cat_and_Mouse___XNA
         // time logic
         public const int GAME_TIMER_START_VALUE = 30000;
         public const int MOUSE_JUMP_START_VALUE = 5000;
+        public const int MOUSE_ATTACK_TIMER = 10000;
+        public const float MOUSE_ATTACK_DEPLETION_RATE = 2;
+        public const int MOUSE_BOOST_TIMER = 2000;
+        public const float MOUSE_BOOST_DEPLETION_RATE = 2;
         public const int CAT_TIME_TO_TARGET = 600;
+        public const int KEY_COMBO_PRESS_THRESHOLD = 5000;
+        public const int KEY_COMBO_TOTAL_THRESHOLD = 20000;
 
         // health / timer bar values
         public const int MAX_BAR_WIDTH = 64;
         public const int MAX_BAR_HEIGHT = 16;
         public const int BAR_VERTICAL_OFFSET = 10;
-        public static Color TIMER_BACKGROUND_COLOR = Color.DarkBlue;
-        public static Color TIMER_FOREGROUND_COLOR = Color.Green;
+        public static Color JUMP_TIMER_BACKGROUND_COLOR = Color.DarkBlue;
+        public static Color JUMP_TIMER_FOREGROUND_COLOR = Color.LightBlue;
+        public static Color ATTACK_TIMER_BACKGROUND_COLOR = Color.DarkBlue;
+        public static Color ATTACK_TIMER_FOREGROUND_COLOR = Color.Yellow;
+        public static Color BOOST_TIMER_BACKGROUND_COLOR = Color.Red;
+        public static Color BOOST_TIMER_FOREGROUND_COLOR = Color.Green;
+
+        // input data
+        public const string ATTACK_MODE_ACTIVATE_LEFT = "nmnmjkjkjjlln";
+        public const string ATTACK_MODE_ACTIVATE_RIGHT = "vcvcfdfdffssv";
     }
 }

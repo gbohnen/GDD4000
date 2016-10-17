@@ -72,19 +72,22 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Agent.cs" />
-    <Compile Include="AudioManager.cs" />
-    <Compile Include="Bar.cs" />
-    <Compile Include="EntityManager.cs" />
+    <Compile Include="UI\AttackTimerBar.cs" />
+    <Compile Include="UI\BoostTimerBar.cs" />
+    <Compile Include="Entities\Agent.cs" />
+    <Compile Include="Managers\InputManager.cs" />
+    <Compile Include="Managers\AudioManager.cs" />
+    <Compile Include="UI\Bar.cs" />
+    <Compile Include="Managers\EntityManager.cs" />
     <Compile Include="GameConstants.cs" />
-    <Compile Include="MovingSprite.cs" />
+    <Compile Include="Entities\MovingSprite.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Sprite.cs" />
-    <Compile Include="TimerBar.cs" />
-    <Compile Include="UIManager.cs" />
-    <Compile Include="User.cs" />
+    <Compile Include="UI\TimerBar.cs" />
+    <Compile Include="Managers\GraphicsManager.cs" />
+    <Compile Include="Entities\User.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />

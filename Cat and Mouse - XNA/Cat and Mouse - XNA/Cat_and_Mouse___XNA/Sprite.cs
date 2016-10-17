@@ -24,6 +24,9 @@ namespace Cat_and_Mouse___XNA
         protected float maxAccel;                 // object's maximum acceleration
 
         protected float jumpTimer = 0;            // timer that limits the frequency of the mouse jumping
+        protected float boostTimer;
+        protected float attackTimer;
+        protected Color color;
 
         #endregion
 
@@ -52,6 +55,9 @@ namespace Cat_and_Mouse___XNA
             // set physics properties
             linearAccel = new Vector2(0, 0);
             velocity = new Vector2(0, 0);
+
+            // set color
+            color = GameConstants.SPRITE_DEFAULT_COLOR;
         }
 
         #endregion
@@ -67,7 +73,7 @@ namespace Cat_and_Mouse___XNA
             SpriteBatch spriteBatch = Game.Services.GetService(typeof(SpriteBatch)) as SpriteBatch;
 
             spriteBatch.Begin();
-            spriteBatch.Draw(sprite, drawRect, sourceRect, Color.White, rotation, origin, SpriteEffects.None, 0);
+            spriteBatch.Draw(sprite, drawRect, sourceRect, color, rotation, origin, SpriteEffects.None, 0);
             spriteBatch.End();
         }
 
@@ -130,6 +136,24 @@ namespace Cat_and_Mouse___XNA
         {
             get { return jumpTimer; }
             set { jumpTimer = value; }
+        }
+
+        /// <summary>
+        /// exposes the value of the boost timer
+        /// </summary>
+        public float BoostTimerValue
+        {
+            get { return boostTimer; }
+            set { boostTimer = value; }
+        }
+
+        /// <summary>
+        /// exposes the value of the attack timer
+        /// </summary>
+        public float AttackTimerValue
+        {
+            get { return attackTimer; }
+            set { attackTimer = value; }
         }
 
         /// <summary>

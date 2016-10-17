@@ -32,15 +32,18 @@ namespace Cat_and_Mouse___XNA
         /// Updates the position and rotation of the cat based on the mouse's position
         /// </summary>
         /// <param name="pos"> position of the mouse </param>
-        public override void Update(Sprite user, GameTime gameTime)
+        public override void Update(User user, GameTime gameTime)
         {
             // set the direction based on the mouse position
             direction = user.Position - Position;
 
+            // flip the direction if the mouse is attacking
+            if (user.Attacking)
+                direction = new Vector2(-direction.X, -direction.Y);
 
             if (Vector2.Distance(Position, user.Position) < GameConstants.CAT_DETECTION_RANGE)
             {
-                Move(direction, gameTime);
+                //Move(direction, gameTime);
 
                 if (tracking == false)
                 {

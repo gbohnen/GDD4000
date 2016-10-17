@@ -69,7 +69,7 @@ namespace Cat_and_Mouse___XNA
             soundLibrary.Add(SoundKeys.SadMouse, Content.Load<SoundEffect>("Music/sadmouse"));
 
             // start the background music
-            MediaPlayer.Play(song);
+            //MediaPlayer.Play(song);
             MediaPlayer.IsRepeating = true;
         }
 
@@ -79,7 +79,7 @@ namespace Cat_and_Mouse___XNA
         /// <param name="key"></param>
         public void PlaySound(SoundKeys key)
         {
-            soundLibrary[key].Play();
+            //soundLibrary[key].Play();
         }
 
         /// <summary>
@@ -97,7 +97,7 @@ namespace Cat_and_Mouse___XNA
         /// </summary>
         public void PlayBackground()
         {
-            MediaPlayer.Play(song);
+            //MediaPlayer.Play(song);
         }
 
         /// <summary>
@@ -105,7 +105,7 @@ namespace Cat_and_Mouse___XNA
         /// </summary>
         public void PlayFanfare()
         {
-            MediaPlayer.Play(fanfare);
+            //MediaPlayer.Play(fanfare);
         }
 
         /// <summary>
@@ -113,7 +113,7 @@ namespace Cat_and_Mouse___XNA
         /// </summary>
         public void PlayGameover()
         {
-            MediaPlayer.Play(gameover);
+            //MediaPlayer.Play(gameover);
         }
 
         /// <summary>
