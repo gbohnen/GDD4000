@@ -94,6 +94,7 @@ namespace Cat_and_Mouse___XNA
         {
             spriteBatch.DrawString(defaultFont, "Time Remaining: " + (int)(timer / 1000 + 1), new Vector2(10, 10), Color.White);
             spriteBatch.DrawString(defaultFont, "Button Config: " + InputManager.Instance.HandednessConfig, new Vector2(10, 40), Color.White);
+            spriteBatch.DrawString(defaultFont, InputManager.keyCombo, new Vector2(10, 70), Color.White);
         }
 
         public void EndGame(Winner win, float timer)
@@ -115,8 +116,6 @@ namespace Cat_and_Mouse___XNA
             timeString = baseTimeString + ((GameConstants.GAME_TIMER_START_VALUE - timer) / 1000) + " seconds.";
 
             // this should really be in the gamemanager, but this was the quickest way to get out of looping some weird code in the cat win state
-            Game1.gameState = GameState.GameOver;
-            Game1.spacePressed = false;
         }
 
         /// <summary>

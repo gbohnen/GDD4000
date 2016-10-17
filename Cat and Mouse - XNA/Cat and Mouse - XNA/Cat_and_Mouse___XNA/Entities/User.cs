@@ -99,7 +99,10 @@ namespace Cat_and_Mouse___XNA
             drawRect.Y += (int)(direction.Y * GameConstants.MOUSE_DEFAULT_SPEED);
 
             // orient the sprite
+            //if (direction != new Vector2(0,0))
+            //    direction.Normalize();
             rotation = (float)Math.Atan2(direction.Y, direction.X);
+            Console.WriteLine(rotation);
 
             // keep the sprite in the bounds of the screen
             Clamp();
@@ -138,6 +141,11 @@ namespace Cat_and_Mouse___XNA
             }
         }
 
+        /// <summary>
+        /// delegate that tracks when a keyboard combo is activated
+        /// </summary>
+        /// <param name="sender"> sender object </param>
+        /// <param name="e"> event parameters </param>
         private void AttackMode(object sender, EventArgs e)
         {
             // if the timer is up, activate attack mode
@@ -147,6 +155,9 @@ namespace Cat_and_Mouse___XNA
             }
         }
 
+        /// <summary>
+        /// switches into or out of attack mode
+        /// </summary>
         private void ToggleAttackMode()
         {
             if (!attacking)

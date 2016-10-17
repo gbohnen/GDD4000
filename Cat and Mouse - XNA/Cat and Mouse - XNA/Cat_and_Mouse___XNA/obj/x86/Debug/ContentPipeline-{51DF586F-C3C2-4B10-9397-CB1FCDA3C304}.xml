@@ -66,6 +66,26 @@
       <Time>2016-09-25T20:13:31.7313086-06:00</Time>
     </Item>
     <Item>
+      <Source>Music\fanfare.mp3</Source>
+      <Name>Music\fanfare</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNA\bin\x86\Debug\Content\Music\fanfare.xnb</Output>
+      <Extra>C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNA\bin\x86\Debug\Content\Music\fanfare.wma</Extra>
+      <Time>2016-09-25T21:03:07.1101406-06:00</Time>
+    </Item>
+    <Item>
+      <Source>Music\gameover.mp3</Source>
+      <Name>Music\gameover</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNA\bin\x86\Debug\Content\Music\gameover.xnb</Output>
+      <Extra>C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNA\bin\x86\Debug\Content\Music\gameover.wma</Extra>
+      <Time>2016-09-25T21:10:37.4957204-06:00</Time>
+    </Item>
+    <Item>
       <Source>Music\happycat.wav</Source>
       <Name>Music\happycat</Name>
       <Importer>WavImporter</Importer>
@@ -100,26 +120,6 @@
       <Options>None</Options>
       <Output>C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNA\bin\x86\Debug\Content\Music\sadmouse.xnb</Output>
       <Time>2016-09-25T20:24:15.6340937-06:00</Time>
-    </Item>
-    <Item>
-      <Source>Music\fanfare.mp3</Source>
-      <Name>Music\fanfare</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNA\bin\x86\Debug\Content\Music\fanfare.xnb</Output>
-      <Extra>C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNA\bin\x86\Debug\Content\Music\fanfare.wma</Extra>
-      <Time>2016-09-25T21:03:07.1101406-06:00</Time>
-    </Item>
-    <Item>
-      <Source>Music\gameover.mp3</Source>
-      <Name>Music\gameover</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNA\bin\x86\Debug\Content\Music\gameover.xnb</Output>
-      <Extra>C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNA\bin\x86\Debug\Content\Music\gameover.wma</Extra>
-      <Time>2016-09-25T21:10:37.4957204-06:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

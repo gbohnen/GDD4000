@@ -60,7 +60,7 @@ namespace Cat_and_Mouse___XNA
         public const int MOUSE_BOOST_TIMER = 2000;
         public const float MOUSE_BOOST_DEPLETION_RATE = 2;
         public const int CAT_TIME_TO_TARGET = 600;
-        public const int KEY_COMBO_PRESS_THRESHOLD = 5000;
+        public const int KEY_COMBO_PRESS_THRESHOLD = 3000;
         public const int KEY_COMBO_TOTAL_THRESHOLD = 20000;
 
         // health / timer bar values

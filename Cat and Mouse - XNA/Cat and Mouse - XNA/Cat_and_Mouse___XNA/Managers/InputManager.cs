@@ -27,7 +27,7 @@ namespace Cat_and_Mouse___XNA
         KeyboardState lastState;                        // keyboard state from the previous frame
         KeyboardState currState;                        // keyboard state from the current frame
         string comboReference;                          // holds the cheat string for comparison
-        string comboValue;                              // placeholder for the target cheat string   
+        public static string keyCombo;                              // placeholder for the target cheat string   
         float intervalTimer;                            // timer that checks between keystrokes 
         float comboTimer;                               // timer that tracks the total time of combo from start to finish 
         bool comboOn;
@@ -97,41 +97,51 @@ namespace Cat_and_Mouse___XNA
             if (currState.IsKeyDown(Keys.D1))
             {
                 handedness = false;
-                comboValue = GameConstants.ATTACK_MODE_ACTIVATE_LEFT;
-                comboReference = comboValue;
+                keyCombo = GameConstants.ATTACK_MODE_ACTIVATE_LEFT;
+                comboReference = keyCombo;
                 ResetCombo();
             }
             else if (currState.IsKeyDown(Keys.D2))
             {
                 handedness = true;
-                comboValue = GameConstants.ATTACK_MODE_ACTIVATE_RIGHT;
-                comboReference = comboValue;
+                keyCombo = GameConstants.ATTACK_MODE_ACTIVATE_RIGHT;
+                comboReference = keyCombo;
                 ResetCombo();
             }
 
             // check for gamestate
             if (Game1.gameState == GameState.Play)
             {
-                // check for combo input
-                string c = comboValue[0].ToString();                  // grab first character from reference string
-                Keys key;                                               // blank key
-                if (Enum.TryParse<Keys>(c, out key))                    // check if first character exists as a key
+                // check for combo
+                // if any keys were pressed
+                if (currState.GetPressedKeys().Length > 0)
                 {
-                    if (currState.IsKeyDown(key))                       // if that key was pressed
-                    {
-                        comboOn = true;                                 // enable the combo
-
-                        if (comboValue.Length > 0)                      // if there are still characters in the string
-                            comboValue.Remove(0, 1);                    // remove the first character from the string
-                        else                                            // if the string is empty
-                            OnAttackCombo();                            // trigger the combo
+                    // add current keys to buffer
+                    // this doesn't account for the ordering of keys pressed, or multiple correct keys,
+                    // but the user shouldn't be allowed or able to input a combo that quickly
+                    foreach(Keys key in currState.GetPressedKeys())
+                    { 
+                        // only add if it was not pressed last frame
+                        if (currState.IsKeyDown(key) && !lastState.IsKeyDown(key))
+                            keyCombo += GetChar(key);
                     }
-                }
 
-                // check for other key presses
-                if (currState.GetPressedKeys().Length > 0 && !currState.IsKeyDown(key)) // if a key was pressed and the current combo check is false
-                {
-                    ResetCombo();
+                    // check if buffer is equal to combo
+                    if (keyCombo != comboReference.Substring(0, keyCombo.Length))
+                    {
+                        // no match
+                        ResetCombo();
+                    }
+                    else
+                    {
+                        comboOn = true;
+
+                        // check for full combo
+                        if (keyCombo == comboReference)
+                        {
+                            OnAttackCombo();
+                        }
+                    }
                 }
 
                 // update timers
@@ -144,7 +154,7 @@ namespace Cat_and_Mouse___XNA
                 // time-out combo
                 if (comboTimer > GameConstants.KEY_COMBO_TOTAL_THRESHOLD || intervalTimer > GameConstants.KEY_COMBO_PRESS_THRESHOLD)
                     ResetCombo();
-
+                
                 // left-handed
                 if (!handedness)
                 {
@@ -176,6 +186,7 @@ namespace Cat_and_Mouse___XNA
                         OnMoveKeys(direction);
                     }
                 }
+
                 // right-handed
                 else
                 {
@@ -221,40 +232,40 @@ namespace Cat_and_Mouse___XNA
                     shift = false;
             }
 
-            // debug - check for attacking
-            if (currState.IsKeyDown(Keys.B))
-            {
-                OnAttackCombo();
-            }
+            //// debug - check for attacking
+            //if (currState.IsKeyDown(Keys.B))
+            //{
+            //    OnAttackCombo();
+            //}
 
-            // debug - arrow key movement
-            // mouse movement code
-            if (Game1.gameState == GameState.Play)
-            {
-                // zero the direction vector
-                Vector2 direction = new Vector2(0, 0);
+            //// debug - arrow key movement
+            //// mouse movement code
+            //if (Game1.gameState == GameState.Play)
+            //{
+            //    // zero the direction vector
+            //    Vector2 direction = new Vector2(0, 0);
 
-                // change direction based on keypresses
-                if (currState.IsKeyDown(Keys.Up))
-                {
-                    direction.Y -= 1;
-                }
-                if (currState.IsKeyDown(Keys.Right))
-                {
-                    direction.X += 1;
-                }
-                if (currState.IsKeyDown(Keys.Left))
-                {
-                    direction.X -= 1;
-                }
-                if (currState.IsKeyDown(Keys.Down))
-                {
-                    direction.Y += 1;
-                }
+            //    // change direction based on keypresses
+            //    if (currState.IsKeyDown(Keys.Up))
+            //    {
+            //        direction.Y -= 1;
+            //    }
+            //    if (currState.IsKeyDown(Keys.Right))
+            //    {
+            //        direction.X += 1;
+            //    }
+            //    if (currState.IsKeyDown(Keys.Left))
+            //    {
+            //        direction.X -= 1;
+            //    }
+            //    if (currState.IsKeyDown(Keys.Down))
+            //    {
+            //        direction.Y += 1;
+            //    }
 
-                // trigger event
-                OnMoveKeys(direction);
-            }
+            //    // trigger event
+            //    OnMoveKeys(direction);
+            //}
         }
 
         #endregion
@@ -290,7 +301,7 @@ namespace Cat_and_Mouse___XNA
         /// </summary>
         private void ResetCombo()
         {
-            comboValue = comboReference;
+            keyCombo = "";
             intervalTimer = 0;
             comboTimer = 0;
             comboOn = false;
@@ -339,6 +350,47 @@ namespace Cat_and_Mouse___XNA
             }
 
             ResetCombo();
+        }
+
+        /// <summary>
+        /// gets the char for the current keypress. only returns alpha chars. non-alpha returns space, which will break a combo
+        /// </summary>
+        /// <param name="key"> the key pressed </param>
+        /// <returns></returns>
+        private string GetChar(Keys key)
+        {
+            switch (key)
+            {
+                case Keys.A: { return "a"; }
+                case Keys.B: { return "b"; }
+                case Keys.C: { return "c"; }
+                case Keys.D: { return "d"; }
+                case Keys.E: { return "e"; }
+                case Keys.F: { return "f"; }
+                case Keys.G: { return "g"; }
+                case Keys.H: { return "h"; }
+                case Keys.I: { return "i"; }
+                case Keys.J: { return "j"; }
+                case Keys.K: { return "k"; }
+                case Keys.L: { return "l"; }
+                case Keys.M: { return "m"; }
+                case Keys.N: { return "n"; }
+                case Keys.O: { return "o"; }
+                case Keys.P: { return "p"; }
+                case Keys.Q: { return "q"; }
+                case Keys.R: { return "r"; }
+                case Keys.S: { return "s"; }
+                case Keys.T: { return "t"; }
+                case Keys.U: { return "u"; }
+                case Keys.V: { return "v"; }
+                case Keys.W: { return "w"; }
+                case Keys.X: { return "x"; }
+                case Keys.Y: { return "y"; }
+                case Keys.Z: { return "z"; }
+
+                default:
+                    return " ";
+            }
         }
 
         #endregion

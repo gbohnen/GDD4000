@@ -113,6 +113,10 @@ namespace Cat_and_Mouse___XNA
                 if (timer <= 0)
                 {
                     GraphicsManager.Instance.EndGame(Winner.Mouse, timer);
+
+                    // possibly refactor
+                    Game1.gameState = GameState.GameOver;
+                    Game1.spacePressed = false;
                 }
             }
 
