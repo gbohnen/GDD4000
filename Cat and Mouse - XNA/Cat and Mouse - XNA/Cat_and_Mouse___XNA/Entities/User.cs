@@ -132,7 +132,7 @@ namespace Cat_and_Mouse___XNA
         private void HyperJump(object sender, EventArgs e)
         {
             // if the timer is up, jump to a new locaion and reset
-            if (jumpTimer >= GameConstants.MOUSE_JUMP_START_VALUE && !attacking)
+            if (jumpTimer >= GameConstants.MOUSE_JUMP_START_VALUE && !attacking && Game1.gameState == GameState.Play)
             {
                 Jump();
                 AudioManager.Instance.PlaySound(SoundKeys.HappyMouse);

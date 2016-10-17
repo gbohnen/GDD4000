@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 using System.Collections.Generic;
 
 namespace Cat_and_Mouse___XNA
@@ -31,9 +32,6 @@ namespace Cat_and_Mouse___XNA
         // timer 
         public static float timer = GameConstants.GAME_TIMER_START_VALUE;                     // sets the game timer
 
-        // flags
-        public static bool spacePressed = false;                                              // checks if space bar has been pressed. prevents duplicate input in menus
-
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -59,6 +57,9 @@ namespace Cat_and_Mouse___XNA
             AudioManager.Instance.Initialize(Content);
             GraphicsManager.Instance.Initialize(Content);
             EntityManager.Instance.Initialize(this);
+
+            // register spacebar event
+            InputManager.Instance.SpacePressed += SpacePressed;
 
             base.Initialize();
         }
@@ -116,25 +117,8 @@ namespace Cat_and_Mouse___XNA
 
                     // possibly refactor
                     Game1.gameState = GameState.GameOver;
-                    Game1.spacePressed = false;
                 }
-            }
-
-            // update in game over mode
-            else if (gameState == GameState.GameOver)
-            {
-                if (state.IsKeyDown(Keys.Space) && !spacePressed)
-                {
-                    // reset the game
-                    timer = GameConstants.GAME_TIMER_START_VALUE;
-                    gameState = GameState.Play;
-                    AudioManager.Instance.PlayBackground();
-                    EntityManager.Instance.ResetGame();
-
-                    spacePressed = true;
-                }
-
-            }
+            }            
 
             base.Update(gameTime);
         }
@@ -161,6 +145,24 @@ namespace Cat_and_Mouse___XNA
             spriteBatch.End();
 
             base.Draw(gameTime);
+        }
+
+        /// <summary>
+        /// event delegate for the space bar being pressed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SpacePressed(object sender, EventArgs e)
+        {
+            // update in game over mode
+            if (gameState == GameState.GameOver)
+            {
+                    // reset the game
+                    timer = GameConstants.GAME_TIMER_START_VALUE;
+                    gameState = GameState.Play;
+                    AudioManager.Instance.PlayBackground();
+                    EntityManager.Instance.ResetGame();
+            }
         }
     }
 }

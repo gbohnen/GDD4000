@@ -7,6 +7,15 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Cat_and_Mouse___XNA
 {
+    public class TimerArgs : EventArgs
+    {
+        public int Timer { get; set; }
+        public TimerArgs(int timer)
+        {
+            Timer = timer;
+        }
+    }
+
     class EntityManager
     {
         #region Fields
@@ -19,6 +28,9 @@ namespace Cat_and_Mouse___XNA
         User mouse;
 
         float elapsedMilliseconds;                      // time since last frame. derived from gameTime and used for event calculations
+
+        public static EventHandler MouseWin;
+        public static EventHandler CatsWin;
 
         #endregion
 
@@ -136,6 +148,7 @@ namespace Cat_and_Mouse___XNA
                 {
                     if (!mouse.Attacking)
                         GraphicsManager.Instance.EndGame(Winner.Cats, Game1.timer);
+
                     else
                     {
                         cat.JumpToFarCorner();
@@ -153,6 +166,25 @@ namespace Cat_and_Mouse___XNA
         #endregion
 
         #region Private/Protected Members
+
+        private void OnCatsWin()
+        {
+            // fire event
+            if (CatsWin != null)
+            {
+                CatsWin(this, EventArgs.Empty);
+            }
+        }
+
+        protected void OnMouseWin()
+        {
+            // fire event
+            if (MouseWin != null)
+            {
+                MouseWin(this, EventArgs.Empty);
+            }
+        }
+
 
         /// <summary>
         /// sets all entities within the scene

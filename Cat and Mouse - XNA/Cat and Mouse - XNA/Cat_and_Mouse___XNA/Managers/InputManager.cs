@@ -109,6 +109,10 @@ namespace Cat_and_Mouse___XNA
                 ResetCombo();
             }
 
+            // check for space-bar. this will fire various events based on the gameplay state
+            if (currState.IsKeyDown(Keys.Space))
+                OnSpace();
+
             // check for gamestate
             if (Game1.gameState == GameState.Play)
             {
@@ -221,51 +225,12 @@ namespace Cat_and_Mouse___XNA
 
                 // hand independent actions
 
-                // check for space-bar
-                if (currState.IsKeyDown(Keys.Space))
-                    OnSpace();
-
                 // check for boosting
                 if (currState.IsKeyDown(Keys.LeftShift) || currState.IsKeyDown(Keys.RightShift))
                     shift = true;
                 else
                     shift = false;
             }
-
-            //// debug - check for attacking
-            //if (currState.IsKeyDown(Keys.B))
-            //{
-            //    OnAttackCombo();
-            //}
-
-            //// debug - arrow key movement
-            //// mouse movement code
-            //if (Game1.gameState == GameState.Play)
-            //{
-            //    // zero the direction vector
-            //    Vector2 direction = new Vector2(0, 0);
-
-            //    // change direction based on keypresses
-            //    if (currState.IsKeyDown(Keys.Up))
-            //    {
-            //        direction.Y -= 1;
-            //    }
-            //    if (currState.IsKeyDown(Keys.Right))
-            //    {
-            //        direction.X += 1;
-            //    }
-            //    if (currState.IsKeyDown(Keys.Left))
-            //    {
-            //        direction.X -= 1;
-            //    }
-            //    if (currState.IsKeyDown(Keys.Down))
-            //    {
-            //        direction.Y += 1;
-            //    }
-
-            //    // trigger event
-            //    OnMoveKeys(direction);
-            //}
         }
 
         #endregion

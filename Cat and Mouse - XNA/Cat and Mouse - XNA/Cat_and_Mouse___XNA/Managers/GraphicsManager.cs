@@ -97,7 +97,12 @@ namespace Cat_and_Mouse___XNA
             spriteBatch.DrawString(defaultFont, InputManager.keyCombo, new Vector2(10, 70), Color.White);
         }
 
-        public void EndGame(Winner win, float timer)
+        /// <summary>
+        /// sets up the end of game messages
+        /// </summary>
+        /// <param name="win"></param>
+        /// <param name="timer"></param>
+        private void EndGame(Winner win, float timer)
         {
             switch (win)
             {
@@ -114,8 +119,6 @@ namespace Cat_and_Mouse___XNA
             }
 
             timeString = baseTimeString + ((GameConstants.GAME_TIMER_START_VALUE - timer) / 1000) + " seconds.";
-
-            // this should really be in the gamemanager, but this was the quickest way to get out of looping some weird code in the cat win state
         }
 
         /// <summary>
@@ -142,6 +145,11 @@ namespace Cat_and_Mouse___XNA
         protected int PositionTextHoriz(string text)
         {
             return (GameConstants.WINDOW_WIDTH / 2) - (int)(defaultFont.MeasureString(text).X / 2);
+        }
+
+        private void OnMouseWin(object sender, EventArgs e)
+        {
+            EndGame(Winner.Cats, Game1.timer);
         }
 
         #endregion
