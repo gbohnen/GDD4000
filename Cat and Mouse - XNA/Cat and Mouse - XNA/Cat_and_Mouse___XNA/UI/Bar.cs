@@ -1,10 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Cat_and_Mouse___XNA
 {
@@ -13,9 +8,11 @@ namespace Cat_and_Mouse___XNA
         Enabled,
         Disabled
     }
+
     class Bar : Sprite
     {
         #region Fields
+
         protected int minValue;                     // the minimum value of the bar
         protected int maxValue;                     // the maximum value of the bar
         protected Texture2D background;             // the background of the bar
@@ -26,9 +23,11 @@ namespace Cat_and_Mouse___XNA
         protected Color foreColor;                  // color of the foreground
         protected Sprite target;                    // the object to which the bar is attached
         protected ActiveBar active;                 // sets the activity state of the bar
+
         #endregion
 
         #region Constructors
+
         /// <summary>
         /// base constructor for a timer bar
         /// </summary>
@@ -59,9 +58,11 @@ namespace Cat_and_Mouse___XNA
             // set the bar to active
             active = ActiveBar.Enabled;
         }
+
         #endregion
 
         #region Public Methods
+
         /// <summary>
         /// updates the bar based on the attached objects position
         /// </summary>

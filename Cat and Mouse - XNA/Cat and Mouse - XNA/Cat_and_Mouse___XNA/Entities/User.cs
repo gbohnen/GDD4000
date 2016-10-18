@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using System;
 
 namespace Cat_and_Mouse___XNA
@@ -9,8 +8,8 @@ namespace Cat_and_Mouse___XNA
     {
         #region Fields
 
-        bool jumpReady = false;
-        protected bool attacking;
+        bool jumpReady = false;                         // is the hyperjump ready?
+        bool attacking;                                 // is the mouse attacking
 
         #endregion
 
@@ -38,7 +37,7 @@ namespace Cat_and_Mouse___XNA
 
         #endregion
 
-        #region Public Methods
+        #region Public Members
 
         /// <summary>
         /// Updates timers related to the mouse
@@ -107,10 +106,6 @@ namespace Cat_and_Mouse___XNA
             // keep the sprite in the bounds of the screen
             Clamp();
         }
-
-        #endregion
-
-        #region Public Properties
 
         /// <summary>
         /// exposes the mouse attacking value

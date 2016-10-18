@@ -1,19 +1,25 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using System;
+
 namespace Cat_and_Mouse___XNA
 {
     class MovingSprite : Sprite
     {
+        #region Fields
+
         public static Random rand = new Random();
+
+        #endregion
 
         #region Constructors
 
-        public MovingSprite(Texture2D image, Game game) : base(image, game)
-        {
-
-        }
+        /// <summary>
+        /// empty constructor. maintains inheritence chain
+        /// </summary>
+        /// <param name="image"></param>
+        /// <param name="game"></param>
+        public MovingSprite(Texture2D image, Game game) : base(image, game) { }
 
         #endregion
         
@@ -28,7 +34,7 @@ namespace Cat_and_Mouse___XNA
         /// Updates the position of the object based on keyboard input
         /// </summary>
         /// <param name="state"> the current state of the keyboard </param>
-        public virtual void Update(KeyboardState state, GameTime gameTime) { }
+        public virtual void Update(GameTime gameTime) { }
 
         /// <summary>
         /// moves the character to a random position within the game window
@@ -45,6 +51,11 @@ namespace Cat_and_Mouse___XNA
             Clamp();
         }
 
+        /// <summary>
+        /// sets the position of the object to given xy coords
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
         public virtual void SetPosition(float x, float y)
         {
             drawRect.X = (int)(x - (drawRect.Width / 2));

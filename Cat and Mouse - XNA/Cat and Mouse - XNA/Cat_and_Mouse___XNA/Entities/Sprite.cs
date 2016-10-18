@@ -1,7 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using System;
 
 namespace Cat_and_Mouse___XNA
 {
@@ -10,23 +8,23 @@ namespace Cat_and_Mouse___XNA
         #region Fields
 
         // fields
-        protected Rectangle drawRect;             // draw rectangle
-        protected Rectangle sourceRect;           // source rectangle
-        protected float rotation;                 // current angle of rotation
-        protected Vector2 origin;                 // origin of rotation (vertex)
-        protected Texture2D sprite;               // Mouse sprite
-        protected Vector2 direction;              // direction of movement
+        protected Rectangle drawRect;               // draw rectangle
+        protected Rectangle sourceRect;             // source rectangle
+        protected float rotation;                   // current angle of rotation
+        protected Vector2 origin;                   // origin of rotation (vertex)
+        protected Texture2D sprite;                 // Mouse sprite
+        protected Vector2 direction;                // direction of movement
 
-        protected Vector2 linearAccel;            // direction of primary force
-        protected Vector2 velocity;               // object's current velocity
-        protected Vector2 position;               // object's position
-        protected float maxVelocity;              // object's maximum speed
-        protected float maxAccel;                 // object's maximum acceleration
+        protected Vector2 linearAccel;              // direction of primary force
+        protected Vector2 velocity;                 // object's current velocity
+        protected Vector2 position;                 // object's position
+        protected float maxVelocity;                // object's maximum speed
+        protected float maxAccel;                   // object's maximum acceleration
 
-        protected float jumpTimer = 0;            // timer that limits the frequency of the mouse jumping
-        protected float boostTimer;
-        protected float attackTimer;
-        protected Color color;
+        protected float jumpTimer = 0;              // timer that limits the frequency of the mouse jumping
+        protected float boostTimer;                 // timer that limits the frequency of mouse boosting
+        protected float attackTimer;                // timer that limits the frequency of the mouse attacking
+        protected Color color;                      // the color of the sprite
 
         #endregion
 
@@ -36,7 +34,7 @@ namespace Cat_and_Mouse___XNA
         /// builds the object with a given sprite
         /// </summary>
         /// <param name="image"> the sprite that the object will draw as </param>
-        public Sprite(Texture2D image, Game game) : base(game)
+        protected Sprite(Texture2D image, Game game) : base(game)
         {
             // save the sprite 
             sprite = image;
@@ -154,14 +152,6 @@ namespace Cat_and_Mouse___XNA
         {
             get { return attackTimer; }
             set { attackTimer = value; }
-        }
-
-        /// <summary>
-        /// returns the velocity of the object as a vector
-        /// </summary>
-        public virtual Vector2 Velocity
-        {
-            get { return velocity; }
         }
 
         #endregion

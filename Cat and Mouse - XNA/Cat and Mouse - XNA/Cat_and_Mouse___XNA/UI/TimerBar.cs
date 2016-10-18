@@ -10,6 +10,7 @@ namespace Cat_and_Mouse___XNA
         #endregion
 
         #region Constructors
+
         /// <summary>
         /// base constructor for a timer bar
         /// </summary>
@@ -24,9 +25,11 @@ namespace Cat_and_Mouse___XNA
             backColor = back;
             foreColor = fore;
         }
+
         #endregion
 
         #region Public Methods
+
         /// <summary>
         /// updates the state of the bar
         /// </summary>
@@ -37,6 +40,7 @@ namespace Cat_and_Mouse___XNA
             // set the width of the bar to draw
             foreRect.Width = (int)(target.JumpTimerValue / GameConstants.MOUSE_JUMP_START_VALUE * backRect.Width);
         }
+
         #endregion
     }
 }

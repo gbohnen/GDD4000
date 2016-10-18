@@ -11,9 +11,9 @@ namespace Cat_and_Mouse___XNA
     {
         #region Fields
 
-        private static GraphicsManager instance;                      // singleton instance of the manager
-        Dictionary<SpriteType, Texture2D> spriteLibrary;        // library that holds values for each version of the sprite enumeration
-        SpriteFont defaultFont;                                 // the default UI font
+        private static GraphicsManager instance;                                // singleton instance of the manager
+        Dictionary<SpriteType, Texture2D> spriteLibrary;                        // library that holds values for each version of the sprite enumeration
+        SpriteFont defaultFont;                                                 // the default UI font
 
         // winning messages
         string catWin = "The enemies got you! Better luck next time.";          // prefab cat win message
@@ -24,7 +24,6 @@ namespace Cat_and_Mouse___XNA
         string timeString;
 
         #endregion
-
 
         #region Constructors
 
@@ -38,7 +37,7 @@ namespace Cat_and_Mouse___XNA
 
         #endregion
 
-        #region Public Properties
+        #region Public Members
 
         /// <summary>
         /// accesses the singleton instance of the manager
@@ -53,10 +52,6 @@ namespace Cat_and_Mouse___XNA
                 return instance;
             }
         }
-
-        #endregion
-
-        #region Public Methods
 
         /// <summary>
         /// Loads all content and initializes most variables
@@ -102,7 +97,7 @@ namespace Cat_and_Mouse___XNA
         /// </summary>
         /// <param name="win"></param>
         /// <param name="timer"></param>
-        private void EndGame(Winner win, float timer)
+        public void EndGame(Winner win, float timer)
         {
             switch (win)
             {
@@ -142,14 +137,9 @@ namespace Cat_and_Mouse___XNA
         /// </summary>
         /// <param name="text"> the target string to center </param>
         /// <returns></returns>
-        protected int PositionTextHoriz(string text)
+        private int PositionTextHoriz(string text)
         {
             return (GameConstants.WINDOW_WIDTH / 2) - (int)(defaultFont.MeasureString(text).X / 2);
-        }
-
-        private void OnMouseWin(object sender, EventArgs e)
-        {
-            EndGame(Winner.Cats, Game1.timer);
         }
 
         #endregion

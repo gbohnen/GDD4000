@@ -2,7 +2,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
-using System.Collections.Generic;
 
 namespace Cat_and_Mouse___XNA
 {
@@ -16,6 +15,9 @@ namespace Cat_and_Mouse___XNA
         GameOver
     }
 
+    /// <summary>
+    /// possible winners of the game
+    /// </summary>
     public enum Winner { Cats, Mouse }
 
     /// <summary>
@@ -30,7 +32,7 @@ namespace Cat_and_Mouse___XNA
         public static GameState gameState = GameState.Play;                                   // current state in which the game is running
 
         // timer 
-        public static float timer = GameConstants.GAME_TIMER_START_VALUE;                     // sets the game timer
+        float timer = GameConstants.GAME_TIMER_START_VALUE;                     // sets the game timer
 
         public Game1()
         {
@@ -58,8 +60,9 @@ namespace Cat_and_Mouse___XNA
             GraphicsManager.Instance.Initialize(Content);
             EntityManager.Instance.Initialize(this);
 
-            // register spacebar event
+            // register events
             InputManager.Instance.SpacePressed += SpacePressed;
+            EntityManager.Instance.EndGame += EndGame;
 
             base.Initialize();
         }
@@ -113,10 +116,7 @@ namespace Cat_and_Mouse___XNA
                 // check if time has run out
                 if (timer <= 0)
                 {
-                    GraphicsManager.Instance.EndGame(Winner.Mouse, timer);
-
-                    // possibly refactor
-                    Game1.gameState = GameState.GameOver;
+                    EndGame(this, new EndingArgs(Winner.Mouse));
                 }
             }            
 
@@ -150,8 +150,8 @@ namespace Cat_and_Mouse___XNA
         /// <summary>
         /// event delegate for the space bar being pressed
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender"> object from which the vent was called </param>
+        /// <param name="e"> event parameters </param>
         private void SpacePressed(object sender, EventArgs e)
         {
             // update in game over mode
@@ -163,6 +163,17 @@ namespace Cat_and_Mouse___XNA
                     AudioManager.Instance.PlayBackground();
                     EntityManager.Instance.ResetGame();
             }
+        }
+
+        /// <summary>
+        /// event that fires when the game ends
+        /// </summary>
+        /// <param name="sender"> sending object </param>
+        /// <param name="e"> event parameters </param>
+        private void EndGame(object sender, EndingArgs e)
+        {
+            GraphicsManager.Instance.EndGame(e.Winner, timer);
+            Game1.gameState = GameState.GameOver;
         }
     }
 }

@@ -6,7 +6,11 @@ namespace Cat_and_Mouse___XNA
 {
     class Agent : MovingSprite
     {
-        bool tracking;
+        #region Fields
+
+        bool tracking;                          // is the cat tracking the mouse
+
+        #endregion
 
         #region Constructors
 

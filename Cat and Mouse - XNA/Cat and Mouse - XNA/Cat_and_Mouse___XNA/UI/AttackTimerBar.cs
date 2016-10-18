@@ -1,9 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Cat_and_Mouse___XNA
 {
@@ -31,6 +27,10 @@ namespace Cat_and_Mouse___XNA
 
         #endregion
 
+        /// <summary>
+        /// updates the length of the bar
+        /// </summary>
+        /// <param name="i"></param>
         public override void Update(int i)
         {
             base.Update(i);

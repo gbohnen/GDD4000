@@ -1,18 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
 namespace Cat_and_Mouse___XNA
 {
-    public class TimerArgs : EventArgs
+    public class EndingArgs : EventArgs
     {
-        public int Timer { get; set; }
-        public TimerArgs(int timer)
+        public Winner Winner { get; set; }
+        public EndingArgs(Winner win)
         {
-            Timer = timer;
+            Winner = win;
         }
     }
 
@@ -25,12 +23,11 @@ namespace Cat_and_Mouse___XNA
         List<MovingSprite> players;                     // list of players in the game
         List<Bar> bars;                                 // list of all bars used in the game
 
-        User mouse;
+        User mouse;                                     // the player object
 
         float elapsedMilliseconds;                      // time since last frame. derived from gameTime and used for event calculations
 
-        public static EventHandler MouseWin;
-        public static EventHandler CatsWin;
+        public event EventHandler<EndingArgs> EndGame;  // event called when the game ends (in this case the cats catch the mouse
 
         #endregion
 
@@ -135,7 +132,7 @@ namespace Cat_and_Mouse___XNA
             // update the players
             foreach (MovingSprite player in players)
             {
-                player.Update(state, gameTime);
+                player.Update(gameTime);
             }
 
             // update all enemy agents
@@ -147,7 +144,7 @@ namespace Cat_and_Mouse___XNA
                 if (mouse.DrawRectangle.Intersects(cat.DrawRectangle))
                 {
                     if (!mouse.Attacking)
-                        GraphicsManager.Instance.EndGame(Winner.Cats, Game1.timer);
+                        OnEndGame(Winner.Cats);
 
                     else
                     {
@@ -167,29 +164,23 @@ namespace Cat_and_Mouse___XNA
 
         #region Private/Protected Members
 
-        private void OnCatsWin()
+        /// <summary>
+        /// trigger for the endgame event
+        /// </summary>
+        /// <param name="win"> the winner of the game</param>
+        private void OnEndGame(Winner win)
         {
             // fire event
-            if (CatsWin != null)
+            if (EndGame != null)
             {
-                CatsWin(this, EventArgs.Empty);
+                EndGame(this, new EndingArgs(win));
             }
         }
-
-        protected void OnMouseWin()
-        {
-            // fire event
-            if (MouseWin != null)
-            {
-                MouseWin(this, EventArgs.Empty);
-            }
-        }
-
 
         /// <summary>
         /// sets all entities within the scene
         /// </summary>
-        protected void PlaceObjects()
+        private void PlaceObjects()
         {
             // place the mouse in the center of the screen
             mouse.SetPosition(GameConstants.WINDOW_WIDTH / 2, GameConstants.WINDOW_HEIGHT / 2);
@@ -229,7 +220,7 @@ namespace Cat_and_Mouse___XNA
         /// </summary>
         /// <param name="sender"> object that triggered the event </param>
         /// <param name="e"> movement vector received from the event </param>
-        public void MoveMouse(object sender, MovementArgs e)
+        private void MoveMouse(object sender, MovementArgs e)
         {
             Vector2 direction = e.Direction;
             

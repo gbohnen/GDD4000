@@ -48,4 +48,3 @@ C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse - XNA\Cat and Mouse - XNA\C
 C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNA\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNA\obj\x86\Debug\Cat_and_Mouse___XNA.exe
 C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNA\obj\x86\Debug\Cat_and_Mouse___XNA.pdb
-C:\Users\Gray\Documents\GitHub\GDD4000\Cat and Mouse - XNA\Cat and Mouse - XNA\Cat_and_Mouse___XNA\obj\x86\Debug\Cat_and_Mouse___XNA.csprojResolveAssemblyReference.cache

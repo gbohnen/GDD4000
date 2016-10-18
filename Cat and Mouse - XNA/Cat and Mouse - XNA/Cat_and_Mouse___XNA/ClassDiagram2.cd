@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Cat_and_Mouse___XNA.Agent">
+    <Position X="0.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>Entities\Agent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cat_and_Mouse___XNA.MovingSprite">
+    <Position X="1.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAIAAAgAAAAAAAAAAAAAAAAAAAgAAAgAAAAAAAAA=</HashCode>
+      <FileName>Entities\MovingSprite.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cat_and_Mouse___XNA.Sprite">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CACAAAARAIACIoAgAECAIAAAAFAAQECAABQAAAAAQCA=</HashCode>
+      <FileName>Entities\Sprite.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cat_and_Mouse___XNA.User">
+    <Position X="2.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAUAAAABEIAAAAAQAAAAAAAAAAAAABAAAAAAAAQAAAA=</HashCode>
+      <FileName>Entities\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cat_and_Mouse___XNA.AudioManager">
+    <Position X="8.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAEAAAAAQCAAAAAAAgAAABIAAAAQBAAIAAAQAA=</HashCode>
+      <FileName>Managers\AudioManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cat_and_Mouse___XNA.EndingArgs">
+    <Position X="12" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Managers\EntityManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cat_and_Mouse___XNA.EntityManager">
+    <Position X="10.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAABAAAAAQMCAAAAAFAAAgBAAAABYAAAAAAQAAA=</HashCode>
+      <FileName>Managers\EntityManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cat_and_Mouse___XNA.GraphicsManager">
+    <Position X="12" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAQgAAAAAEQAAAMCAAACAIABAAAgAQAAAAQAQAAA=</HashCode>
+      <FileName>Managers\GraphicsManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cat_and_Mouse___XNA.MovementArgs">
+    <Position X="13.75" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Managers\InputManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cat_and_Mouse___XNA.InputManager">
+    <Position X="13.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAwAIEABCBgAAQABAIAAAQAAAgBAACAAUIAAAIAIAoA=</HashCode>
+      <FileName>Managers\InputManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cat_and_Mouse___XNA.AttackTimerBar">
+    <Position X="7.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UI\AttackTimerBar.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cat_and_Mouse___XNA.Bar">
+    <Position X="6.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAEgAgAAIAAIACAAAAAAACAAAgEAIIAAIAA=</HashCode>
+      <FileName>UI\Bar.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cat_and_Mouse___XNA.BoostTimerBar">
+    <Position X="5.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UI\BoostTimerBar.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cat_and_Mouse___XNA.TimerBar">
+    <Position X="6.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UI\TimerBar.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cat_and_Mouse___XNA.Game1">
+    <Position X="9.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAEEAAABAAAwAAAAAAAAAAAAAAAAgAAAAgAAAQAAQ=</HashCode>
+      <FileName>Game1.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cat_and_Mouse___XNA.GameConstants">
+    <Position X="17.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACJAAAIKCYIUAEDAoAgABKAGAEAwAgEbgBIAAYEBqoI=</HashCode>
+      <FileName>GameConstants.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="Cat_and_Mouse___XNA.SoundKeys">
+    <Position X="15.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAAIAAAgAAAABAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Managers\AudioManager.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Cat_and_Mouse___XNA.SpriteType">
+    <Position X="15.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAAAAAABAAACAIAAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>Managers\GraphicsManager.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Cat_and_Mouse___XNA.ActiveBar">
+    <Position X="15.75" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAAAACAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UI\Bar.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Cat_and_Mouse___XNA.GameState">
+    <Position X="15.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAAIAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>Game1.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Cat_and_Mouse___XNA.Winner">
+    <Position X="15.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Game1.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

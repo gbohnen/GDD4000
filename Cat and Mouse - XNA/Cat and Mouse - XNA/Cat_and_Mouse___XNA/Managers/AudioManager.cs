@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Audio;
@@ -12,14 +9,13 @@ namespace Cat_and_Mouse___XNA
 
     class AudioManager
     {
-
         #region Fields
 
-        protected static AudioManager instance;
-        Song song;
-        Song fanfare;
-        Song gameover;
-        Dictionary<SoundKeys, SoundEffect> soundLibrary;
+        protected static AudioManager instance;                         // singleton instance
+        Song song;                                                      // background music
+        Song fanfare;                                                   // winner music
+        Song gameover;                                                  // gameover music
+        Dictionary<SoundKeys, SoundEffect> soundLibrary;                // dictionary of sounds matched to enum keys
 
         #endregion
 
@@ -69,7 +65,7 @@ namespace Cat_and_Mouse___XNA
             soundLibrary.Add(SoundKeys.SadMouse, Content.Load<SoundEffect>("Music/sadmouse"));
 
             // start the background music
-            //MediaPlayer.Play(song);
+            MediaPlayer.Play(song);
             MediaPlayer.IsRepeating = true;
         }
 
@@ -79,7 +75,7 @@ namespace Cat_and_Mouse___XNA
         /// <param name="key"></param>
         public void PlaySound(SoundKeys key)
         {
-            //soundLibrary[key].Play();
+            soundLibrary[key].Play();
         }
 
         /// <summary>
@@ -97,7 +93,7 @@ namespace Cat_and_Mouse___XNA
         /// </summary>
         public void PlayBackground()
         {
-            //MediaPlayer.Play(song);
+            MediaPlayer.Play(song);
         }
 
         /// <summary>
@@ -105,7 +101,7 @@ namespace Cat_and_Mouse___XNA
         /// </summary>
         public void PlayFanfare()
         {
-            //MediaPlayer.Play(fanfare);
+            MediaPlayer.Play(fanfare);
         }
 
         /// <summary>
@@ -113,7 +109,7 @@ namespace Cat_and_Mouse___XNA
         /// </summary>
         public void PlayGameover()
         {
-            //MediaPlayer.Play(gameover);
+            MediaPlayer.Play(gameover);
         }
 
         /// <summary>
