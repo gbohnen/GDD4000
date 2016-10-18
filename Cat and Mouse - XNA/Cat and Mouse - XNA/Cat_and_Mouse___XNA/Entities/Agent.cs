@@ -47,7 +47,7 @@ namespace Cat_and_Mouse___XNA
 
             if (Vector2.Distance(Position, user.Position) < GameConstants.CAT_DETECTION_RANGE)
             {
-                //Move(direction, gameTime);
+                Move(direction, gameTime);
 
                 if (tracking == false)
                 {

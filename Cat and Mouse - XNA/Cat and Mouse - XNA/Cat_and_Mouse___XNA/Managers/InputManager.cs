@@ -136,6 +136,7 @@ namespace Cat_and_Mouse___XNA
                     else
                     {
                         comboOn = true;
+                        intervalTimer = 0;
 
                         // check for full combo
                         if (keyCombo == comboReference)
@@ -248,9 +249,9 @@ namespace Cat_and_Mouse___XNA
             get
             {
                 if (handedness)
-                    return "Right";
+                    return "Left";
                 else
-                    return "Left";                        
+                    return "Right";                        
             }
         }
 
