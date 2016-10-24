@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 
 namespace Cat_and_Mouse___XNA
 {
@@ -157,6 +160,52 @@ namespace Cat_and_Mouse___XNA
             for (int i = 0; i < bars.Count; i++)
             {
                 bars[i].Update(i);
+            }
+        }
+        
+        public void SaveData(FileStream stream)
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+
+            foreach (Agent cat in enemies)
+            {
+                bf.Serialize(stream, cat);
+            }
+
+            bf.Serialize(stream, mouse);
+
+            foreach (Bar bar in bars)
+            {
+                bf.Serialize(stream, bar);
+            }
+        }
+
+        public void LoadData(FileStream stream, ref long position)
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+
+            if (position < stream.Length)
+            {
+                // load cats
+                for (int i = 0; i < enemies.Count; i++)
+                {
+                    stream.Seek(position, SeekOrigin.Begin);
+                    enemies[i] = (MovingSprite)bf.Deserialize(stream);
+                    position = stream.Position;
+                }
+
+                // load mouse
+                stream.Seek(position, SeekOrigin.Begin);
+                mouse = (User)bf.Deserialize(stream);
+                position = stream.Position;
+
+                // load bars
+                for (int i = 0; i < bars.Count; i++)
+                {
+                    stream.Seek(position, SeekOrigin.Begin);
+                    bars[i] = (Bar)bf.Deserialize(stream);
+                    position = stream.Position;
+                }
             }
         }
 

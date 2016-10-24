@@ -1,9 +1,13 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Cat_and_Mouse___XNA
 {
-    abstract class Sprite : DrawableGameComponent
+    [Serializable()]
+    abstract class Sprite : DrawableGameComponent, ISerializable
     {
         #region Fields
 
@@ -153,6 +157,10 @@ namespace Cat_and_Mouse___XNA
             get { return attackTimer; }
             set { attackTimer = value; }
         }
+
+        public virtual void GetObjectData(SerializationInfo info, StreamingContext ctxt) { }
+
+        public virtual void ReloadObject(SerializationInfo info, StreamingContext ctxt) { }
 
         #endregion
     }

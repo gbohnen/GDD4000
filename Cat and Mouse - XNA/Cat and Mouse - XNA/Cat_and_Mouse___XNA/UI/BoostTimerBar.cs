@@ -1,8 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 
 namespace Cat_and_Mouse___XNA
 {
+    [Serializable()]
     class BoostTimerBar : TimerBar
     {
         #region Constructors

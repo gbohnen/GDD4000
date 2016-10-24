@@ -35,6 +35,8 @@ namespace Cat_and_Mouse___XNA
         public event EventHandler<MovementArgs> MoveKeysPressed;
         public event EventHandler SpacePressed;
         public event EventHandler AttackComboExecuted;
+        public event EventHandler SavePressed;
+        public event EventHandler LoadPressed;
 
         #endregion
 
@@ -228,6 +230,13 @@ namespace Cat_and_Mouse___XNA
                     shift = true;
                 else
                     shift = false;
+
+                // check for save-load
+                if (currState.IsKeyDown(Keys.F1))
+                    OnGameSave();
+
+                if (currState.IsKeyDown(Keys.F2))
+                    OnGameLoad();
             }
         }
 
@@ -313,6 +322,22 @@ namespace Cat_and_Mouse___XNA
             }
 
             ResetCombo();
+        }
+
+        private void OnGameSave()
+        {
+            if (SavePressed != null)
+            {
+                SavePressed(this, EventArgs.Empty);
+            }
+        }
+
+        private void OnGameLoad()
+        {
+            if (LoadPressed != null)
+            {
+                LoadPressed(this, EventArgs.Empty);
+            }
         }
 
         /// <summary>

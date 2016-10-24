@@ -1,9 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Runtime.Serialization;
 
 namespace Cat_and_Mouse___XNA
 {
+    [Serializable()]
     class User : MovingSprite
     {
         #region Fields
@@ -33,6 +35,23 @@ namespace Cat_and_Mouse___XNA
             boostTimer = 0;
             attackTimer = 0;
             attacking = false;
+        }
+
+        public User(SerializationInfo info, StreamingContext ctxt) :  base(GraphicsManager.Instance.GetSprite(SpriteType.MOUSE), Game1.instance)
+        {
+            // create the draw rectangle
+            drawRect = new Rectangle(GameConstants.WINDOW_WIDTH / 2 - GameConstants.MOUSE_WIDTH / 2, GameConstants.WINDOW_HEIGHT / 2 - GameConstants.MOUSE_HEIGHT / 2,
+                                GameConstants.MOUSE_WIDTH, GameConstants.MOUSE_HEIGHT);
+
+            // register events
+            InputManager.Instance.SpacePressed += HyperJump;
+            InputManager.Instance.AttackComboExecuted += AttackMode;
+
+            position = (Vector2)info.GetValue("Position", typeof(Vector2));
+            boostTimer = (float)info.GetValue("BoostTimer", typeof(float));
+            attackTimer = (float)info.GetValue("AttackTimer", typeof(float));
+            jumpTimer = (float)info.GetValue("JumpTimer", typeof(float));
+            attacking = (bool)info.GetValue("Attacking", typeof(bool));
         }
 
         #endregion
@@ -101,7 +120,6 @@ namespace Cat_and_Mouse___XNA
             //if (direction != new Vector2(0,0))
             //    direction.Normalize();
             rotation = (float)Math.Atan2(direction.Y, direction.X);
-            Console.WriteLine(rotation);
 
             // keep the sprite in the bounds of the screen
             Clamp();
@@ -113,6 +131,40 @@ namespace Cat_and_Mouse___XNA
         public bool Attacking
         {
             get { return attacking; }
+        }
+
+        public override void GetObjectData(SerializationInfo info, StreamingContext ctxt)
+        {
+            // save position
+            base.GetObjectData(info, ctxt);
+
+            // save others
+            info.AddValue("JumpTimer", jumpTimer);
+            info.AddValue("BoostTimer", boostTimer);
+            info.AddValue("AttackTimer", attackTimer);
+            info.AddValue("Attacking", Attacking);
+
+            Console.WriteLine("\t JumpTimer logged");
+            Console.WriteLine("\t BoostTimer logged");
+            Console.WriteLine("\t Attack logged");
+            Console.WriteLine("\t isAttacking logged");
+        }
+
+        public override void ReloadObject(SerializationInfo info, StreamingContext ctxt)
+        {
+            // load position
+            base.ReloadObject(info, ctxt);
+
+            // load others
+            jumpTimer = (float)info.GetValue("JumpTimer", typeof(float));
+            boostTimer = (float)info.GetValue("BoostTimer", typeof(float));
+            attackTimer = (float)info.GetValue("AttackTimer", typeof(float));
+            attacking = (bool)info.GetValue("Attacking", typeof(bool));
+
+            Console.WriteLine("\t JumpTimer loaded");
+            Console.WriteLine("\t BoostTimer loaded");
+            Console.WriteLine("\t Attack loaded");
+            Console.WriteLine("\t isAttacking loaded");
         }
 
         #endregion

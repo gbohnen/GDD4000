@@ -1,5 +1,7 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.Runtime.Serialization;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 
 namespace Cat_and_Mouse___XNA
 {
@@ -9,6 +11,7 @@ namespace Cat_and_Mouse___XNA
         Disabled
     }
 
+    [Serializable()]
     class Bar : Sprite
     {
         #region Fields
@@ -92,6 +95,18 @@ namespace Cat_and_Mouse___XNA
             }
 
             spriteBatch.End();
+        }
+
+        public override void GetObjectData(SerializationInfo info, StreamingContext ctxt)
+        {
+            info.AddValue("Target", target);
+
+            Console.WriteLine("\t Target logged");
+        }
+
+        public override void ReloadObject(SerializationInfo info, StreamingContext ctxt)
+        {
+            target = (MovingSprite)info.GetValue("Target", typeof(MovingSprite));
         }
 
         #endregion

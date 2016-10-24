@@ -1,9 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Runtime.Serialization;
 
 namespace Cat_and_Mouse___XNA
 {
+    [Serializable()]
     class Agent : MovingSprite
     {
         #region Fields
@@ -26,6 +28,18 @@ namespace Cat_and_Mouse___XNA
             // set physics properties
             maxAccel = GameConstants.CAT_MAX_ACCEL;
             maxVelocity = GameConstants.CAT_TOP_SPEED;
+        }
+
+        public Agent(SerializationInfo info, StreamingContext ctxt ) :  base(GraphicsManager.Instance.GetSprite(SpriteType.CAT), Game1.instance)
+        {
+            // create the draw rectangle
+            drawRect = new Rectangle(GameConstants.WINDOW_WIDTH / 2, GameConstants.WINDOW_HEIGHT / 2, GameConstants.CAT_WIDTH, GameConstants.CAT_HEIGHT);
+
+            // set physics properties
+            maxAccel = GameConstants.CAT_MAX_ACCEL;
+            maxVelocity = GameConstants.CAT_TOP_SPEED;
+
+            position = (Vector2)info.GetValue("Position", typeof(Vector2));
         }
 
         #endregion

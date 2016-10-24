@@ -2,6 +2,9 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
+using System.IO;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Cat_and_Mouse___XNA
 {
@@ -23,7 +26,8 @@ namespace Cat_and_Mouse___XNA
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
-    public class Game1 : Game
+    [Serializable()]
+    public class Game1 : Game, ISerializable
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
@@ -32,7 +36,9 @@ namespace Cat_and_Mouse___XNA
         public static GameState gameState = GameState.Play;                                   // current state in which the game is running
 
         // timer 
-        float timer = GameConstants.GAME_TIMER_START_VALUE;                     // sets the game timer
+        public static float timer = GameConstants.GAME_TIMER_START_VALUE;                     // sets the game timer
+
+        public static Game1 instance;
 
         public Game1()
         {
@@ -54,11 +60,15 @@ namespace Cat_and_Mouse___XNA
         {
             // TODO: Add your initialization logic here        
 
+            if (instance == null)
+                instance = this;
+
             // initialize each game manager instance
             InputManager.Instance.Initialize();
             AudioManager.Instance.Initialize(Content);
             GraphicsManager.Instance.Initialize(Content);
             EntityManager.Instance.Initialize(this);
+            SaveLoadManager.Instance.Initialize(this);
 
             // register events
             InputManager.Instance.SpacePressed += SpacePressed;
@@ -174,6 +184,23 @@ namespace Cat_and_Mouse___XNA
         {
             GraphicsManager.Instance.EndGame(e.Winner, timer);
             Game1.gameState = GameState.GameOver;
+        }
+
+        public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
+        {
+            info.AddValue("TimeRemaining", timer);
+            info.AddValue("GameMode", gameState);
+
+            Console.WriteLine("\t TimeRemaining logged");
+            Console.WriteLine("\t GameState logged");
+
+            Console.WriteLine("Game1 added...");
+        }
+
+        public void ReloadObject(SerializationInfo info, StreamingContext ctxt)
+        {
+            gameState = (GameState)info.GetValue("GameMode", typeof(int));
+            timer = (float)info.GetValue("TimeRemaining", typeof(float));
         }
     }
 }

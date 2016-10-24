@@ -1,9 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Runtime.Serialization;
 
 namespace Cat_and_Mouse___XNA
 {
+    [Serializable()]
     class MovingSprite : Sprite
     {
         #region Fields
@@ -29,12 +31,6 @@ namespace Cat_and_Mouse___XNA
         /// Updates the position and of the object based on a position
         /// </summary>
         public virtual void Update(User user, GameTime gameTime) { }
-
-        /// <summary>
-        /// Updates the position of the object based on keyboard input
-        /// </summary>
-        /// <param name="state"> the current state of the keyboard </param>
-        public virtual void Update(GameTime gameTime) { }
 
         /// <summary>
         /// moves the character to a random position within the game window
@@ -99,6 +95,17 @@ namespace Cat_and_Mouse___XNA
             // move cat and clamp
             SetPosition(corner.X, corner.Y);
             Clamp();
+        }
+
+        public override void GetObjectData(SerializationInfo info, StreamingContext ctxt)
+        {
+            info.AddValue("Position", Position);
+            Console.WriteLine("\t Position logged");
+        }
+
+        public override void ReloadObject(SerializationInfo info, StreamingContext ctxt)
+        {
+           position = (Vector2)info.GetValue("Position", typeof(Vector2));
         }
 
         #endregion
