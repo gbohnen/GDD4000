@@ -231,6 +231,10 @@ namespace Cat_and_Mouse___XNA
                 else
                     shift = false;
 
+                // debug
+                if (currState.IsKeyDown(Keys.B))
+                    OnAttackCombo();
+
                 // check for save-load
                 if (currState.IsKeyDown(Keys.F1))
                     OnGameSave();

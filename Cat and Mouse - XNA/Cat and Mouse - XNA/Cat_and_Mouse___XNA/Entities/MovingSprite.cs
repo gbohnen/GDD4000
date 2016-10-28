@@ -100,13 +100,15 @@ namespace Cat_and_Mouse___XNA
         public override void GetObjectData(SerializationInfo info, StreamingContext ctxt)
         {
             info.AddValue("Position", Position);
-            Console.WriteLine("\t Position logged");
+
+            Console.WriteLine("Cat saved...");
+            Console.WriteLine("\t Position: " + position.ToString());
         }
 
-        public override void ReloadObject(SerializationInfo info, StreamingContext ctxt)
-        {
-           position = (Vector2)info.GetValue("Position", typeof(Vector2));
-        }
+        //public override void ReloadObject(SerializationInfo info, StreamingContext ctxt)
+        //{
+        //   position = (Vector2)info.GetValue("Position", typeof(Vector2));
+        //}
 
         #endregion
     }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Runtime.Serialization;
 
 namespace Cat_and_Mouse___XNA
 {
@@ -39,6 +40,6 @@ namespace Cat_and_Mouse___XNA
 
             // set the width of the bar to draw
             foreRect.Width = (int)(target.BoostTimerValue / GameConstants.MOUSE_BOOST_TIMER * backRect.Width);
-        }        
+        }
     }
 }

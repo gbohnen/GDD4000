@@ -52,10 +52,23 @@ namespace Cat_and_Mouse___XNA
             attackTimer = (float)info.GetValue("AttackTimer", typeof(float));
             jumpTimer = (float)info.GetValue("JumpTimer", typeof(float));
             attacking = (bool)info.GetValue("Attacking", typeof(bool));
+
+            Console.WriteLine("User Loaded...");
+            Console.WriteLine("\t Position: " + position.ToString());
+            Console.WriteLine("\t BoostTimer: " + boostTimer);
+            Console.WriteLine("\t AttackTimer: " + attackTimer);
+            Console.WriteLine("\t JumpTimer: " + jumpTimer);
+            Console.WriteLine("\t Attacking: " + attacking);
+
+            if (attacking)
+            {
+                attacking = false;
+                ToggleAttackMode();
+            }
         }
 
         #endregion
-
+        
         #region Public Members
 
         /// <summary>
@@ -135,8 +148,7 @@ namespace Cat_and_Mouse___XNA
 
         public override void GetObjectData(SerializationInfo info, StreamingContext ctxt)
         {
-            // save position
-            base.GetObjectData(info, ctxt);
+            info.AddValue("Position", Position);
 
             // save others
             info.AddValue("JumpTimer", jumpTimer);
@@ -144,10 +156,12 @@ namespace Cat_and_Mouse___XNA
             info.AddValue("AttackTimer", attackTimer);
             info.AddValue("Attacking", Attacking);
 
-            Console.WriteLine("\t JumpTimer logged");
-            Console.WriteLine("\t BoostTimer logged");
-            Console.WriteLine("\t Attack logged");
-            Console.WriteLine("\t isAttacking logged");
+            Console.WriteLine("User Saved...");
+            Console.WriteLine("\t Position: " + position.ToString());
+            Console.WriteLine("\t BoostTimer: " + boostTimer);
+            Console.WriteLine("\t AttackTimer: " + attackTimer);
+            Console.WriteLine("\t JumpTimer: " + jumpTimer);
+            Console.WriteLine("\t Attacking: " + attacking);
         }
 
         public override void ReloadObject(SerializationInfo info, StreamingContext ctxt)

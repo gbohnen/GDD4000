@@ -23,11 +23,38 @@ namespace Cat_and_Mouse___XNA
     /// </summary>
     public enum Winner { Cats, Mouse }
 
+    [Serializable()]
+    public class GameLoader : ISerializable
+    { 
+        public GameLoader()
+        {
+        }
+
+        public GameLoader(SerializationInfo info, StreamingContext ctxt)
+        {
+            Game1.timer = (float)info.GetValue("TimeRemaining", typeof(float));
+            Game1.gameState = (GameState)info.GetValue("GameMode", typeof(int));
+
+            Console.WriteLine("Game1 loaded...");
+            Console.WriteLine("\t TimeRemaining: " + Game1.timer);
+            Console.WriteLine("\t GameState: " + Game1.gameState.ToString());
+        }
+
+        public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
+        {
+            info.AddValue("TimeRemaining", Game1.timer);
+            info.AddValue("GameMode", Game1.gameState);
+
+            Console.WriteLine("Game1 added...");
+            Console.WriteLine("\t TimeRemaining: " + Game1.timer);
+            Console.WriteLine("\t GameState: " + Game1.gameState.ToString());
+        }
+    }
+
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
-    [Serializable()]
-    public class Game1 : Game, ISerializable
+    public class Game1 : Game
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
@@ -37,6 +64,8 @@ namespace Cat_and_Mouse___XNA
 
         // timer 
         public static float timer = GameConstants.GAME_TIMER_START_VALUE;                     // sets the game timer
+
+        public static GameLoader loader;
 
         public static Game1 instance;
 
@@ -62,6 +91,8 @@ namespace Cat_and_Mouse___XNA
 
             if (instance == null)
                 instance = this;
+
+            loader = new GameLoader();
 
             // initialize each game manager instance
             InputManager.Instance.Initialize();
@@ -118,7 +149,7 @@ namespace Cat_and_Mouse___XNA
             // update in gameplay mode
             if (gameState == GameState.Play)
             {
-                EntityManager.Instance.Update(state, gameTime);
+                EntityManager.Instance.Update(gameTime);
 
                 // update the timer
                 timer -= gameTime.ElapsedGameTime.Milliseconds;
@@ -184,23 +215,6 @@ namespace Cat_and_Mouse___XNA
         {
             GraphicsManager.Instance.EndGame(e.Winner, timer);
             Game1.gameState = GameState.GameOver;
-        }
-
-        public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
-        {
-            info.AddValue("TimeRemaining", timer);
-            info.AddValue("GameMode", gameState);
-
-            Console.WriteLine("\t TimeRemaining logged");
-            Console.WriteLine("\t GameState logged");
-
-            Console.WriteLine("Game1 added...");
-        }
-
-        public void ReloadObject(SerializationInfo info, StreamingContext ctxt)
-        {
-            gameState = (GameState)info.GetValue("GameMode", typeof(int));
-            timer = (float)info.GetValue("TimeRemaining", typeof(float));
         }
     }
 }

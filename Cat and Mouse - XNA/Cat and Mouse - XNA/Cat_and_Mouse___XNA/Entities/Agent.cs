@@ -40,6 +40,9 @@ namespace Cat_and_Mouse___XNA
             maxVelocity = GameConstants.CAT_TOP_SPEED;
 
             position = (Vector2)info.GetValue("Position", typeof(Vector2));
+
+            Console.WriteLine("Cat loaded...");
+            Console.WriteLine("\t Position: " + position.ToString());
         }
 
         #endregion

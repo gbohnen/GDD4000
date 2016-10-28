@@ -29,13 +29,14 @@ namespace Cat_and_Mouse___XNA
         private void SaveGame(object obj, EventArgs e)
         {
             BinaryFormatter bf = new BinaryFormatter();
+            File.WriteAllText("GameData.bin", String.Empty);
             FileStream stream = new FileStream("GameData.bin", FileMode.Append, FileAccess.Write);
 
             // pass stream to necessary objects
             EntityManager.Instance.SaveData(stream);
 
             // serialize game
-            bformatter.Serialize(stream, game);
+            bformatter.Serialize(stream, Game1.loader);
 
             stream.Close();
         }
@@ -47,14 +48,16 @@ namespace Cat_and_Mouse___XNA
 
             long position = 0;
 
-            EntityManager.Instance.LoadData(stream, ref position);
+            EntityManager.Instance.LoadData(ref stream, ref position);
 
             if (position < stream.Length)
             {
                 stream.Seek(position, SeekOrigin.Begin);
-                game = (Game1)bf.Deserialize(stream);
+                Game1.loader = (GameLoader)bf.Deserialize(stream);
                 position = stream.Position;
             }
+
+            stream.Close();
         }
 
         #endregion

@@ -127,7 +127,7 @@ namespace Cat_and_Mouse___XNA
         /// </summary>
         /// <param name="state"> the keyboard state from the current frame </param>
         /// <param name="gameTime"> GameTime object from Game1 </param>
-        public void Update(KeyboardState state, GameTime gameTime)
+        public void Update(GameTime gameTime)
         {
             // update time
             elapsedMilliseconds = gameTime.ElapsedGameTime.Milliseconds;
@@ -173,39 +173,45 @@ namespace Cat_and_Mouse___XNA
             }
 
             bf.Serialize(stream, mouse);
-
-            foreach (Bar bar in bars)
-            {
-                bf.Serialize(stream, bar);
-            }
         }
 
-        public void LoadData(FileStream stream, ref long position)
+        public void LoadData(ref FileStream stream, ref long position)
         {
             BinaryFormatter bf = new BinaryFormatter();
 
             if (position < stream.Length)
             {
+                Game1.instance.Components.Clear();
+                players.Clear();
+
                 // load cats
                 for (int i = 0; i < enemies.Count; i++)
                 {
                     stream.Seek(position, SeekOrigin.Begin);
+                    enemies[i] = null;
                     enemies[i] = (MovingSprite)bf.Deserialize(stream);
+                    Game1.instance.Components.Add(enemies[i]);
                     position = stream.Position;
                 }
 
                 // load mouse
+                mouse = null;
                 stream.Seek(position, SeekOrigin.Begin);
                 mouse = (User)bf.Deserialize(stream);
+                Game1.instance.Components.Add(mouse);
+                players.Add(mouse);
+
                 position = stream.Position;
 
-                // load bars
-                for (int i = 0; i < bars.Count; i++)
+                // reset timer bars
+                foreach (Bar bar in bars)
                 {
-                    stream.Seek(position, SeekOrigin.Begin);
-                    bars[i] = (Bar)bf.Deserialize(stream);
-                    position = stream.Position;
+                    bar.Target = mouse;
+                    Game1.instance.Components.Add(bar);
                 }
+
+                // trigger one frame
+                Update(new GameTime());
             }
         }
 
