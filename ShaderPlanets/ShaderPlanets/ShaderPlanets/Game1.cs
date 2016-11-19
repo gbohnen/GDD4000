@@ -119,7 +119,12 @@ namespace ShaderPlanets
 
             // TODO: Add your update logic here
 
-            
+            perlinNoiseEffect.Parameters["Offset"].SetValue(timer);
+
+            perlinNoiseEffect.Parameters["Clamp"].SetValue(timer);
+
+            if (timer > 2)
+                timer = 0;
 
             KeyboardState state = Keyboard.GetState();
 
@@ -150,7 +155,7 @@ namespace ShaderPlanets
             // TODO: Add your drawing code here
 
             translate = Matrix.CreateTranslation(new Vector3(0, 0, 0));
-            ModelManager.Instance.DrawPlanets(rotate * translate, projection, view, timer);
+            ModelManager.Instance.DrawPlanets(translate, projection, view, timer);
 
             base.Draw(gameTime);
         }
@@ -179,7 +184,6 @@ namespace ShaderPlanets
                 target = Planets.Sol;
             else if (state.IsKeyDown(Keys.OemTilde))
                 target = Planets.Global;
-
         }
 
         protected void SetCamera()

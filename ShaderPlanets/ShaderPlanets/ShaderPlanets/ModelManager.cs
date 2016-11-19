@@ -77,7 +77,7 @@ namespace ShaderPlanets
         {
             for (int i = 0; i < entityCollection.Count; i++)
             {
-                entityCollection[(Planets)i].DrawModel(planetModel, world, projection, view, ((Planets)i).ToString(), timer);
+                entityCollection[(Planets)i].DrawModel(planetModel, world, projection, view, ((Planets)3).ToString(), timer);
             }
         }
 

@@ -35,11 +35,6 @@ namespace ShaderPlanets
 
         #region Methods
 
-        public void Update(GameTime gameTime)
-        {
-
-        }
-
         public void SetParent(Planet parent)
         {
             this.parent = parent;
@@ -53,6 +48,20 @@ namespace ShaderPlanets
         {
             get { return worldMatrix; }
         }
+
+        public Vector3 Position
+        {
+            get
+            {
+                Vector3 pos;
+                Vector3 scale;
+                Quaternion quat;
+                worldMatrix.Decompose(out scale, out quat, out pos);
+
+                return pos;
+            }
+        }
+
 
         public Planet Parent
         {
@@ -79,12 +88,15 @@ namespace ShaderPlanets
             Matrix localRotation;
             Matrix globalRotation;
 
+            
+
             translate = Matrix.CreateTranslation(new Vector3(distanceFromSol, 0, 0));
             scale = Matrix.CreateScale(diameter);
             localRotation = Matrix.CreateRotationY(timer / rotationalVelocity);
             globalRotation = Matrix.CreateRotationY(timer / period);
 
             world *= scale;
+            world *= localRotation;
             world *= translate;
             world *= globalRotation;
 

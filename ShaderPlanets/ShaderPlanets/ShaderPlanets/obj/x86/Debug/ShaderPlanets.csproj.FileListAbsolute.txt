@@ -1,4 +1,6 @@
 C:\Users\Gray\Documents\GitHub\GDD4000\ShaderPlanets\ShaderPlanets\ShaderPlanets\bin\x86\Debug\Content\sphere.xnb
+C:\Users\Gray\Documents\GitHub\GDD4000\ShaderPlanets\ShaderPlanets\ShaderPlanets\bin\x86\Debug\Content\CubeMap.xnb
+C:\Users\Gray\Documents\GitHub\GDD4000\ShaderPlanets\ShaderPlanets\ShaderPlanets\bin\x86\Debug\Content\PerlinNoiseEffect.xnb
 C:\Users\Gray\Documents\GitHub\GDD4000\ShaderPlanets\ShaderPlanets\ShaderPlanets\bin\x86\Debug\ShaderPlanets.exe
 C:\Users\Gray\Documents\GitHub\GDD4000\ShaderPlanets\ShaderPlanets\ShaderPlanets\bin\x86\Debug\ShaderPlanets.pdb
 C:\Users\Gray\Documents\GitHub\GDD4000\ShaderPlanets\ShaderPlanets\ShaderPlanets\bin\x86\Debug\Microsoft.Xna.Framework.dll
@@ -15,5 +17,3 @@ C:\Users\Gray\Documents\GitHub\GDD4000\ShaderPlanets\ShaderPlanets\ShaderPlanets
 C:\Users\Gray\Documents\GitHub\GDD4000\ShaderPlanets\ShaderPlanets\ShaderPlanets\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\Users\Gray\Documents\GitHub\GDD4000\ShaderPlanets\ShaderPlanets\ShaderPlanets\obj\x86\Debug\ShaderPlanets.exe
 C:\Users\Gray\Documents\GitHub\GDD4000\ShaderPlanets\ShaderPlanets\ShaderPlanets\obj\x86\Debug\ShaderPlanets.pdb
-C:\Users\Gray\Documents\GitHub\GDD4000\ShaderPlanets\ShaderPlanets\ShaderPlanets\bin\x86\Debug\Content\CubeMap.xnb
-C:\Users\Gray\Documents\GitHub\GDD4000\ShaderPlanets\ShaderPlanets\ShaderPlanets\bin\x86\Debug\Content\PerlinNoiseEffect.xnb

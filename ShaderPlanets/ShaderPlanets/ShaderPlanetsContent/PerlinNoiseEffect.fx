@@ -5,6 +5,9 @@ float4x4 World;
 float4x4 View;
 float4x4 Projection;
 
+float Offset;
+float Clamp;
+
 //////////////////////////////////////////////////////////////////////////
 // Constants
 //////////////////////////////////////////////////////////////////////////
@@ -262,7 +265,7 @@ float4 marble_color(float m) {
 	c[11] = DARK_BLUE;      // Outer fills, PALE_BLUE
 	c[12] = PALE_BLUE;
 
-	float4 res = spline(clamp(2.0*m + 0.75, 0.0, 1.0), 13, c);
+	float4 res = spline(clamp(Clamp*m + 0.75, 0.0, 1.0), 13, c);
 
 	return res;
 }
@@ -337,6 +340,19 @@ VertexShaderOutput VertexShaderFunction(VertexShaderInput input)
 	output.Position = mul(viewPosition, Projection);
 	output.wPosition = input.Position;
 	output.texCoord = input.texCoord;
+
+	return output;
+}
+
+VertexShaderOutput VertexShaderFunction_OffsetX(VertexShaderInput input)
+{
+	VertexShaderOutput output;
+
+	float4 worldPosition = mul(input.Position, World);
+	float4 viewPosition = mul(worldPosition, View);
+	output.Position = mul(viewPosition, Projection);
+
+	output.Position.x += Offset;
 
 	return output;
 }
@@ -561,35 +577,36 @@ float4 PixelShaderFunction_Cloud(VertexShaderOutput input) : COLOR0
 float4 PixelShaderFunction_CloudOverlay(VertexShaderOutput input) : COLOR0
 {
 	float LightIntensity = 1;
-float Amplify = .05;
-float NoiseScale = .1;   //  0 to 1
-float Bias = .9;         // -1 to 1
-float4 Color1 = float4(0.0, 0.0, 0.8, 1.0);
-float4 Color2 = float4(0.9, 0.9, 0.9, 1.0);
+	float Amplify = .05;
+	float NoiseScale = .1;   //  0 to 1
+	float Bias = .9;         // -1 to 1
+	float4 Color1 = float4(0.0, 0.0, 0.8, 1.0);
+	float4 Color2 = float4(.9f, .9f, .9f, 1.0);
 
-float4  noisevec = float4(0.0, 0.0, 0.0, 0.0);
-//for (int i = 0; i < 4; ++i)
-//{
-//	noisevec[i] = ((inoise( input.wPosition * NoiseScale ) / NoiseScale) + 1) / 2;
-//	NoiseScale *= 2;
-//}
+	float4  noisevec = float4(0.0, 0.0, 0.0, 0.0);
+	//for (int i = 0; i < 4; ++i)
+	//{
+	//	noisevec[i] = ((inoise( input.wPosition * NoiseScale ) / NoiseScale) + 1) / 2;
+	//	NoiseScale *= 2;
+	//}
 
-//NoiseScale *= 8;
-noisevec = noiseVector(input.wPosition * NoiseScale);
-float intensity = (noisevec[0] + noisevec[1] + noisevec[2] + noisevec[3] - 1) / 2.;
+	//NoiseScale *= 8;
+	noisevec = noiseVector(input.wPosition * NoiseScale);
+	float intensity = (noisevec[0] + noisevec[1] + noisevec[2] + noisevec[3] - 1) / 2.;
 
-intensity = clamp(Bias + intensity, 0, 1);
+	intensity = clamp(Bias + intensity, 0, 1);
 
-float4 output = float4(0.0, 0.0, 0.0, 1.0);
-output.rgb = lerp(Color1.rgb, Color2.rgb, intensity) * LightIntensity;
+	float4 output = float4(0.0, 0.0, 0.0, 1.0);
+	output.rgb = lerp(Color1.rgb, Color2.rgb, intensity) * LightIntensity;
 
-if (output.b > .7)
-{
+	if (output.g < .5 && output.r < .5)
+	{
+		discard;
+	}
 
+	return output;
 }
 
-return output;
-}
 
 float4 PixelShaderFunction_Wood(VertexShaderOutput input) : COLOR0
 {
@@ -737,11 +754,6 @@ technique Earth
 		VertexShader = compile vs_3_0 VertexShaderFunction();
 		PixelShader = compile ps_3_0 PixelShaderFunction_Marble();
 	}
-	/*pass Pass2
-	{
-		VertexShader = compile vs_3_0 VertexShaderFunction();
-		PixelShader = compile ps_3_0 PixelShaderFunction_CloudOverlay();
-	}*/
 };
 
 technique Luna
