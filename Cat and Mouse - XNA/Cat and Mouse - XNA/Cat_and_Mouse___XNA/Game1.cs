@@ -23,13 +23,24 @@ namespace Cat_and_Mouse___XNA
     /// </summary>
     public enum Winner { Cats, Mouse }
 
+    /// <summary>
+    /// container class, used as a wrapper to save/load data from the game instance
+    /// </summary>
     [Serializable()]
     public class GameLoader : ISerializable
     { 
+        /// <summary>
+        /// blank constructor
+        /// </summary>
         public GameLoader()
         {
         }
 
+        /// <summary>
+        /// deserializer contruction
+        /// </summary>
+        /// <param name="info"></param>
+        /// <param name="ctxt"></param>
         public GameLoader(SerializationInfo info, StreamingContext ctxt)
         {
             Game1.timer = (float)info.GetValue("TimeRemaining", typeof(float));
@@ -40,6 +51,11 @@ namespace Cat_and_Mouse___XNA
             Console.WriteLine("\t GameState: " + Game1.gameState.ToString());
         }
 
+        /// <summary>
+        /// gets object data to serialize
+        /// </summary>
+        /// <param name="info"></param>
+        /// <param name="ctxt"></param>
         public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
         {
             info.AddValue("TimeRemaining", Game1.timer);
@@ -175,7 +191,7 @@ namespace Cat_and_Mouse___XNA
             spriteBatch.Begin();
 
             // draw timer
-            GraphicsManager.Instance.DrawGameTimer(spriteBatch, timer);
+            GraphicsManager.Instance.DrawGameTimer(spriteBatch, timer, gameTime);
 
             // draw messages
             if (gameState == GameState.GameOver)

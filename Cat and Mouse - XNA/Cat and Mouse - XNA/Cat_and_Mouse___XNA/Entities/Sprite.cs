@@ -160,8 +160,6 @@ namespace Cat_and_Mouse___XNA
 
         public virtual void GetObjectData(SerializationInfo info, StreamingContext ctxt) { }
 
-        public virtual void ReloadObject(SerializationInfo info, StreamingContext ctxt) { }
-
         #endregion
     }
 }

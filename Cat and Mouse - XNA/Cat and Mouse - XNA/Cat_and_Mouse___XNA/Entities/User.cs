@@ -37,6 +37,11 @@ namespace Cat_and_Mouse___XNA
             attacking = false;
         }
 
+        /// <summary>
+        /// loads the filestream into the user
+        /// </summary>
+        /// <param name="info"></param>
+        /// <param name="ctxt"></param>
         public User(SerializationInfo info, StreamingContext ctxt) :  base(GraphicsManager.Instance.GetSprite(SpriteType.MOUSE), Game1.instance)
         {
             // create the draw rectangle
@@ -48,6 +53,9 @@ namespace Cat_and_Mouse___XNA
             InputManager.Instance.AttackComboExecuted += AttackMode;
 
             position = (Vector2)info.GetValue("Position", typeof(Vector2));
+
+            SetPosition(position.X, position.Y);
+
             boostTimer = (float)info.GetValue("BoostTimer", typeof(float));
             attackTimer = (float)info.GetValue("AttackTimer", typeof(float));
             jumpTimer = (float)info.GetValue("JumpTimer", typeof(float));
@@ -146,6 +154,11 @@ namespace Cat_and_Mouse___XNA
             get { return attacking; }
         }
 
+        /// <summary>
+        /// gets the serializable data from the ISerializable interface
+        /// </summary>
+        /// <param name="info"></param>
+        /// <param name="ctxt"></param>
         public override void GetObjectData(SerializationInfo info, StreamingContext ctxt)
         {
             info.AddValue("Position", Position);
@@ -162,23 +175,6 @@ namespace Cat_and_Mouse___XNA
             Console.WriteLine("\t AttackTimer: " + attackTimer);
             Console.WriteLine("\t JumpTimer: " + jumpTimer);
             Console.WriteLine("\t Attacking: " + attacking);
-        }
-
-        public override void ReloadObject(SerializationInfo info, StreamingContext ctxt)
-        {
-            // load position
-            base.ReloadObject(info, ctxt);
-
-            // load others
-            jumpTimer = (float)info.GetValue("JumpTimer", typeof(float));
-            boostTimer = (float)info.GetValue("BoostTimer", typeof(float));
-            attackTimer = (float)info.GetValue("AttackTimer", typeof(float));
-            attacking = (bool)info.GetValue("Attacking", typeof(bool));
-
-            Console.WriteLine("\t JumpTimer loaded");
-            Console.WriteLine("\t BoostTimer loaded");
-            Console.WriteLine("\t Attack loaded");
-            Console.WriteLine("\t isAttacking loaded");
         }
 
         #endregion

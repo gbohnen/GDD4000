@@ -38,26 +38,36 @@ namespace Cat_and_Mouse___XNA
             // serialize game
             bformatter.Serialize(stream, Game1.loader);
 
+            GraphicsManager.Instance.SetSaveMessage("Game Saved");
+
             stream.Close();
         }
 
         private void LoadGame(object obj, EventArgs e)
         {
             BinaryFormatter bf = new BinaryFormatter();
-            FileStream stream = new FileStream("GameData.bin", FileMode.Open, FileAccess.Read);
 
-            long position = 0;
-
-            EntityManager.Instance.LoadData(ref stream, ref position);
-
-            if (position < stream.Length)
+            if (File.Exists("GameData.bin"))
             {
-                stream.Seek(position, SeekOrigin.Begin);
-                Game1.loader = (GameLoader)bf.Deserialize(stream);
-                position = stream.Position;
-            }
+                FileStream stream = new FileStream("GameData.bin", FileMode.Open, FileAccess.Read);
 
-            stream.Close();
+                long position = 0;
+
+                EntityManager.Instance.LoadData(ref stream, ref position);
+
+                if (position < stream.Length)
+                {
+                    stream.Seek(position, SeekOrigin.Begin);
+                    Game1.loader = (GameLoader)bf.Deserialize(stream);
+                    position = stream.Position;
+                }
+
+                GraphicsManager.Instance.SetSaveMessage("Game Loaded");
+
+                stream.Close();
+            }
+            else
+                GraphicsManager.Instance.SetSaveMessage("File Not Found");
         }
 
         #endregion

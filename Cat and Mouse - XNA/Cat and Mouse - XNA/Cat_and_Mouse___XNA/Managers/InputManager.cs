@@ -231,9 +231,9 @@ namespace Cat_and_Mouse___XNA
                 else
                     shift = false;
 
-                // debug
-                if (currState.IsKeyDown(Keys.B))
-                    OnAttackCombo();
+                //// debug
+                //if (currState.IsKeyDown(Keys.B))
+                //    OnAttackCombo();
 
                 // check for save-load
                 if (currState.IsKeyDown(Keys.F1))
@@ -328,6 +328,10 @@ namespace Cat_and_Mouse___XNA
             ResetCombo();
         }
 
+
+        /// <summary>
+        /// triggers the save event
+        /// </summary>
         private void OnGameSave()
         {
             if (SavePressed != null)
@@ -336,6 +340,9 @@ namespace Cat_and_Mouse___XNA
             }
         }
 
+        /// <summary>
+        /// triggers the load event
+        /// </summary>
         private void OnGameLoad()
         {
             if (LoadPressed != null)

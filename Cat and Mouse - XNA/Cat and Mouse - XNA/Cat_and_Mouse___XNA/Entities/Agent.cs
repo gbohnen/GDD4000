@@ -30,6 +30,11 @@ namespace Cat_and_Mouse___XNA
             maxVelocity = GameConstants.CAT_TOP_SPEED;
         }
 
+        /// <summary>
+        /// loads the filestream into the agent
+        /// </summary>
+        /// <param name="info"></param>
+        /// <param name="ctxt"></param>
         public Agent(SerializationInfo info, StreamingContext ctxt ) :  base(GraphicsManager.Instance.GetSprite(SpriteType.CAT), Game1.instance)
         {
             // create the draw rectangle
@@ -40,6 +45,8 @@ namespace Cat_and_Mouse___XNA
             maxVelocity = GameConstants.CAT_TOP_SPEED;
 
             position = (Vector2)info.GetValue("Position", typeof(Vector2));
+
+            SetPosition(position.X, position.Y);
 
             Console.WriteLine("Cat loaded...");
             Console.WriteLine("\t Position: " + position.ToString());

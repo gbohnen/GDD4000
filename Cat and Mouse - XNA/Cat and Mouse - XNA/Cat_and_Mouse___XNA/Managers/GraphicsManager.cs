@@ -22,6 +22,9 @@ namespace Cat_and_Mouse___XNA
         string spaceString = "Press Space to play again.";                      // prefab input prompt
         string baseTimeString = "You lasted for ";                              // base feedback string
         string timeString;
+        string saveLoad = "";
+
+        float saveLoadTimer = 5000;
 
         #endregion
 
@@ -85,11 +88,16 @@ namespace Cat_and_Mouse___XNA
         /// </summary>
         /// <param name="spriteBatch"></param>
         /// <param name="timer"></param>
-        public void DrawGameTimer(SpriteBatch spriteBatch, float timer)
+        public void DrawGameTimer(SpriteBatch spriteBatch, float timer, GameTime gameTime)
         {
             spriteBatch.DrawString(defaultFont, "Time Remaining: " + (int)(timer / 1000 + 1), new Vector2(10, 10), Color.White);
             spriteBatch.DrawString(defaultFont, "Button Config: " + InputManager.Instance.HandednessConfig, new Vector2(10, 40), Color.White);
             spriteBatch.DrawString(defaultFont, InputManager.keyCombo, new Vector2(10, 70), Color.White);
+
+            if (saveLoadTimer > 0)
+                spriteBatch.DrawString(defaultFont, saveLoad, new Vector2(10, GameConstants.WINDOW_HEIGHT - 100), Color.White);
+
+            saveLoadTimer -= gameTime.ElapsedGameTime.Milliseconds;
         }
 
         /// <summary>
@@ -126,6 +134,12 @@ namespace Cat_and_Mouse___XNA
             spriteBatch.DrawString(defaultFont, winMessage, new Vector2(PositionTextHoriz(winMessage), GameConstants.WINDOW_HEIGHT / 2 - 20), Color.White);
             spriteBatch.DrawString(defaultFont, timeString, new Vector2(PositionTextHoriz(timeString), GameConstants.WINDOW_HEIGHT / 2), Color.White);
             spriteBatch.DrawString(defaultFont, spaceString, new Vector2(PositionTextHoriz(spaceString), GameConstants.WINDOW_HEIGHT / 2 + 20), Color.White);
+        }
+
+        public void SetSaveMessage(string message)
+        {
+            saveLoad = message;
+            saveLoadTimer = 5000;
         }
 
         #endregion
