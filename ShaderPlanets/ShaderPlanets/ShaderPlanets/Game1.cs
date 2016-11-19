@@ -25,12 +25,14 @@ namespace ShaderPlanets
         Vector3 cameraPosition;
         Matrix projection, view;
 
-        Effect perlinNoiseEffect;
+        public static Effect perlinNoiseEffect;
 
         Texture2D permTexture2d;
         Texture2D permGradTexture;
 
         PerlinNoise noiseEngine = new PerlinNoise();
+
+        Planets target = Planets.Global;
 
         float timer = 0;
 
@@ -117,11 +119,17 @@ namespace ShaderPlanets
 
             // TODO: Add your update logic here
 
-            // Rotating camera
-            float distance = PlanetaryConstants.CAMERA_DISTANCE;
-            cameraPosition = new Vector3(0f, distance, distance);
-            //view = Matrix.CreateLookAt(new Vector3(distance * (float)Math.Sin(timer), distance, distance * (float)Math.Cos(timer)),
-            view = Matrix.CreateLookAt(cameraPosition, new Vector3(0f, 5f, 0f), Vector3.Up);
+            
+
+            KeyboardState state = Keyboard.GetState();
+
+            CheckState(state);
+
+            SetCamera();
+
+
+
+
 
             base.Update(gameTime);
         }
@@ -145,6 +153,53 @@ namespace ShaderPlanets
             ModelManager.Instance.DrawPlanets(rotate * translate, projection, view, timer);
 
             base.Draw(gameTime);
+        }
+
+        protected void CheckState(KeyboardState state)
+        {
+            if (state.IsKeyDown(Keys.NumPad1))
+                target = Planets.Mercury;
+            else if (state.IsKeyDown(Keys.NumPad2))
+                target = Planets.Venus;
+            else if (state.IsKeyDown(Keys.NumPad3))
+                target = Planets.Earth;
+            else if (state.IsKeyDown(Keys.NumPad4))
+                target = Planets.Mars;
+            else if (state.IsKeyDown(Keys.NumPad5))
+                target = Planets.Jupiter;
+            else if (state.IsKeyDown(Keys.NumPad6))
+                target = Planets.Saturn;
+            else if (state.IsKeyDown(Keys.NumPad7))
+                target = Planets.Uranus;
+            else if (state.IsKeyDown(Keys.NumPad8))
+                target = Planets.Neptune;
+            else if (state.IsKeyDown(Keys.NumPad9))
+                target = Planets.Global;
+            else if (state.IsKeyDown(Keys.NumPad0))
+                target = Planets.Sol;
+            else if (state.IsKeyDown(Keys.OemTilde))
+                target = Planets.Global;
+
+        }
+
+        protected void SetCamera()
+        {
+            // Rotating camera
+            float distance = ModelManager.Instance.GetCameraDistance(target);
+            cameraPosition = new Vector3(0f, distance, distance);
+
+            if (target == Planets.Global)
+            {
+                view = Matrix.CreateLookAt(cameraPosition, new Vector3(0f, 5f, 0f), Vector3.Up);
+            }
+            else
+            {
+                Vector3 targetPos = ModelManager.Instance.GetNewCameraPosition(target);
+
+                cameraPosition.X = targetPos.X;
+                cameraPosition.Z += targetPos.Z;
+                view = Matrix.CreateLookAt(cameraPosition, ModelManager.Instance.GetNewCameraPosition(target), Vector3.Up);
+            }
         }
     }
 }

@@ -16,6 +16,11 @@ static const float PI = 3.14159265f;
 #define DARKER_BLUE float4(0.03, 0.03, 0.20, 1.0)
 #define WHITE float4(0.8, 0.8, 1.0, 1.0)
 
+#define PALE_GREEN float4(.35, .55, .35, 1.0)
+#define MEDIUM_GREEN float4(.10, .30, .10, 1.0)
+#define DARK_GREEN float4(.05, .26, .05, 1.0)
+#define DARKER_GREEN float4(.03, .20, .03, 1.0)
+
 //////////////////////////////////////////////////////////////////////////
 // Shader Data Structures
 //////////////////////////////////////////////////////////////////////////
@@ -243,19 +248,19 @@ float4 spline(float x, int nknots, float4 knots[25]) {
 float4 marble_color(float m) {
 	float4 c[25];
 
-	c[0] = PALE_BLUE;
+	c[0] = DARKER_BLUE;
 	c[1] = MEDIUM_BLUE;
-	c[2] = WHITE;
-	c[3] = DARKER_BLUE;
-	c[4] = PALE_BLUE;
-	c[5] = MEDIUM_BLUE;
-	c[6] = WHITE;
-	c[7] = DARK_BLUE; 
-	c[8] = DARKER_BLUE;       // Inner fills, PALE_BLUE
-	c[9] = PALE_BLUE;     // Middle ring, DARKER_BLUE
-	c[10] = MEDIUM_BLUE;    // Outer ring, DARKER_BLUE
-	c[11] = WHITE;      // Outer fills, PALE_BLUE
-	c[12] = DARKER_BLUE;
+	c[2] = PALE_BLUE;
+	c[3] = WHITE;
+	c[4] = PALE_GREEN;
+	c[5] = MEDIUM_GREEN;
+	c[6] = DARK_GREEN;
+	c[7] = DARKER_GREEN;
+	c[8] = DARK_GREEN;       // Inner fills, PALE_BLUE
+	c[9] = MEDIUM_GREEN;     // Middle ring, DARKER_BLUE
+	c[10] = PALE_GREEN;    // Outer ring, DARKER_BLUE
+	c[11] = DARK_BLUE;      // Outer fills, PALE_BLUE
+	c[12] = PALE_BLUE;
 
 	float4 res = spline(clamp(2.0*m + 0.75, 0.0, 1.0), 13, c);
 
@@ -553,6 +558,39 @@ float4 PixelShaderFunction_Cloud(VertexShaderOutput input) : COLOR0
 	return output;
 }
 
+float4 PixelShaderFunction_CloudOverlay(VertexShaderOutput input) : COLOR0
+{
+	float LightIntensity = 1;
+float Amplify = .05;
+float NoiseScale = .1;   //  0 to 1
+float Bias = .9;         // -1 to 1
+float4 Color1 = float4(0.0, 0.0, 0.8, 1.0);
+float4 Color2 = float4(0.9, 0.9, 0.9, 1.0);
+
+float4  noisevec = float4(0.0, 0.0, 0.0, 0.0);
+//for (int i = 0; i < 4; ++i)
+//{
+//	noisevec[i] = ((inoise( input.wPosition * NoiseScale ) / NoiseScale) + 1) / 2;
+//	NoiseScale *= 2;
+//}
+
+//NoiseScale *= 8;
+noisevec = noiseVector(input.wPosition * NoiseScale);
+float intensity = (noisevec[0] + noisevec[1] + noisevec[2] + noisevec[3] - 1) / 2.;
+
+intensity = clamp(Bias + intensity, 0, 1);
+
+float4 output = float4(0.0, 0.0, 0.0, 1.0);
+output.rgb = lerp(Color1.rgb, Color2.rgb, intensity) * LightIntensity;
+
+if (output.b > .7)
+{
+
+}
+
+return output;
+}
+
 float4 PixelShaderFunction_Wood(VertexShaderOutput input) : COLOR0
 {
 	float LightIntensity = .9;
@@ -664,3 +702,98 @@ technique PerlinNoise
 		PixelShader = compile ps_3_0 PixelShaderFunction();
 	}
 }
+
+technique Sol
+{
+	pass Pass1
+	{
+		VertexShader = compile vs_3_0 VertexShaderFunction();
+		PixelShader = compile ps_3_0 PixelShaderFunction_Turbulence();
+	}
+};
+
+technique Mercury
+{
+	pass Pass1
+	{
+		VertexShader = compile vs_3_0 VertexShaderFunction();
+		PixelShader = compile ps_3_0 PixelShaderFunction_Scribbles();
+	}
+};
+
+technique Venus
+{
+	pass Pass1
+	{
+		VertexShader = compile vs_3_0 VertexShaderFunction();
+		PixelShader = compile ps_3_0 PixelShaderFunction_Turbulence();
+	}
+};
+
+technique Earth
+{
+	pass Pass1
+	{
+		VertexShader = compile vs_3_0 VertexShaderFunction();
+		PixelShader = compile ps_3_0 PixelShaderFunction_Marble();
+	}
+	/*pass Pass2
+	{
+		VertexShader = compile vs_3_0 VertexShaderFunction();
+		PixelShader = compile ps_3_0 PixelShaderFunction_CloudOverlay();
+	}*/
+};
+
+technique Luna
+{
+	pass Pass1
+	{
+		VertexShader = compile vs_3_0 VertexShaderFunction();
+		PixelShader = compile ps_3_0 PixelShaderFunction_Scribbles();
+	}
+};
+
+technique Mars
+{
+	pass Pass1
+	{
+		VertexShader = compile vs_3_0 VertexShaderFunction();
+		PixelShader = compile ps_3_0 PixelShaderFunction_Scribbles();
+	}
+};
+
+technique Jupiter
+{
+	pass Pass1
+	{
+		VertexShader = compile vs_3_0 VertexShaderFunction();
+		PixelShader = compile ps_3_0 PixelShaderFunction_Scribbles();
+	}
+};
+
+technique Saturn
+{
+	pass Pass1
+	{
+		VertexShader = compile vs_3_0 VertexShaderFunction();
+		PixelShader = compile ps_3_0 PixelShaderFunction_Scribbles();
+	}
+};
+
+technique Uranus
+{
+	pass Pass1
+	{
+		VertexShader = compile vs_3_0 VertexShaderFunction();
+		PixelShader = compile ps_3_0 PixelShaderFunction_Scribbles();
+	}
+};
+
+technique Neptune
+{
+	pass Pass1
+	{
+		VertexShader = compile vs_3_0 VertexShaderFunction();
+		PixelShader = compile ps_3_0 PixelShaderFunction_Scribbles();
+	}
+};

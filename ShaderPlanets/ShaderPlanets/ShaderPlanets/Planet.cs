@@ -17,6 +17,8 @@ namespace ShaderPlanets
         float distanceFromSol;
         Planet parent;                      // parent body to orbit
 
+        Matrix worldMatrix;
+
         #endregion
 
         #region Constructors
@@ -47,6 +49,11 @@ namespace ShaderPlanets
 
         #region Properties
 
+        public Matrix WorldMatrix
+        {
+            get { return worldMatrix; }
+        }
+
         public Planet Parent
         {
             get { return parent; }
@@ -74,9 +81,12 @@ namespace ShaderPlanets
 
             translate = Matrix.CreateTranslation(new Vector3(distanceFromSol, 0, 0));
             scale = Matrix.CreateScale(diameter);
-            localRotation = Matrix.CreateRotationY(timer * rotationalVelocity);
+            localRotation = Matrix.CreateRotationY(timer / rotationalVelocity);
+            globalRotation = Matrix.CreateRotationY(timer / period);
 
-            world = world * scale * translate;
+            world *= scale;
+            world *= translate;
+            world *= globalRotation;
 
             Matrix[] transforms = new Matrix[body.Bones.Count];
             body.CopyAbsoluteBoneTransformsTo(transforms);
@@ -85,13 +95,15 @@ namespace ShaderPlanets
             {
                 foreach (Effect effect in mesh.Effects)
                 {
-                    //effect.CurrentTechnique = perlinNoiseEffect.Techniques[technique];
+                    effect.CurrentTechnique = Game1.perlinNoiseEffect.Techniques[technique];
                     effect.Parameters["World"].SetValue(world);
                     effect.Parameters["View"].SetValue(view);
                     effect.Parameters["Projection"].SetValue(projection);
                 }
                 mesh.Draw();
             }
+
+            worldMatrix = world;
         }
         
         #endregion
