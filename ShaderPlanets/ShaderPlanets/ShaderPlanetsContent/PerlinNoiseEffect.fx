@@ -770,32 +770,35 @@ float4 PixelShaderFunction_SaturnBanding(VertexShaderOutput input) : COLOR0
 float4 PixelShaderFunction_SaturnRings(VertexShaderOutput input) : COLOR0
 {
 	float NoiseAmp = .53;
-float NoiseScale = .81;
-float LightIntensity = .9;
-float A = .127;
-float P = .21;
-float Tol = .52;
+	float NoiseScale = .81;
+	float LightIntensity = .9;
+	float A = .127;
+	float P = .21;
+	float Tol = .52;
 
-float4  noisevec = float4(0.0, 0.0, 0.0, 0.0);
-for (int i = 0; i < 4; ++i)
-{
-	noisevec[i] = inoise(input.wPosition * NoiseScale) / NoiseScale;
-	NoiseScale *= 2.0;
-}
+	float4  noisevec = float4(0.0, 0.0, 0.0, 0.0);
+	for (int i = 0; i < 4; ++i)
+	{
+		noisevec[i] = inoise(input.wPosition * NoiseScale) / NoiseScale;
+		NoiseScale *= 2.0;
+	}
 
-float size = noisevec[0] + noisevec[1] + noisevec[2] + noisevec[3];
-size = .5 * (size - 1.);
-float deltay = NoiseAmp * size;
+	float size = noisevec[0] + noisevec[1] + noisevec[2] + noisevec[3];
+	size = .5 * (size - 1.);
+	float deltay = NoiseAmp * size;
 
-float f = frac(A * (input.wPosition.y + deltay));
+	float f = frac(A * (input.wPosition.y + deltay));
 
-float t = smoothstep(0.5 - P - Tol, 0.5 - P + Tol, f)
-- smoothstep(0.5 + P - Tol, 0.5 + P + Tol, f);
+	float t = smoothstep(0.5 - P - Tol, 0.5 - P + Tol, f)
+	- smoothstep(0.5 + P - Tol, 0.5 + P + Tol, f);
 
-float4 output = lerp(OTHER_BEIGE, LIGHT_ORANGE, t);
-output.rgb *= LightIntensity;
+	float4 output = lerp(OTHER_BEIGE, LIGHT_ORANGE, t);
+	output.rgb *= LightIntensity;
 
-return output;
+	if (output.r < .75)
+		discard;
+
+	return output;
 }
 
 float4 PixelShaderFunction_Contours(VertexShaderOutput input) : COLOR0
