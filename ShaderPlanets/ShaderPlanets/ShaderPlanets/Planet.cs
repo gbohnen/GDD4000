@@ -15,6 +15,7 @@ namespace ShaderPlanets
         float rotationalVelocity;           // how quickly does the spheroid turn?
         float diameter;                     // diameter of the planet. uses arbitrary units
         float distanceFromSol;
+        float tiltDegrees;
         Planet parent;                      // parent body to orbit
 
         Matrix worldMatrix;
@@ -33,6 +34,7 @@ namespace ShaderPlanets
             rotationalVelocity = data.AngularPeriod;
             diameter = data.Diameter;
             distanceFromSol = data.OrbitalRadius;
+            tiltDegrees = data.AxialTilt;
 
             ident = key;
         }
@@ -74,6 +76,26 @@ namespace ShaderPlanets
             get { return parent; }
         }
 
+        public float Period
+        {
+            get { return period; }
+        }
+
+        public float RotationalVelocity
+        {
+            get { return rotationalVelocity; }
+        }
+
+        public float DistanceFromSol
+        {
+            get { return distanceFromSol; }
+        }
+
+        public float AxialTilt
+        {
+            get { return tiltDegrees; }
+        }
+
         public float Scale
         {
             get { return diameter; }
@@ -92,16 +114,13 @@ namespace ShaderPlanets
             Matrix translate;
             Matrix scale;
             Matrix localRotation;
-            Matrix globalRotation;
-
-            
+            Matrix globalRotation;            
 
             translate = Matrix.CreateTranslation(new Vector3(distanceFromSol, 0, 0));
             scale = Matrix.CreateScale(diameter);
             localRotation = Matrix.CreateRotationY(timer / rotationalVelocity);
 
-            if (ident == Planets.Earth)
-                localRotation *= Matrix.CreateRotationX(MathHelper.ToRadians(23.5f));
+            localRotation *= Matrix.CreateRotationZ(MathHelper.ToRadians(tiltDegrees));
 
             globalRotation = Matrix.CreateRotationY(timer / period);
 

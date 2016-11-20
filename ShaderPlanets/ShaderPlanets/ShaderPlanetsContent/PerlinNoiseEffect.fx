@@ -35,12 +35,24 @@ static const float PI = 3.14159265f;
 #define SOL_BLACK float4(.1, .1, .1, 1.0)
 #define SOL_ORANGE float4(.8, .1, .1, 1.0)
 
-#define BROWN float4 (.497, .298, .1, 1.0)
+#define BROWN float4 (.6, .298, .1, 1.0)
 #define LIGHT_BROWN float4 (1.0, .951, .752, 1.0)
 
-#define RUST_RED float4 (1.0, .2, 0, 1.0)
+#define RUST_RED float4 (.9, .2, 0, 1.0)
 
 #define ORANGE_BROWN float4(1.0, .6, 0, 1.0)
+
+#define MED_GRAY float4(.8, .8, .8, 1.0)
+#define BEIGE float4(.55, .46, .38, 1.0)
+
+#define CERULEAN float4(.007, .557, .8, 1.0)
+#define TURQUOISE float4(.417, .784, .78, 1.0)
+
+#define BLUE_BLUE float4(.22, .322, .859, 1.0)
+#define OTHER_BLUE float4(.4, .4, 1.0, 1.0)
+
+#define LIGHT_ORANGE float4(.97, .8, .51, 1.0)
+#define OTHER_BEIGE float4(.76, .62, .38, 1.0)
 
 //////////////////////////////////////////////////////////////////////////
 // Shader Data Structures
@@ -570,14 +582,12 @@ float4 PixelShaderFunction_MarsBanding(VertexShaderOutput input) : COLOR0
 
 float4 PixelShaderFunction_JupiterBanding(VertexShaderOutput input) : COLOR0
 {
-	float NoiseAmp = 2;
-	float NoiseScale = .287;
+	float NoiseAmp = 3;
+float NoiseScale = .69;
 	float LightIntensity = .9;
-	float A = .13;
+	float A = .127;
 	float P = .21;
-	float Tol = .58;
-
-	float4 BLUE = float4(0., 0., 1., 1.);
+	float Tol = .31;
 
 	float4  noisevec = float4(0.0, 0.0, 0.0, 0.0);
 	for (int i = 0; i < 4; ++i)
@@ -595,10 +605,197 @@ float4 PixelShaderFunction_JupiterBanding(VertexShaderOutput input) : COLOR0
 	float t = smoothstep(0.5 - P - Tol, 0.5 - P + Tol, f)
 	- smoothstep(0.5 + P - Tol, 0.5 + P + Tol, f);
 
-	float4 output = lerp(RUST_RED, TRUE_WHITE, t);
+	float4 output = lerp(BEIGE, MED_GRAY, t);
+	output.rgb *= LightIntensity;
+
+	if (output.b > .4)
+		discard;
+
+	return output;
+}
+
+float4 PixelShaderFunction_JupiterBanding2(VertexShaderOutput input) : COLOR0
+{
+	float NoiseAmp = 3;
+	float NoiseScale = .69;
+	float LightIntensity = .9;
+	float A = .075;
+	float P = .42;
+	float Tol = .2;
+
+	float4  noisevec = float4(0.0, 0.0, 0.0, 0.0);
+	for (int i = 0; i < 4; ++i)
+	{
+		noisevec[i] = inoise(input.wPosition * NoiseScale) / NoiseScale;
+		NoiseScale *= 2.0;
+	}
+
+	float size = noisevec[0] + noisevec[1] + noisevec[2] + noisevec[3];
+	size = .5 * (size - 1.);
+	float deltay = NoiseAmp * size;
+
+	float f = frac(A * (input.wPosition.y + deltay));
+
+	float t = smoothstep(0.5 - P - Tol, 0.5 - P + Tol, f)
+	- smoothstep(0.5 + P - Tol, 0.5 + P + Tol, f);
+
+	float4 output = lerp(BROWN, BEIGE, t);
+	output.rgb *= LightIntensity;
+
+	if (output.b > .3)
+		discard;
+
+	return output;
+}
+
+float4 PixelShaderFunction_JupiterTurbulence(VertexShaderOutput input) : COLOR0
+{
+	float LightIntensity = 1;
+float Amplify = .21;
+float NoiseScale = SOL_TURB;
+float4 Color1 = BEIGE;
+float4 Color2 = BROWN;
+
+float4  noisevec = float4(0.0, 0.0, 0.0, 0.0);
+for (int i = 0; i < 4; ++i)
+{
+	noisevec[i] = inoise(input.wPosition * NoiseScale) / NoiseScale;
+	NoiseScale *= 2.0;
+}
+//return noisevec;
+
+float sum = (abs(noisevec[0] - .5) + abs(noisevec[1] - .5)
+	+ abs(noisevec[2] - .5) + abs(noisevec[3] - .5)) / 2.0;
+
+sum = clamp(sum * Amplify, 0.0, 1.0);
+
+float4 output = lerp(Color1, Color2, sum) * LightIntensity;
+
+return output;
+}
+
+float4 PixelShaderFunction_UranusBanding(VertexShaderOutput input) : COLOR0
+{
+	float NoiseAmp = .47;
+	float NoiseScale = .19;
+	float LightIntensity = .9;
+	float A = .075;
+	float P = .3;
+	float Tol = .37;
+
+	float4 noisevec = float4(0.0, 0.0, 0.0, 0.0);
+	for (int i = 0; i < 4; ++i)
+	{
+		noisevec[i] = inoise(input.wPosition * NoiseScale) / NoiseScale;
+		NoiseScale *= 2.0;
+	}
+
+	float size = noisevec[0] + noisevec[1] + noisevec[2] + noisevec[3];
+	size = .5 * (size - 1.);
+	float deltay = NoiseAmp * size;
+
+	float f = frac(A * (input.wPosition.y + deltay));
+
+	float t = smoothstep(0.5 - P - Tol, 0.5 - P + Tol, f)
+	- smoothstep(0.5 + P - Tol, 0.5 + P + Tol, f);
+
+	float4 output = lerp(TURQUOISE, CERULEAN, t);
 	output.rgb *= LightIntensity;
 
 	return output;
+}
+
+float4 PixelShaderFunction_NeptuneBanding(VertexShaderOutput input) : COLOR0
+{
+	float NoiseAmp = .4;
+	float NoiseScale = .69;
+	float LightIntensity = .8;
+	float A = .035;
+	float P = .327;
+	float Tol = .266;
+
+	float4 noisevec = float4(0.0, 0.0, 0.0, 0.0);
+	for (int i = 0; i < 4; ++i)
+	{
+		noisevec[i] = inoise(input.wPosition * NoiseScale) / NoiseScale;
+		NoiseScale *= 2.0;
+	}
+
+	float size = noisevec[0] + noisevec[1] + noisevec[2] + noisevec[3];
+	size = .5 * (size - 1.);
+	float deltay = NoiseAmp * size;
+
+	float f = frac(A * (input.wPosition.y + deltay));
+
+	float t = smoothstep(0.5 - P - Tol, 0.5 - P + Tol, f)
+	- smoothstep(0.5 + P - Tol, 0.5 + P + Tol, f);
+
+	float4 output = lerp(BLUE_BLUE, OTHER_BLUE, t);
+	output.rgb *= LightIntensity;
+
+	return output;
+}
+
+float4 PixelShaderFunction_SaturnBanding(VertexShaderOutput input) : COLOR0
+{
+	float NoiseAmp = .53;
+	float NoiseScale = .81;
+	float LightIntensity = .9;
+	float A = .127;
+	float P = .21;
+	float Tol = .52;
+
+	float4  noisevec = float4(0.0, 0.0, 0.0, 0.0);
+	for (int i = 0; i < 4; ++i)
+	{
+		noisevec[i] = inoise(input.wPosition * NoiseScale) / NoiseScale;
+		NoiseScale *= 2.0;
+	}
+
+	float size = noisevec[0] + noisevec[1] + noisevec[2] + noisevec[3];
+	size = .5 * (size - 1.);
+	float deltay = NoiseAmp * size;
+
+	float f = frac(A * (input.wPosition.y + deltay));
+
+	float t = smoothstep(0.5 - P - Tol, 0.5 - P + Tol, f)
+	- smoothstep(0.5 + P - Tol, 0.5 + P + Tol, f);
+
+	float4 output = lerp(OTHER_BEIGE, LIGHT_ORANGE, t);
+	output.rgb *= LightIntensity;
+
+	return output;
+}
+
+float4 PixelShaderFunction_SaturnRings(VertexShaderOutput input) : COLOR0
+{
+	float NoiseAmp = .53;
+float NoiseScale = .81;
+float LightIntensity = .9;
+float A = .127;
+float P = .21;
+float Tol = .52;
+
+float4  noisevec = float4(0.0, 0.0, 0.0, 0.0);
+for (int i = 0; i < 4; ++i)
+{
+	noisevec[i] = inoise(input.wPosition * NoiseScale) / NoiseScale;
+	NoiseScale *= 2.0;
+}
+
+float size = noisevec[0] + noisevec[1] + noisevec[2] + noisevec[3];
+size = .5 * (size - 1.);
+float deltay = NoiseAmp * size;
+
+float f = frac(A * (input.wPosition.y + deltay));
+
+float t = smoothstep(0.5 - P - Tol, 0.5 - P + Tol, f)
+- smoothstep(0.5 + P - Tol, 0.5 + P + Tol, f);
+
+float4 output = lerp(OTHER_BEIGE, LIGHT_ORANGE, t);
+output.rgb *= LightIntensity;
+
+return output;
 }
 
 float4 PixelShaderFunction_Contours(VertexShaderOutput input) : COLOR0
@@ -662,7 +859,7 @@ return output;
 
 float4 PixelShaderFunction_SolTurbulence(VertexShaderOutput input) : COLOR0
 {
-	float LightIntensity = .8;
+	float LightIntensity = .9;
 float Amplify = .4;
 float NoiseScale = SOL_TURB;
 float4 Color1 = float4(1.0, 1.0, 0.0, 1.0);
@@ -745,7 +942,7 @@ return output;
 
 float4 PixelShaderFunction_MarsDiscard(VertexShaderOutput input) : COLOR0
 {
-	float LightIntensity = .9;
+	float LightIntensity = .8;
 	float Amplify = .7;
 	float NoiseScale = .2;
 	float4 Color1 = BROWN;
@@ -1070,17 +1267,23 @@ technique Mars
 	}
 }
 
+// pretty good
 technique Jupiter
 {
 	pass Pass1
 	{
 		VertexShader = compile vs_3_0 VertexShaderFunction();
-		PixelShader = compile ps_3_0 PixelShaderFunction_JupiterBanding();
+		PixelShader = compile ps_3_0 PixelShaderFunction_JupiterTurbulence();
 	}
 	pass Pass2
 	{
 		VertexShader = compile vs_3_0 VertexShaderFunction();
-		PixelShader = compile ps_3_0 PixelShaderFunction_JupiterDiscard();
+		PixelShader = compile ps_3_0 PixelShaderFunction_JupiterBanding();
+	}
+	pass Pass3
+	{
+		VertexShader = compile vs_3_0 VertexShaderFunction();
+		PixelShader = compile ps_3_0 PixelShaderFunction_JupiterBanding2();
 	}
 }
 
@@ -1089,7 +1292,7 @@ technique Saturn
 	pass Pass1
 	{
 		VertexShader = compile vs_3_0 VertexShaderFunction();
-		PixelShader = compile ps_3_0 PixelShaderFunction_Scribbles();
+		PixelShader = compile ps_3_0 PixelShaderFunction_SaturnBanding();
 	}
 }
 
@@ -1098,7 +1301,7 @@ technique Uranus
 	pass Pass1
 	{
 		VertexShader = compile vs_3_0 VertexShaderFunction();
-		PixelShader = compile ps_3_0 PixelShaderFunction_Scribbles();
+		PixelShader = compile ps_3_0 PixelShaderFunction_UranusBanding();
 	}
 }
 
@@ -1107,6 +1310,15 @@ technique Neptune
 	pass Pass1
 	{
 		VertexShader = compile vs_3_0 VertexShaderFunction();
-		PixelShader = compile ps_3_0 PixelShaderFunction_Scribbles();
+		PixelShader = compile ps_3_0 PixelShaderFunction_NeptuneBanding();
+	}
+}
+
+technique SaturnRings
+{
+	pass Pass1
+	{
+		VertexShader = compile vs_3_0 VertexShaderFunction();
+		PixelShader = compile ps_3_0 PixelShaderFunction_SaturnRings();
 	}
 }

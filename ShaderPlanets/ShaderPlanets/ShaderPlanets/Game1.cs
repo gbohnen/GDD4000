@@ -35,7 +35,6 @@ namespace ShaderPlanets
         Planets target = Planets.Global;
 
         float timer = 0;
-        float sol_timer = 0;
 
         public Game1()
         {
