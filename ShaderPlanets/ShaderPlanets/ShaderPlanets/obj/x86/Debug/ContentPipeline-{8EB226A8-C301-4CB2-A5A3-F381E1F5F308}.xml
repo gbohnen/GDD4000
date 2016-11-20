@@ -8,10 +8,10 @@
       <Processor>ModelProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Gray\Documents\GitHub\GDD4000\ShaderPlanets\ShaderPlanets\ShaderPlanets\bin\x86\Debug\Content\sphere.xnb</Output>
-      <Time>2016-11-18T17:11:25.4050959-07:00</Time>
+      <Time>2011-05-15T08:44:42-06:00</Time>
       <Dependency>
         <Key>C:\Users\Gray\Documents\GitHub\GDD4000\ShaderPlanets\ShaderPlanets\ShaderPlanets\obj\x86\Debug\sphere_0.xml</Key>
-        <Value>2016-11-18T20:56:13.3893339-07:00</Value>
+        <Value>2016-11-19T13:59:28.3707484-07:00</Value>
       </Dependency>
     </Item>
     <Item>
@@ -21,7 +21,7 @@
       <Processor>EffectProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Gray\Documents\GitHub\GDD4000\ShaderPlanets\ShaderPlanets\ShaderPlanets\bin\x86\Debug\Content\CubeMap.xnb</Output>
-      <Time>2016-11-18T17:11:25.3950955-07:00</Time>
+      <Time>2016-11-18T14:21:39.4238085-07:00</Time>
     </Item>
     <Item>
       <Source>PerlinNoiseEffect.fx</Source>
@@ -30,16 +30,16 @@
       <Processor>EffectProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Gray\Documents\GitHub\GDD4000\ShaderPlanets\ShaderPlanets\ShaderPlanets\bin\x86\Debug\Content\PerlinNoiseEffect.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Time>2016-11-19T22:15:46.277949-07:00</Time>
     </Item>
     <Item>
       <Source>sphere.x</Source>
       <Importer>XImporter</Importer>
       <Options>IntermediateFile, DontCacheImportedData</Options>
       <Output>C:\Users\Gray\Documents\GitHub\GDD4000\ShaderPlanets\ShaderPlanets\ShaderPlanets\obj\x86\Debug\sphere_0.xml</Output>
-      <Time>2016-11-18T17:11:25.4050959-07:00</Time>
+      <Time>2011-05-15T08:44:42-06:00</Time>
     </Item>
-    <BuildSuccessful>false</BuildSuccessful>
+    <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <ContentProjectGUID>{8EB226A8-C301-4CB2-A5A3-F381E1F5F308}</ContentProjectGUID>
       <TargetPlatform>Windows</TargetPlatform>
@@ -78,7 +78,7 @@
       </Assembly>
       <Assembly>
         <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
-        <Value>2016-09-16T01:39:33.303608-06:00</Value>
+        <Value>2016-05-06T00:23:31.452468-06:00</Value>
       </Assembly>
     </Assemblies>
   </Asset>

@@ -51,7 +51,7 @@ namespace ShaderPlanets
                 if (key != Planets.Global)
                 {
                     // add a body for each key in the enumeration
-                    entityCollection.Add(key, new Planet(PlanetaryConstants.GetPlanet(key), model));
+                    entityCollection.Add(key, new Planet(key, model));
 
                     // set parents, edge cases first
                     // sol orbits nothing
@@ -77,7 +77,7 @@ namespace ShaderPlanets
         {
             for (int i = 0; i < entityCollection.Count; i++)
             {
-                entityCollection[(Planets)i].DrawModel(planetModel, world, projection, view, ((Planets)3).ToString(), timer);
+                entityCollection[(Planets)i].DrawModel(planetModel, world, projection, view, ((Planets)5).ToString(), timer);
             }
         }
 
@@ -97,7 +97,7 @@ namespace ShaderPlanets
             if (planet == Planets.Global)
                 return PlanetaryConstants.CAMERA_DISTANCE;
             else
-                return PlanetaryConstants.CAMERA_DISTANCE / 15 * entityCollection[planet].Scale;
+                return PlanetaryConstants.CAMERA_DISTANCE / 20 * entityCollection[planet].Scale;
         }
 
         #endregion

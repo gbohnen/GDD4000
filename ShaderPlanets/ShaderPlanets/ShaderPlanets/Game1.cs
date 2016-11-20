@@ -35,6 +35,7 @@ namespace ShaderPlanets
         Planets target = Planets.Global;
 
         float timer = 0;
+        float sol_timer = 0;
 
         public Game1()
         {
@@ -120,21 +121,14 @@ namespace ShaderPlanets
             // TODO: Add your update logic here
 
             perlinNoiseEffect.Parameters["Offset"].SetValue(timer);
+            perlinNoiseEffect.Parameters["SOL_TURB"].SetValue((float)Math.Sin(timer) / 5 + .5f);
 
-            perlinNoiseEffect.Parameters["Clamp"].SetValue(timer);
-
-            if (timer > 2)
-                timer = 0;
+            perlinNoiseEffect.Parameters["TEST"].SetValue(timer / 10);
 
             KeyboardState state = Keyboard.GetState();
 
             CheckState(state);
-
             SetCamera();
-
-
-
-
 
             base.Update(gameTime);
         }

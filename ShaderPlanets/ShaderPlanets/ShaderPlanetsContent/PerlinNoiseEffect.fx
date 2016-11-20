@@ -6,7 +6,9 @@ float4x4 View;
 float4x4 Projection;
 
 float Offset;
-float Clamp;
+float SOL_TURB;
+float TEST;
+
 
 //////////////////////////////////////////////////////////////////////////
 // Constants
@@ -19,10 +21,26 @@ static const float PI = 3.14159265f;
 #define DARKER_BLUE float4(0.03, 0.03, 0.20, 1.0)
 #define WHITE float4(0.8, 0.8, 1.0, 1.0)
 
+#define TRUE_WHITE float4(.8, .8, .8, 1.0)
+#define TRANSP float4(0,0,0,0)
+
 #define PALE_GREEN float4(.35, .55, .35, 1.0)
 #define MEDIUM_GREEN float4(.10, .30, .10, 1.0)
 #define DARK_GREEN float4(.05, .26, .05, 1.0)
 #define DARKER_GREEN float4(.03, .20, .03, 1.0)
+
+#define CLOUD_WHITE float4(.9, .9, .9, 1.0)
+#define CLOUD_BLUE float4(0.0, 0.0, 0.8, 1.0)
+
+#define SOL_BLACK float4(.1, .1, .1, 1.0)
+#define SOL_ORANGE float4(.8, .1, .1, 1.0)
+
+#define BROWN float4 (.497, .298, .1, 1.0)
+#define LIGHT_BROWN float4 (1.0, .951, .752, 1.0)
+
+#define RUST_RED float4 (1.0, .2, 0, 1.0)
+
+#define ORANGE_BROWN float4(1.0, .6, 0, 1.0)
 
 //////////////////////////////////////////////////////////////////////////
 // Shader Data Structures
@@ -265,7 +283,7 @@ float4 marble_color(float m) {
 	c[11] = DARK_BLUE;      // Outer fills, PALE_BLUE
 	c[12] = PALE_BLUE;
 
-	float4 res = spline(clamp(Clamp*m + 0.75, 0.0, 1.0), 13, c);
+	float4 res = spline(clamp(2.0*m + 0.75, 0.0, 1.0), 13, c);
 
 	return res;
 }
@@ -352,7 +370,29 @@ VertexShaderOutput VertexShaderFunction_OffsetX(VertexShaderInput input)
 	float4 viewPosition = mul(worldPosition, View);
 	output.Position = mul(viewPosition, Projection);
 
-	output.Position.x += Offset;
+	output.wPosition = input.Position;
+	output.wPosition += Offset * 10;
+	
+	output.texCoord = input.texCoord;
+
+	return output;
+}
+
+VertexShaderOutput VertexShaderFunction_OffsetSurface(VertexShaderInput input)
+{
+	VertexShaderOutput output;
+
+	float4 worldPosition = mul(input.Position, World);
+	float4 viewPosition = mul(worldPosition, View);
+	output.Position = mul(viewPosition, Projection);
+
+	output.wPosition = input.Position;
+	output.wPosition += Offset * 10;
+	
+	/*output.Position.x *= 1.1f;
+	output.Position.y *= 1.1f;*/
+
+	output.texCoord = input.texCoord;
 
 	return output;
 }
@@ -393,7 +433,7 @@ float4 PixelShaderFunction_Scribbles(VertexShaderOutput input) : COLOR0
 	float f = frac(A * (input.wPosition.x + deltax));
 
 	float t = smoothstep(0.5 - P - Tol, 0.5 - P + Tol, f)
-				-smoothstep(0.5 + P - Tol, 0.5 + P + Tol, f);
+	- smoothstep(0.5 + P - Tol, 0.5 + P + Tol, f);
 
 	float4 output = lerp(BLUE, WHITE, t);
 	output.rgb *= LightIntensity;
@@ -401,16 +441,79 @@ float4 PixelShaderFunction_Scribbles(VertexShaderOutput input) : COLOR0
 	return output;
 }
 
-float4 PixelShaderFunction_Banding(VertexShaderOutput input) : COLOR0
+float4 PixelShaderFunction_MercuryScribbles(VertexShaderOutput input) : COLOR0
+{
+float NoiseAmp = 6.79;
+float NoiseScale = .729;
+float LightIntensity = .9;
+float A = .2;
+float P = .81;
+float Tol = .91;
+
+float4  noisevec = float4(0.0, 0.0, 0.0, 0.0);
+for (int i = 0; i < 4; ++i)
+{
+	noisevec[i] = inoise(input.wPosition * NoiseScale) / NoiseScale;
+	NoiseScale *= 2.0;
+}
+
+float size = noisevec[0] + noisevec[1] + noisevec[2] + noisevec[3];
+size = .5 * (size - 1.);
+float deltax = NoiseAmp * size;
+
+float f = frac(A * (input.wPosition.x + deltax));
+
+float t = smoothstep(0.5 - P - Tol, 0.5 - P + Tol, f)
+- smoothstep(0.5 + P - Tol, 0.5 + P + Tol, f);
+
+float4 output = lerp(LIGHT_BROWN, BROWN, t);
+output.rgb *= LightIntensity;
+
+return output;
+}
+
+float4 PixelShaderFunction_IceCapBands(VertexShaderOutput input) : COLOR0
 {
 	float NoiseAmp = 5;
-	float NoiseScale = 1;
-	float LightIntensity = .9;
-	float A = .2;
-	float P = .45;
-	float Tol = .5;
+float NoiseScale = .94;
+float LightIntensity = .9;
+float A = .008;
+float P = .588;
+float Tol = .36;
 
-	float4 BLUE = float4(0., 0., 1., 1.);
+float4 noisevec = float4(0.0, 0.0, 0.0, 0.0);
+for (int i = 0; i < 4; ++i)
+{
+	noisevec[i] = inoise(input.wPosition * NoiseScale) / NoiseScale;
+	NoiseScale *= 2.0;
+}
+
+float size = noisevec[0] + noisevec[1] + noisevec[2] + noisevec[3];
+size = .5 * (size - 1.);
+float deltay = NoiseAmp * size;
+
+float f = frac(A * (input.wPosition.y + deltay));
+
+float t = smoothstep(0.5 - P - Tol, 0.5 - P + Tol, f)
+- smoothstep(0.5 + P - Tol, 0.5 + P + Tol, f);
+
+float4 output = lerp(TRANSP, TRUE_WHITE, t);
+output.rgb *= LightIntensity;
+
+if (output.b < .7)
+	discard;
+
+return output;
+}
+
+float4 PixelShaderFunction_VenusBanding(VertexShaderOutput input) : COLOR0
+{
+	float NoiseAmp = 5;
+	float NoiseScale = .94;
+	float LightIntensity = .9;
+	float A = .04;
+	float P = .588;
+	float Tol = .99;
 
 	float4 noisevec = float4(0.0, 0.0, 0.0, 0.0);
 	for (int i = 0; i < 4; ++i)
@@ -421,14 +524,78 @@ float4 PixelShaderFunction_Banding(VertexShaderOutput input) : COLOR0
 
 	float size = noisevec[0] + noisevec[1] + noisevec[2] + noisevec[3];
 	size = .5 * (size - 1.);
-	float deltax = NoiseAmp * size;
+	float deltay = NoiseAmp * size;
 
-	float f = frac(A * (input.wPosition.x + deltax));
+	float f = frac(A * (input.wPosition.y + deltay));
 
 	float t = smoothstep(0.5 - P - Tol, 0.5 - P + Tol, f)
 				-smoothstep(0.5 + P - Tol, 0.5 + P + Tol, f);
 
-	float4 output = lerp(BLUE, WHITE, t);
+	float4 output = lerp(BROWN, TRUE_WHITE, t);
+	output.rgb *= LightIntensity;
+
+	return output;
+}
+
+float4 PixelShaderFunction_MarsBanding(VertexShaderOutput input) : COLOR0
+{
+	float NoiseAmp = .22;
+	float NoiseScale = .21;
+	float LightIntensity = .9;
+	float A = .007;
+	float P = .41;
+	float Tol = .27;
+
+	float4 noisevec = float4(0.0, 0.0, 0.0, 0.0);
+	for (int i = 0; i < 4; ++i)
+	{
+		noisevec[i] = inoise(input.wPosition * NoiseScale) / NoiseScale;
+		NoiseScale *= 2.0;
+	}
+
+	float size = noisevec[0] + noisevec[1] + noisevec[2] + noisevec[3];
+	size = .5 * (size - 1.);
+	float deltay = NoiseAmp * size;
+
+	float f = frac(A * (input.wPosition.y + deltay));
+
+	float t = smoothstep(0.5 - P - Tol, 0.5 - P + Tol, f)
+	- smoothstep(0.5 + P - Tol, 0.5 + P + Tol, f);
+
+	float4 output = lerp(RUST_RED, BROWN, t);
+	output.rgb *= LightIntensity;
+
+	return output;
+}
+
+float4 PixelShaderFunction_JupiterBanding(VertexShaderOutput input) : COLOR0
+{
+	float NoiseAmp = 2;
+	float NoiseScale = .287;
+	float LightIntensity = .9;
+	float A = .13;
+	float P = .21;
+	float Tol = .58;
+
+	float4 BLUE = float4(0., 0., 1., 1.);
+
+	float4  noisevec = float4(0.0, 0.0, 0.0, 0.0);
+	for (int i = 0; i < 4; ++i)
+	{
+		noisevec[i] = inoise(input.wPosition * NoiseScale) / NoiseScale;
+		NoiseScale *= 2.0;
+	}
+
+	float size = noisevec[0] + noisevec[1] + noisevec[2] + noisevec[3];
+	size = .5 * (size - 1.);
+	float deltay = NoiseAmp * size;
+
+	float f = frac(A * (input.wPosition.y + deltay));
+
+	float t = smoothstep(0.5 - P - Tol, 0.5 - P + Tol, f)
+	- smoothstep(0.5 + P - Tol, 0.5 + P + Tol, f);
+
+	float4 output = lerp(RUST_RED, TRUE_WHITE, t);
 	output.rgb *= LightIntensity;
 
 	return output;
@@ -470,27 +637,53 @@ float4 PixelShaderFunction_Contours(VertexShaderOutput input) : COLOR0
 float4 PixelShaderFunction_Turbulence(VertexShaderOutput input) : COLOR0
 {
 	float LightIntensity = .8;
-	float Amplify = .4;
-	float NoiseScale = .25;
-	float4 Color1 = float4(1.0, 1.0, 0.0, 1.0);
-	float4 Color2 = float4(1.0, 0.0, 0.0, 1.0);
+float Amplify = .4;
+float NoiseScale = .25;
+float4 Color1 = float4(1.0, 1.0, 0.0, 1.0);
+float4 Color2 = float4(1.0, 0.0, 0.0, 1.0);
 
-	float4  noisevec = float4(0.0, 0.0, 0.0, 0.0);
-	for (int i = 0; i < 4; ++i)
-	{
-		noisevec[i] = inoise(input.wPosition * NoiseScale) / NoiseScale;
-		NoiseScale *= 2.0;
-	}
-	//return noisevec;
+float4  noisevec = float4(0.0, 0.0, 0.0, 0.0);
+for (int i = 0; i < 4; ++i)
+{
+	noisevec[i] = inoise(input.wPosition * NoiseScale) / NoiseScale;
+	NoiseScale *= 2.0;
+}
+//return noisevec;
 
-	float sum = (abs(noisevec[0] - .5) + abs(noisevec[1] - .5)
-		+ abs(noisevec[2] - .5) + abs(noisevec[3] - .5)) / 2.0;
+float sum = (abs(noisevec[0] - .5) + abs(noisevec[1] - .5)
+	+ abs(noisevec[2] - .5) + abs(noisevec[3] - .5)) / 2.0;
 
-	sum = clamp(sum * Amplify, 0.0, 1.0);
+sum = clamp(sum * Amplify, 0.0, 1.0);
 
-	float4 output = lerp(Color1, Color2, sum) * LightIntensity;
+float4 output = lerp(Color1, Color2, sum) * LightIntensity;
 
-	return output;
+return output;
+}
+
+float4 PixelShaderFunction_SolTurbulence(VertexShaderOutput input) : COLOR0
+{
+	float LightIntensity = .8;
+float Amplify = .4;
+float NoiseScale = SOL_TURB;
+float4 Color1 = float4(1.0, 1.0, 0.0, 1.0);
+float4 Color2 = float4(1.0, 0.0, 0.0, 1.0);
+
+float4  noisevec = float4(0.0, 0.0, 0.0, 0.0);
+for (int i = 0; i < 4; ++i)
+{
+	noisevec[i] = inoise(input.wPosition * NoiseScale) / NoiseScale;
+	NoiseScale *= 2.0;
+}
+//return noisevec;
+
+float sum = (abs(noisevec[0] - .5) + abs(noisevec[1] - .5)
+	+ abs(noisevec[2] - .5) + abs(noisevec[3] - .5)) / 2.0;
+
+sum = clamp(sum * Amplify, 0.0, 1.0);
+
+float4 output = lerp(Color1, Color2, sum) * LightIntensity;
+
+return output;
 }
 
 float4 PixelShaderFunction_Discard(VertexShaderOutput input) : COLOR0
@@ -520,6 +713,122 @@ float4 PixelShaderFunction_Discard(VertexShaderOutput input) : COLOR0
 		discard;
 
 	return output;
+}
+
+float4 PixelShaderFunction_MercuryDiscard(VertexShaderOutput input) : COLOR0
+{
+	float LightIntensity = .9;
+float Amplify = .76;
+float NoiseScale = .14;
+float4 Color1 = BROWN;
+float4 Color2 = LIGHT_BROWN;
+
+float4  noisevec = float4(0.0, 0.0, 0.0, 0.0);
+for (int i = 0; i < 4; ++i)
+{
+	// 2.17 is an arbitrary value chosen at >= 2.0
+	noisevec[i] = inoise(input.wPosition * NoiseScale) / NoiseScale;
+	NoiseScale *= 2.0;
+}
+
+float sum = (abs(noisevec[0] - .5) + abs(noisevec[1] - .5)
+	+ abs(noisevec[2] - .5) + abs(noisevec[3] - .5)) / 2.0;
+
+sum = clamp(sum * Amplify, 0.0, 1.0);
+
+float4 output = lerp(Color1, Color2, sum) * LightIntensity;
+
+if (output.r > .8)
+	discard;
+return output;
+}
+
+float4 PixelShaderFunction_MarsDiscard(VertexShaderOutput input) : COLOR0
+{
+	float LightIntensity = .9;
+	float Amplify = .7;
+	float NoiseScale = .2;
+	float4 Color1 = BROWN;
+	float4 Color2 = RUST_RED;
+
+	float4  noisevec = float4(0.0, 0.0, 0.0, 0.0);
+	for (int i = 0; i < 4; ++i)
+	{
+		// 2.17 is an arbitrary value chosen at >= 2.0
+		noisevec[i] = inoise(input.wPosition * NoiseScale) / NoiseScale;
+		NoiseScale *= 2.0;
+	}
+
+	float sum = (abs(noisevec[0] - .5) + abs(noisevec[1] - .5)
+		+ abs(noisevec[2] - .5) + abs(noisevec[3] - .5)) / 2.0;
+
+	sum = clamp(sum * Amplify, 0.0, 1.0);
+
+	float4 output = lerp(Color1, Color2, sum) * LightIntensity;
+
+	if (output.r > .8)
+		discard;
+
+	return output;
+}
+
+float4 PixelShaderFunction_JupiterDiscard(VertexShaderOutput input) : COLOR0
+{
+	float LightIntensity = .9;
+	float Amplify = .7;
+	float NoiseScale = .065;
+	float4 Color1 = ORANGE_BROWN;
+	float4 Color2 = RUST_RED;
+
+	float4  noisevec = float4(0.0, 0.0, 0.0, 0.0);
+	for (int i = 0; i < 4; ++i)
+	{
+		// 2.17 is an arbitrary value chosen at >= 2.0
+		noisevec[i] = inoise(input.wPosition * NoiseScale) / NoiseScale;
+		NoiseScale *= 2.0;
+	}
+
+	float sum = (abs(noisevec[0] - .5) + abs(noisevec[1] - .5)
+		+ abs(noisevec[2] - .5) + abs(noisevec[3] - .5)) / 2.0;
+
+	sum = clamp(sum * Amplify, 0.0, 1.0);
+
+	float4 output = lerp(Color1, Color2, sum) * LightIntensity;
+
+	if (output.r > .7 && output.g < .2) 
+		discard;
+
+	return output;
+}
+
+float4 PixelShaderFunction_IceCaps(VertexShaderOutput input) : COLOR0
+{
+	float LightIntensity = .9;
+float Amplify = .7;
+float NoiseScale = .2;
+float4 Color1 = float4(1.0, 0.0, 0.0, 1.0);
+float4 Color2 = float4(0.0, 1.0, 0.0, 1.0);
+
+float4  noisevec = float4(0.0, 0.0, 0.0, 0.0);
+for (int i = 0; i < 4; ++i)
+{
+	// 2.17 is an arbitrary value chosen at >= 2.0
+	noisevec[i] = inoise(input.wPosition * NoiseScale) / NoiseScale;
+	NoiseScale *= 2.0;
+}
+
+float sum = (abs(noisevec[0] - .5) + abs(noisevec[1] - .5)
+	+ abs(noisevec[2] - .5) + abs(noisevec[3] - .5)) / 2.0;
+
+sum = clamp(sum * Amplify, 0.0, 1.0);
+
+float4 output = lerp(Color1, Color2, sum) * LightIntensity;
+
+// discard if normal is below a certain degree
+
+
+
+return output;
 }
 
 float4 PixelShaderFunction_Marble(VertexShaderOutput input) : COLOR0
@@ -580,8 +889,8 @@ float4 PixelShaderFunction_CloudOverlay(VertexShaderOutput input) : COLOR0
 	float Amplify = .05;
 	float NoiseScale = .1;   //  0 to 1
 	float Bias = .9;         // -1 to 1
-	float4 Color1 = float4(0.0, 0.0, 0.8, 1.0);
-	float4 Color2 = float4(.9f, .9f, .9f, 1.0);
+	float4 Color1 = CLOUD_BLUE;
+	float4 Color2 = CLOUD_WHITE;
 
 	float4  noisevec = float4(0.0, 0.0, 0.0, 0.0);
 	//for (int i = 0; i < 4; ++i)
@@ -607,6 +916,38 @@ float4 PixelShaderFunction_CloudOverlay(VertexShaderOutput input) : COLOR0
 	return output;
 }
 
+float4 PixelShaderFunction_SolarSurface(VertexShaderOutput input) : COLOR0
+{
+	float LightIntensity = 1;
+float Amplify = .05;
+float NoiseScale = .1;   //  0 to 1
+float Bias = .9;         // -1 to 1
+float4 Color1 = SOL_ORANGE;
+float4 Color2 = SOL_BLACK;
+
+float4  noisevec = float4(0.0, 0.0, 0.0, 0.0);
+//for (int i = 0; i < 4; ++i)
+//{
+//	noisevec[i] = ((inoise( input.wPosition * NoiseScale ) / NoiseScale) + 1) / 2;
+//	NoiseScale *= 2;
+//}
+
+//NoiseScale *= 8;
+noisevec = noiseVector(input.wPosition * NoiseScale);
+float intensity = (noisevec[0] + noisevec[1] + noisevec[2] + noisevec[3] - 1) / 2.;
+
+intensity = clamp(Bias + intensity, 0, 1);
+
+float4 output = float4(0.0, 0.0, 0.0, 1.0);
+output.rgb = lerp(Color1.rgb, Color2.rgb, intensity) * LightIntensity;
+
+if (output.r < .6)
+{
+	discard;
+}
+
+return output;
+}
 
 float4 PixelShaderFunction_Wood(VertexShaderOutput input) : COLOR0
 {
@@ -639,114 +980,48 @@ float4 PixelShaderFunction_Wood(VertexShaderOutput input) : COLOR0
 //////////////////////////////////////////////////////////////////////////
 // Techniques
 //////////////////////////////////////////////////////////////////////////
-technique PerlinNoise_Scribbles
-{
-	pass Pass1
-	{
-		VertexShader = compile vs_3_0 VertexShaderFunction();
-		PixelShader = compile ps_3_0 PixelShaderFunction_Scribbles();
-	}
-}
 
-technique PerlinNoise_Banding
-{
-	pass Pass1
-	{
-		VertexShader = compile vs_3_0 VertexShaderFunction();
-		PixelShader = compile ps_3_0 PixelShaderFunction_Banding();
-	}
-}
-
-technique PerlinNoise_Contours
-{
-	pass Pass1
-	{
-		VertexShader = compile vs_3_0 VertexShaderFunction();
-		PixelShader = compile ps_3_0 PixelShaderFunction_Contours();
-	}
-}
-
-technique PerlinNoise_Turbulence
-{
-	pass Pass1
-	{
-		VertexShader = compile vs_3_0 VertexShaderFunction();
-		PixelShader = compile ps_3_0 PixelShaderFunction_Turbulence();
-	}
-}
-
-technique PerlinNoise_Discard
-{
-	pass Pass1
-	{
-		VertexShader = compile vs_3_0 VertexShaderFunction();
-		PixelShader = compile ps_3_0 PixelShaderFunction_Discard();
-	}
-}
-
-technique PerlinNoise_Marble
-{
-	pass Pass1
-	{
-		VertexShader = compile vs_3_0 VertexShaderFunction();
-		PixelShader = compile ps_3_0 PixelShaderFunction_Marble();
-	}
-}
-
-technique PerlinNoise_Cloud
-{
-	pass Pass1
-	{
-		VertexShader = compile vs_3_0 VertexShaderFunction();
-		PixelShader = compile ps_3_0 PixelShaderFunction_Cloud();
-	}
-}
-
-technique PerlinNoise_Wood
-{
-	pass Pass1
-	{
-		VertexShader = compile vs_3_0 VertexShaderFunction();
-		PixelShader = compile ps_3_0 PixelShaderFunction_Wood();
-	}
-}
-
-technique PerlinNoise
-{
-	pass Pass1
-	{
-		VertexShader = compile vs_3_0 VertexShaderFunction();
-		PixelShader = compile ps_3_0 PixelShaderFunction();
-	}
-}
-
+// good to go
 technique Sol
 {
 	pass Pass1
 	{
 		VertexShader = compile vs_3_0 VertexShaderFunction();
-		PixelShader = compile ps_3_0 PixelShaderFunction_Turbulence();
+		PixelShader = compile ps_3_0 PixelShaderFunction_SolTurbulence();
 	}
-};
+	pass Pass2
+	{
+		VertexShader = compile vs_3_0 VertexShaderFunction_OffsetX();
+		PixelShader = compile ps_3_0 PixelShaderFunction_SolarSurface();
+	}
+}
 
+// more or less done
 technique Mercury
 {
 	pass Pass1
 	{
 		VertexShader = compile vs_3_0 VertexShaderFunction();
-		PixelShader = compile ps_3_0 PixelShaderFunction_Scribbles();
+		PixelShader = compile ps_3_0 PixelShaderFunction_MercuryScribbles();
 	}
-};
+	pass Pass2
+	{
+		VertexShader = compile vs_3_0 VertexShaderFunction();
+		PixelShader = compile ps_3_0 PixelShaderFunction_MercuryDiscard();
+	}
+}
 
+// good to go
 technique Venus
 {
 	pass Pass1
 	{
 		VertexShader = compile vs_3_0 VertexShaderFunction();
-		PixelShader = compile ps_3_0 PixelShaderFunction_Turbulence();
+		PixelShader = compile ps_3_0 PixelShaderFunction_VenusBanding();
 	}
-};
+}
 
+// good to go
 technique Earth
 {
 	pass Pass1
@@ -754,7 +1029,17 @@ technique Earth
 		VertexShader = compile vs_3_0 VertexShaderFunction();
 		PixelShader = compile ps_3_0 PixelShaderFunction_Marble();
 	}
-};
+	pass Pass2
+	{
+		VertexShader = compile vs_3_0 VertexShaderFunction();
+		PixelShader = compile ps_3_0 PixelShaderFunction_IceCapBands();
+	}
+	pass Pass3
+	{
+		VertexShader = compile vs_3_0 VertexShaderFunction_OffsetX();
+		PixelShader = compile ps_3_0 PixelShaderFunction_CloudOverlay();
+	}
+}
 
 technique Luna
 {
@@ -763,25 +1048,41 @@ technique Luna
 		VertexShader = compile vs_3_0 VertexShaderFunction();
 		PixelShader = compile ps_3_0 PixelShaderFunction_Scribbles();
 	}
-};
+}
 
+// close enough
 technique Mars
 {
 	pass Pass1
 	{
 		VertexShader = compile vs_3_0 VertexShaderFunction();
-		PixelShader = compile ps_3_0 PixelShaderFunction_Scribbles();
+		PixelShader = compile ps_3_0 PixelShaderFunction_MarsBanding();
 	}
-};
+	pass Pass2
+	{
+		VertexShader = compile vs_3_0 VertexShaderFunction();
+		PixelShader = compile ps_3_0 PixelShaderFunction_MarsDiscard();
+	}
+	pass Pass2
+	{
+		VertexShader = compile vs_3_0 VertexShaderFunction();
+		PixelShader = compile ps_3_0 PixelShaderFunction_IceCapBands();
+	}
+}
 
 technique Jupiter
 {
 	pass Pass1
 	{
 		VertexShader = compile vs_3_0 VertexShaderFunction();
-		PixelShader = compile ps_3_0 PixelShaderFunction_Scribbles();
+		PixelShader = compile ps_3_0 PixelShaderFunction_JupiterBanding();
 	}
-};
+	pass Pass2
+	{
+		VertexShader = compile vs_3_0 VertexShaderFunction();
+		PixelShader = compile ps_3_0 PixelShaderFunction_JupiterDiscard();
+	}
+}
 
 technique Saturn
 {
@@ -790,7 +1091,7 @@ technique Saturn
 		VertexShader = compile vs_3_0 VertexShaderFunction();
 		PixelShader = compile ps_3_0 PixelShaderFunction_Scribbles();
 	}
-};
+}
 
 technique Uranus
 {
@@ -799,7 +1100,7 @@ technique Uranus
 		VertexShader = compile vs_3_0 VertexShaderFunction();
 		PixelShader = compile ps_3_0 PixelShaderFunction_Scribbles();
 	}
-};
+}
 
 technique Neptune
 {
@@ -808,4 +1109,4 @@ technique Neptune
 		VertexShader = compile vs_3_0 VertexShaderFunction();
 		PixelShader = compile ps_3_0 PixelShaderFunction_Scribbles();
 	}
-};
+}

@@ -19,16 +19,22 @@ namespace ShaderPlanets
 
         Matrix worldMatrix;
 
+        Planets ident;
+
         #endregion
 
         #region Constructors
 
-        public Planet(PlanetData data, Model model)
+        public Planet(Planets key, Model model)
         {
+            PlanetData data = PlanetaryConstants.GetPlanet(key);
+
             period = data.Period;
             rotationalVelocity = data.AngularPeriod;
             diameter = data.Diameter;
             distanceFromSol = data.OrbitalRadius;
+
+            ident = key;
         }
 
         #endregion
@@ -93,6 +99,10 @@ namespace ShaderPlanets
             translate = Matrix.CreateTranslation(new Vector3(distanceFromSol, 0, 0));
             scale = Matrix.CreateScale(diameter);
             localRotation = Matrix.CreateRotationY(timer / rotationalVelocity);
+
+            if (ident == Planets.Earth)
+                localRotation *= Matrix.CreateRotationX(MathHelper.ToRadians(23.5f));
+
             globalRotation = Matrix.CreateRotationY(timer / period);
 
             world *= scale;
