@@ -20,6 +20,8 @@ namespace ShaderPlanets
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        ScrollingBackground background;
+
         Model sphere;
 
         Vector3 cameraPosition;
@@ -73,6 +75,7 @@ namespace ShaderPlanets
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            // load contents necessary for shaders
             sphere = Content.Load<Model>(@"sphere");
 
             perlinNoiseEffect = Content.Load<Effect>(@"PerlinNoiseEffect");
@@ -80,6 +83,7 @@ namespace ShaderPlanets
             permTexture2d = noiseEngine.GeneratePermTexture2d();
             permGradTexture = noiseEngine.GeneratePermGradTexture();
 
+            // add textures/effect to model
             foreach (ModelMesh mesh in sphere.Meshes)
             {
                 foreach (ModelMeshPart part in mesh.MeshParts)
@@ -88,9 +92,12 @@ namespace ShaderPlanets
                     part.Effect.Parameters["permTexture2d"].SetValue(permTexture2d);
                     part.Effect.Parameters["permGradTexture"].SetValue(permGradTexture);
                 }
-
-                Console.WriteLine(mesh.BoundingSphere.Radius);
             }
+
+            // background members
+            background = new ScrollingBackground();
+            Texture2D backgroundTex = Content.Load<Texture2D>("background");
+            background.Load(GraphicsDevice, backgroundTex);
 
 
 
@@ -119,6 +126,7 @@ namespace ShaderPlanets
 
             // TODO: Add your update logic here
 
+            // pass values to shader effect
             perlinNoiseEffect.Parameters["Offset"].SetValue(timer);
             perlinNoiseEffect.Parameters["SOL_TURB"].SetValue((float)Math.Sin(timer) / 5 + .5f);
 
@@ -126,8 +134,12 @@ namespace ShaderPlanets
 
             KeyboardState state = Keyboard.GetState();
 
+            // camera controlas
             CheckState(state);
             SetCamera();
+
+            // updates background position
+            background.Update(timer);
 
             base.Update(gameTime);
         }
@@ -140,6 +152,15 @@ namespace ShaderPlanets
         {
             GraphicsDevice.Clear(Color.Black);
 
+            // draw background
+            spriteBatch.Begin();
+            background.Draw(spriteBatch);
+            spriteBatch.End();
+
+            // reset depth for models draw correctly
+            graphics.GraphicsDevice.DepthStencilState = DepthStencilState.Default;
+
+            // logic for drawing models
             timer += gameTime.ElapsedGameTime.Milliseconds / 5000.0f;
 
             Matrix translate;
@@ -147,6 +168,7 @@ namespace ShaderPlanets
 
             // TODO: Add your drawing code here
 
+            // draw models
             translate = Matrix.CreateTranslation(new Vector3(0, 0, 0));
             ModelManager.Instance.DrawPlanets(translate, projection, view, timer);
 

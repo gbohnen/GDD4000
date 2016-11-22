@@ -57,25 +57,6 @@ namespace ShaderPlanets
             get { return worldMatrix; }
         }
 
-        public Vector3 Position
-        {
-            get
-            {
-                Vector3 pos;
-                Vector3 scale;
-                Quaternion quat;
-                worldMatrix.Decompose(out scale, out quat, out pos);
-
-                return pos;
-            }
-        }
-
-
-        public Planet Parent
-        {
-            get { return parent; }
-        }
-
         public float Period
         {
             get { return period; }
@@ -100,7 +81,11 @@ namespace ShaderPlanets
         {
             get { return diameter; }
         }
-        
+
+        #endregion
+
+        #region Methods
+
         /// <summary>
         /// draws an individual model
         /// </summary>
@@ -121,7 +106,6 @@ namespace ShaderPlanets
             localRotation = Matrix.CreateRotationY(timer / rotationalVelocity);
 
             localRotation *= Matrix.CreateRotationZ(MathHelper.ToRadians(tiltDegrees));
-
             globalRotation = Matrix.CreateRotationY(timer / period);
 
             world *= scale;

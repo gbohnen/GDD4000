@@ -1,3 +1,4 @@
 Content\sphere.xnb
 Content\CubeMap.xnb
 Content\PerlinNoiseEffect.xnb
+Content\background.xnb

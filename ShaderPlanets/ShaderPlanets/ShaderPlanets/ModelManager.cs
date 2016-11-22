@@ -75,13 +75,23 @@ namespace ShaderPlanets
         /// <param name="view">view matrix </param>
         public void DrawPlanets(Matrix world, Matrix projection, Matrix view, float timer)
         {
+            // draw planets
             for (int i = 0; i < entityCollection.Count; i++)
             {
                 entityCollection[(Planets)i].DrawModel(planetModel, world, projection, view, ((Planets)i).ToString(), timer);
             }
 
             // draw saturns rings
-            DrawRing(entityCollection[Planets.Saturn].Scale * 2, entityCollection[Planets.Saturn], world, projection, view, timer);
+            DrawRing(entityCollection[Planets.Saturn].Scale * 2, entityCollection[Planets.Saturn], world, projection, view, "SaturnRings", timer);
+
+            // uranus rings
+            DrawRing(entityCollection[Planets.Uranus].Scale * 2, entityCollection[Planets.Uranus], world, projection, view, "UranusRings", timer);
+
+            // draw moons 
+            DrawMoon(Planets.Luna, entityCollection[Planets.Earth], world, projection, view, "Mercury", timer);
+
+            // draw asteroids 
+            //DrawAsteroidBelt(world, projection, view, timer);
         }
 
         public Vector3 GetNewCameraPosition(Planets planet)
@@ -103,7 +113,39 @@ namespace ShaderPlanets
                 return PlanetaryConstants.CAMERA_DISTANCE / 20 * entityCollection[planet].Scale;
         }
 
-        public void DrawRing(float radius, Planet parent, Matrix world, Matrix projection, Matrix view, float timer)
+        public void DrawAsteroidBelt(Matrix world, Matrix projection, Matrix view, float timer)
+        {
+            Matrix translate;
+            Matrix scale;
+            Matrix localRotation;
+            Matrix globalRotation;
+
+            translate = Matrix.CreateTranslation(new Vector3(0, 0, 0));
+            scale = Matrix.CreateScale(new Vector3(PlanetaryConstants.ASTEROID_BELT_SCALE, .00001f, PlanetaryConstants.ASTEROID_BELT_SCALE));
+
+            localRotation = Matrix.CreateRotationY(timer / PlanetaryConstants.ASTEROID_ROTATION);
+
+            world *= scale;
+            world *= localRotation;
+            world *= translate;
+
+            Matrix[] transforms = new Matrix[planetModel.Bones.Count];
+            planetModel.CopyAbsoluteBoneTransformsTo(transforms);
+
+            foreach (ModelMesh mesh in planetModel.Meshes)
+            {
+                foreach (Effect effect in mesh.Effects)
+                {
+                    effect.CurrentTechnique = Game1.perlinNoiseEffect.Techniques["AsteroidBelt"];
+                    effect.Parameters["World"].SetValue(world);
+                    effect.Parameters["View"].SetValue(view);
+                    effect.Parameters["Projection"].SetValue(projection);
+                }
+                mesh.Draw();
+            }
+        }
+
+        public void DrawRing(float radius, Planet parent, Matrix world, Matrix projection, Matrix view, string technique, float timer)
         {
             Matrix translate;
             Matrix scale;
@@ -111,7 +153,7 @@ namespace ShaderPlanets
             Matrix globalRotation;
 
             translate = Matrix.CreateTranslation(new Vector3(parent.DistanceFromSol, 0, 0));
-            scale = Matrix.CreateScale(new Vector3(radius, .00001f, radius));
+            scale = Matrix.CreateScale(new Vector3(radius, .0000000000000001f, radius));
 
             localRotation = Matrix.CreateRotationY(timer / parent.RotationalVelocity);
 
@@ -131,7 +173,51 @@ namespace ShaderPlanets
             {
                 foreach (Effect effect in mesh.Effects)
                 {
-                    effect.CurrentTechnique = Game1.perlinNoiseEffect.Techniques["SaturnRings"];
+                    effect.CurrentTechnique = Game1.perlinNoiseEffect.Techniques[technique];
+                    effect.Parameters["World"].SetValue(world);
+                    effect.Parameters["View"].SetValue(view);
+                    effect.Parameters["Projection"].SetValue(projection);
+                }
+                mesh.Draw();
+            }
+        }
+
+        public void DrawMoon(Planets planet, Planet parent, Matrix world, Matrix projection, Matrix view, string technique, float timer)
+        {
+            PlanetData data = PlanetaryConstants.GetPlanet(planet);
+
+            Matrix translate;
+            Matrix scale;
+            Matrix localRotation;
+            Matrix globalRotation;
+
+            // create local values
+            translate = Matrix.CreateTranslation(new Vector3(parent.Scale * 2, 0, 0));
+            scale = Matrix.CreateScale(data.Diameter);
+            globalRotation = Matrix.CreateRotationY(timer / data.Period);
+            localRotation = Matrix.CreateRotationZ(MathHelper.ToRadians(parent.AxialTilt));
+            
+            world *= scale;
+            world *= localRotation;
+            world *= translate;
+            world *= globalRotation;
+
+            // match parent values
+            translate = Matrix.CreateTranslation(new Vector3(parent.DistanceFromSol, 0, 0));
+            globalRotation = Matrix.CreateRotationY(timer / parent.Period);
+            
+            // apply values
+            world *= translate;
+            world *= globalRotation;
+
+            Matrix[] transforms = new Matrix[planetModel.Bones.Count];
+            planetModel.CopyAbsoluteBoneTransformsTo(transforms);
+
+            foreach (ModelMesh mesh in planetModel.Meshes)
+            {
+                foreach (Effect effect in mesh.Effects)
+                {
+                    effect.CurrentTechnique = Game1.perlinNoiseEffect.Techniques[technique];
                     effect.Parameters["World"].SetValue(world);
                     effect.Parameters["View"].SetValue(view);
                     effect.Parameters["Projection"].SetValue(projection);

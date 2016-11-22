@@ -60,6 +60,7 @@ static const float PI = 3.14159265f;
 struct VertexShaderInput
 {
 	float4 Position : POSITION0;
+	float4 Tangent	: TANGENT0;
 	float2 texCoord : TEXCOORD0;
 };
 
@@ -370,6 +371,23 @@ VertexShaderOutput VertexShaderFunction(VertexShaderInput input)
 	output.Position = mul(viewPosition, Projection);
 	output.wPosition = input.Position;
 	output.texCoord = input.texCoord;
+
+	return output;
+}
+
+VertexShaderOutput VertexShaderFunction_CullNormals(VertexShaderInput input)
+{
+
+	VertexShaderOutput output;
+
+	float4 worldPosition = mul(input.Position, World);
+	float4 viewPosition = mul(worldPosition, View);
+	output.Position = mul(viewPosition, Projection);
+	output.wPosition = input.Position;
+	output.texCoord = input.texCoord;
+
+	/*if (cross(input.Tangent.x, input.Tangent.y).y > TEST)
+		output.texCoord = float2(0, 0);*/
 
 	return output;
 }
@@ -769,9 +787,9 @@ float4 PixelShaderFunction_SaturnBanding(VertexShaderOutput input) : COLOR0
 
 float4 PixelShaderFunction_SaturnRings(VertexShaderOutput input) : COLOR0
 {
-	float NoiseAmp = .53;
-	float NoiseScale = .81;
-	float LightIntensity = .9;
+	float NoiseAmp = .83;
+	float NoiseScale = 2.2;
+	float LightIntensity = .7;
 	float A = .127;
 	float P = .21;
 	float Tol = .52;
@@ -792,10 +810,73 @@ float4 PixelShaderFunction_SaturnRings(VertexShaderOutput input) : COLOR0
 	float t = smoothstep(0.5 - P - Tol, 0.5 - P + Tol, f)
 	- smoothstep(0.5 + P - Tol, 0.5 + P + Tol, f);
 
-	float4 output = lerp(OTHER_BEIGE, LIGHT_ORANGE, t);
+	float4 output = lerp(OTHER_BEIGE, RUST_RED, t);
 	output.rgb *= LightIntensity;
 
-	if (output.r < .75)
+	if (output.r > .57)
+		discard;
+
+	return output;
+}
+
+float4 PixelShaderFunction_UranusRings(VertexShaderOutput input) : COLOR0
+{
+	float NoiseAmp = .83;
+	float NoiseScale = 5;
+	float LightIntensity = .6;
+	float A = .8;
+	float P = .21;
+	float Tol = .52;
+
+	float4  noisevec = float4(0.0, 0.0, 0.0, 0.0);
+	for (int i = 0; i < 4; ++i)
+	{
+		noisevec[i] = inoise(input.wPosition * NoiseScale) / NoiseScale;
+		NoiseScale *= 2.0;
+	}
+
+	float size = noisevec[0] + noisevec[1] + noisevec[2] + noisevec[3];
+	size = .5 * (size - 1.);
+	float deltay = NoiseAmp * size;
+
+	float f = frac(A * (input.wPosition.y + deltay));
+
+	float t = smoothstep(0.5 - P - Tol, 0.5 - P + Tol, f)
+	- smoothstep(0.5 + P - Tol, 0.5 + P + Tol, f);
+
+	float4 output = lerp(PALE_BLUE, MED_GRAY, t);
+	output.rgb *= LightIntensity;
+
+	if (output.b < .4)
+		discard;
+
+	return output;
+}
+
+float4 PixelShaderFunction_AsteroidBelt(VertexShaderOutput input) : COLOR0
+{
+	float LightIntensity = .9;
+	float Amplify = .7;
+	float NoiseScale = .2;
+	float4 Color1 = float4(1.0, 0.0, 0.0, 1.0);
+	float4 Color2 = float4(0.0, 1.0, 0.0, 1.0);
+
+	float4  noisevec = float4(0.0, 0.0, 0.0, 0.0);
+	for (int i = 0; i < 4; ++i)
+	{
+		// 2.17 is an arbitrary value chosen at >= 2.0
+		noisevec[i] = inoise(input.wPosition * NoiseScale) / NoiseScale;
+		NoiseScale *= 2.0;
+	}
+
+	float sum = (abs(noisevec[0] - .5) + abs(noisevec[1] - .5)
+		+ abs(noisevec[2] - .5) + abs(noisevec[3] - .5)) / 2.0;
+
+	sum = clamp(sum * Amplify, 0.0, 1.0);
+
+	float4 output = lerp(Color1, Color2, sum) * LightIntensity;
+
+	if (output.r < .10)
 		discard;
 
 	return output;
@@ -1323,5 +1404,23 @@ technique SaturnRings
 	{
 		VertexShader = compile vs_3_0 VertexShaderFunction();
 		PixelShader = compile ps_3_0 PixelShaderFunction_SaturnRings();
+	}
+}
+
+technique UranusRings
+{
+	pass Pass1
+	{
+		VertexShader = compile vs_3_0 VertexShaderFunction();
+		PixelShader = compile ps_3_0 PixelShaderFunction_UranusRings();
+	}
+}
+
+technique AsteroidBelt
+{
+	pass Pass1
+	{
+		VertexShader = compile vs_3_0 VertexShaderFunction_CullNormals();
+		PixelShader = compile ps_3_0 PixelShaderFunction_AsteroidBelt();
 	}
 }

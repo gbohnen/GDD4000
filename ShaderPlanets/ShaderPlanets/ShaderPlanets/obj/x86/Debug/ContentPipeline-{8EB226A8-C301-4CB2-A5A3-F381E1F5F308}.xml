@@ -30,7 +30,7 @@
       <Processor>EffectProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Gray\Documents\GitHub\GDD4000\ShaderPlanets\ShaderPlanets\ShaderPlanets\bin\x86\Debug\Content\PerlinNoiseEffect.xnb</Output>
-      <Time>2016-11-20T11:14:23.4516006-07:00</Time>
+      <Time>2016-11-21T22:24:21.9402806-07:00</Time>
     </Item>
     <Item>
       <Source>sphere.x</Source>
@@ -38,6 +38,15 @@
       <Options>IntermediateFile, DontCacheImportedData</Options>
       <Output>C:\Users\Gray\Documents\GitHub\GDD4000\ShaderPlanets\ShaderPlanets\ShaderPlanets\obj\x86\Debug\sphere_0.xml</Output>
       <Time>2016-11-18T17:11:25.4050959-07:00</Time>
+    </Item>
+    <Item>
+      <Source>background.png</Source>
+      <Name>background</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Gray\Documents\GitHub\GDD4000\ShaderPlanets\ShaderPlanets\ShaderPlanets\bin\x86\Debug\Content\background.xnb</Output>
+      <Time>2016-11-21T20:22:44.3207145-07:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

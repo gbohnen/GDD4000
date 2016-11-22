@@ -18,6 +18,8 @@ namespace ShaderPlanets
     {
         // game constants
         public const float CAMERA_DISTANCE = 1500;
+        public const float ASTEROID_BELT_SCALE = 20f;
+        public const float ASTEROID_ROTATION = .5f;
 
         // sol
         public const float SOL_PERIOD = 1f;
@@ -47,11 +49,12 @@ namespace ShaderPlanets
         public const float EARTH_ORBITAL_RADIUS = 400f;
         public const float EARTH_AXIAL_TILT = 23.5f;
 
-        //// luna
-        //public const float LUNA_PERIOD = 1f;
-        //public const float LUNA_ANG_PER = 1f;
-        //public const float LUNA_DIAMETER = 1f;
-        //public const float LUNA_ORBITAL_RADIUS = -1f;
+        // luna
+        public const float LUNA_PERIOD = 28f;
+        public const float LUNA_ANG_PER = 28f;
+        public const float LUNA_DIAMETER = .2f;
+        public const float LUNA_ORBITAL_RADIUS = 6.687f;
+        public const float LUNA_AXIAL_TILT = 0f;
 
         // mars
         public const float MARS_PERIOD = 1.88f;
@@ -122,12 +125,13 @@ namespace ShaderPlanets
                     data.OrbitalRadius = EARTH_ORBITAL_RADIUS;
                     data.AxialTilt = EARTH_AXIAL_TILT;
                     break;
-                //case Planets.Luna:
-                //    data.Period = LUNA_PERIOD;
-                //    data.AngularPeriod = LUNA_ANG_PER;
-                //    data.Diameter = LUNA_DIAMETER;
-                //    data.OrbitalRadius = LUNA_ORBITAL_RADIUS;
-                    //break;
+                case Planets.Luna:
+                    data.Period = LUNA_PERIOD;
+                    data.AngularPeriod = LUNA_ANG_PER;
+                    data.Diameter = LUNA_DIAMETER;
+                    data.OrbitalRadius = LUNA_ORBITAL_RADIUS;
+                    data.AxialTilt = LUNA_AXIAL_TILT;
+                    break;
                 case Planets.Mars:
                     data.Period = MARS_PERIOD;
                     data.AngularPeriod = MARS_ANG_PER;
