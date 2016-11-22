@@ -139,7 +139,7 @@ namespace ShaderPlanets
             SetCamera();
 
             // updates background position
-            background.Update(timer);
+            background.Update(gameTime.ElapsedGameTime.Milliseconds / 10);
 
             base.Update(gameTime);
         }

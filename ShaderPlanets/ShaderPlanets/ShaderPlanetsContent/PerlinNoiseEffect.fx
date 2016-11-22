@@ -790,7 +790,7 @@ float4 PixelShaderFunction_SaturnRings(VertexShaderOutput input) : COLOR0
 	float NoiseAmp = .83;
 	float NoiseScale = 2.2;
 	float LightIntensity = .7;
-	float A = .127;
+	float A = .8;
 	float P = .21;
 	float Tol = .52;
 
