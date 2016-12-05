@@ -46,3 +46,11 @@ C:\Users\Gray\Desktop\GDD4000-Engines-Pool\GDD4000-Engines-Pool\Pool\NoiseGPU\No
 C:\Users\Gray\Desktop\GDD4000-Engines-Pool\GDD4000-Engines-Pool\Pool\NoiseGPU\NoiseGPU\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\Users\Gray\Desktop\GDD4000-Engines-Pool\GDD4000-Engines-Pool\Pool\NoiseGPU\NoiseGPU\obj\x86\Debug\NoiseGPU.exe
 C:\Users\Gray\Desktop\GDD4000-Engines-Pool\GDD4000-Engines-Pool\Pool\NoiseGPU\NoiseGPU\obj\x86\Debug\NoiseGPU.pdb
+C:\Users\Gray\Documents\GitHub\GDD4000\GDD4000-Engines-Pool\Pool\NoiseGPU\NoiseGPU\bin\x86\Debug\Content\Effects\PerlinNoiseEffect.xnb
+C:\Users\Gray\Documents\GitHub\GDD4000\GDD4000-Engines-Pool\Pool\NoiseGPU\NoiseGPU\bin\x86\Debug\Content\Models\sphere.xnb
+C:\Users\Gray\Documents\GitHub\GDD4000\GDD4000-Engines-Pool\Pool\NoiseGPU\NoiseGPU\bin\x86\Debug\NoiseGPU.exe
+C:\Users\Gray\Documents\GitHub\GDD4000\GDD4000-Engines-Pool\Pool\NoiseGPU\NoiseGPU\bin\x86\Debug\NoiseGPU.pdb
+C:\Users\Gray\Documents\GitHub\GDD4000\GDD4000-Engines-Pool\Pool\NoiseGPU\NoiseGPU\obj\x86\Debug\NoiseGPU.csprojResolveAssemblyReference.cache
+C:\Users\Gray\Documents\GitHub\GDD4000\GDD4000-Engines-Pool\Pool\NoiseGPU\NoiseGPU\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Gray\Documents\GitHub\GDD4000\GDD4000-Engines-Pool\Pool\NoiseGPU\NoiseGPU\obj\x86\Debug\NoiseGPU.exe
+C:\Users\Gray\Documents\GitHub\GDD4000\GDD4000-Engines-Pool\Pool\NoiseGPU\NoiseGPU\obj\x86\Debug\NoiseGPU.pdb
