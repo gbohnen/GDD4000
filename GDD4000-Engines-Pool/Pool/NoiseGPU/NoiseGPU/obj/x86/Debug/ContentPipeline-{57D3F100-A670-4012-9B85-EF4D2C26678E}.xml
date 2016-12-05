@@ -2,63 +2,45 @@
 <XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline">
   <Asset Type="Pipeline:BuildItemCollection">
     <Item>
-      <Source>sphere.x</Source>
-      <Name>sphere</Name>
+      <Source>Effects\PerlinNoiseEffect.fx</Source>
+      <Name>Effects\PerlinNoiseEffect</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Gray\Desktop\GDD4000-Engines-Pool\GDD4000-Engines-Pool\Pool\NoiseGPU\NoiseGPU\bin\x86\Debug\Content\Effects\PerlinNoiseEffect.xnb</Output>
+      <Time>2016-12-04T12:25:39.6523936-07:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\sphere.x</Source>
+      <Name>Models\sphere</Name>
       <Importer>XImporter</Importer>
       <Processor>ModelProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Gray\Documents\GitHub\GDD4000\ShaderPlanets\ShaderPlanets\ShaderPlanets\bin\x86\Debug\Content\sphere.xnb</Output>
-      <Time>2016-11-18T17:11:25.4050959-07:00</Time>
+      <Output>C:\Users\Gray\Desktop\GDD4000-Engines-Pool\GDD4000-Engines-Pool\Pool\NoiseGPU\NoiseGPU\bin\x86\Debug\Content\Models\sphere.xnb</Output>
+      <Time>2011-05-15T08:44:42-06:00</Time>
       <Dependency>
-        <Key>C:\Users\Gray\Documents\GitHub\GDD4000\ShaderPlanets\ShaderPlanets\ShaderPlanets\obj\x86\Debug\sphere_0.xml</Key>
-        <Value>2016-11-22T21:57:58.2528709-07:00</Value>
+        <Key>C:\Users\Gray\Desktop\GDD4000-Engines-Pool\GDD4000-Engines-Pool\Pool\NoiseGPU\NoiseGPU\obj\x86\Debug\Models\sphere_0.xml</Key>
+        <Value>2016-12-04T10:53:59.1216382-07:00</Value>
       </Dependency>
     </Item>
     <Item>
-      <Source>CubeMap.fx</Source>
-      <Name>CubeMap</Name>
-      <Importer>EffectImporter</Importer>
-      <Processor>EffectProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Gray\Documents\GitHub\GDD4000\ShaderPlanets\ShaderPlanets\ShaderPlanets\bin\x86\Debug\Content\CubeMap.xnb</Output>
-      <Time>2016-11-18T17:11:25.3950955-07:00</Time>
-    </Item>
-    <Item>
-      <Source>PerlinNoiseEffect.fx</Source>
-      <Name>PerlinNoiseEffect</Name>
-      <Importer>EffectImporter</Importer>
-      <Processor>EffectProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Gray\Documents\GitHub\GDD4000\ShaderPlanets\ShaderPlanets\ShaderPlanets\bin\x86\Debug\Content\PerlinNoiseEffect.xnb</Output>
-      <Time>2016-11-22T21:57:25.5501548-07:00</Time>
-    </Item>
-    <Item>
-      <Source>background.png</Source>
-      <Name>background</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Gray\Documents\GitHub\GDD4000\ShaderPlanets\ShaderPlanets\ShaderPlanets\bin\x86\Debug\Content\background.xnb</Output>
-      <Time>2016-11-22T21:57:25.5891575-07:00</Time>
-    </Item>
-    <Item>
-      <Source>sphere.x</Source>
+      <Source>Models\sphere.x</Source>
       <Importer>XImporter</Importer>
       <Options>IntermediateFile, DontCacheImportedData</Options>
-      <Output>C:\Users\Gray\Documents\GitHub\GDD4000\ShaderPlanets\ShaderPlanets\ShaderPlanets\obj\x86\Debug\sphere_0.xml</Output>
-      <Time>2016-11-18T17:11:25.4050959-07:00</Time>
+      <Output>C:\Users\Gray\Desktop\GDD4000-Engines-Pool\GDD4000-Engines-Pool\Pool\NoiseGPU\NoiseGPU\obj\x86\Debug\Models\sphere_0.xml</Output>
+      <Time>2011-05-15T08:44:42-06:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
-      <ContentProjectGUID>{8EB226A8-C301-4CB2-A5A3-F381E1F5F308}</ContentProjectGUID>
+      <ContentProjectGUID>{57D3F100-A670-4012-9B85-EF4D2C26678E}</ContentProjectGUID>
       <TargetPlatform>Windows</TargetPlatform>
       <TargetProfile>HiDef</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>C:\Users\Gray\Documents\GitHub\GDD4000\ShaderPlanets\ShaderPlanets\ShaderPlanetsContent\</RootDirectory>
-      <LoggerRootDirectory>C:\Users\Gray\Documents\GitHub\GDD4000\ShaderPlanets\ShaderPlanets\ShaderPlanets\</LoggerRootDirectory>
-      <IntermediateDirectory>C:\Users\Gray\Documents\GitHub\GDD4000\ShaderPlanets\ShaderPlanets\ShaderPlanets\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>C:\Users\Gray\Documents\GitHub\GDD4000\ShaderPlanets\ShaderPlanets\ShaderPlanets\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\Users\Gray\Desktop\GDD4000-Engines-Pool\GDD4000-Engines-Pool\Pool\NoiseGPU\NoiseGPUContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\Gray\Desktop\GDD4000-Engines-Pool\GDD4000-Engines-Pool\Pool\NoiseGPU\NoiseGPU\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\Gray\Desktop\GDD4000-Engines-Pool\GDD4000-Engines-Pool\Pool\NoiseGPU\NoiseGPU\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\Gray\Desktop\GDD4000-Engines-Pool\GDD4000-Engines-Pool\Pool\NoiseGPU\NoiseGPU\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>

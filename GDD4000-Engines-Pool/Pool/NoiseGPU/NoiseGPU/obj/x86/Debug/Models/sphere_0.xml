@@ -3,7 +3,7 @@
   <Asset Type="Graphics:NodeContent">
     <Name>Sphere01</Name>
     <Identity>
-      <SourceFilename>C:\Users\Gray\Documents\GitHub\GDD4000\ShaderPlanets\ShaderPlanets\ShaderPlanetsContent\sphere.x</SourceFilename>
+      <SourceFilename>C:\Users\Gray\Desktop\GDD4000-Engines-Pool\GDD4000-Engines-Pool\Pool\NoiseGPU\NoiseGPUContent\Models\sphere.x</SourceFilename>
       <SourceTool>XImporter</SourceTool>
     </Identity>
     <Transform>-2.08616257E-07 -1.49011736E-08 1 0 -1 -2.98023188E-08 -1.937151E-07 0 4.47034729E-08 -1 -4.47034836E-08 0 -1.38766314E-08 -0.317460328 0.317460328 1</Transform>
@@ -451,7 +451,7 @@
   <Resources>
     <Resource ID="#Resource1" Type="Graphics:BasicMaterialContent">
       <Identity>
-        <SourceFilename>C:\Users\Gray\Documents\GitHub\GDD4000\ShaderPlanets\ShaderPlanets\ShaderPlanetsContent\sphere.x</SourceFilename>
+        <SourceFilename>C:\Users\Gray\Desktop\GDD4000-Engines-Pool\GDD4000-Engines-Pool\Pool\NoiseGPU\NoiseGPUContent\Models\sphere.x</SourceFilename>
         <SourceTool>XImporter</SourceTool>
       </Identity>
       <OpaqueData>

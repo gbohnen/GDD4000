@@ -1,0 +1,2 @@
+Content\Effects\PerlinNoiseEffect.xnb
+Content\Models\sphere.xnb

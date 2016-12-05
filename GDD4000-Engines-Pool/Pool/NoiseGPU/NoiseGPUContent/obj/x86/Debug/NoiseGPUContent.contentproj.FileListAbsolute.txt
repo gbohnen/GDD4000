@@ -1,0 +1,5 @@
+C:\Users\dwortman.UFP\Documents\Courses\GDD 4800 - Shaders\Tutorial25_NoiseGPU\Tutorial25_NoiseGPU\NoiseGPU\NoiseGPUContent\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\dwortman\Documents\UCCS\Courses\GDD 4800 - Shaders\Code Examples\Noise-Tutorial\NoiseGPU\NoiseGPUContent\obj\x86\Debug\NoiseGPUContent.contentprojResolveAssemblyReference.cache
+C:\Users\dwortman\Documents\Visual Studio 2015\Projects\GDD4000-Engines-NoisyTeapots\NoiseyTeapots\NoiseGPU\NoiseGPUContent\obj\x86\Debug\NoiseGPUContent.contentprojResolveAssemblyReference.cache
+C:\Users\dwortman\Documents\Visual Studio 2015\Projects\GDD4000-Engines-Pool\Pool\NoiseGPU\NoiseGPUContent\obj\x86\Debug\NoiseGPUContent.contentprojResolveAssemblyReference.cache
+C:\Users\Gray\Desktop\GDD4000-Engines-Pool\GDD4000-Engines-Pool\Pool\NoiseGPU\NoiseGPUContent\obj\x86\Debug\NoiseGPUContent.contentprojResolveAssemblyReference.cache

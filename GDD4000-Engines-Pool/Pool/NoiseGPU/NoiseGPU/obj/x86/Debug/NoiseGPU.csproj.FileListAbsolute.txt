@@ -1,0 +1,48 @@
+C:\Users\dwortman.UFP\Documents\Courses\GDD 4800 - Shaders\Tutorial25_NoiseGPU\Tutorial25_NoiseGPU\NoiseGPU\NoiseGPU\bin\x86\Debug\Content\PerlinNoiseEffect.xnb
+C:\Users\dwortman.UFP\Documents\Courses\GDD 4800 - Shaders\Tutorial25_NoiseGPU\Tutorial25_NoiseGPU\NoiseGPU\NoiseGPU\bin\x86\Debug\Content\sphere.xnb
+C:\Users\dwortman.UFP\Documents\Courses\GDD 4800 - Shaders\Tutorial25_NoiseGPU\Tutorial25_NoiseGPU\NoiseGPU\NoiseGPU\bin\x86\Debug\NoiseGPU.exe
+C:\Users\dwortman.UFP\Documents\Courses\GDD 4800 - Shaders\Tutorial25_NoiseGPU\Tutorial25_NoiseGPU\NoiseGPU\NoiseGPU\bin\x86\Debug\NoiseGPU.pdb
+C:\Users\dwortman.UFP\Documents\Courses\GDD 4800 - Shaders\Tutorial25_NoiseGPU\Tutorial25_NoiseGPU\NoiseGPU\NoiseGPU\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\dwortman.UFP\Documents\Courses\GDD 4800 - Shaders\Tutorial25_NoiseGPU\Tutorial25_NoiseGPU\NoiseGPU\NoiseGPU\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\dwortman.UFP\Documents\Courses\GDD 4800 - Shaders\Tutorial25_NoiseGPU\Tutorial25_NoiseGPU\NoiseGPU\NoiseGPU\obj\x86\Debug\NoiseGPU.exe
+C:\Users\dwortman.UFP\Documents\Courses\GDD 4800 - Shaders\Tutorial25_NoiseGPU\Tutorial25_NoiseGPU\NoiseGPU\NoiseGPU\obj\x86\Debug\NoiseGPU.pdb
+C:\Users\dwortman\Documents\UCCS\Courses\GDD 4800 - Shaders\Code Examples\Noise-Tutorial\NoiseGPU\NoiseGPU\bin\x86\Debug\NoiseGPU.exe
+C:\Users\dwortman\Documents\UCCS\Courses\GDD 4800 - Shaders\Code Examples\Noise-Tutorial\NoiseGPU\NoiseGPU\bin\x86\Debug\NoiseGPU.pdb
+C:\Users\dwortman\Documents\UCCS\Courses\GDD 4800 - Shaders\Code Examples\Noise-Tutorial\NoiseGPU\NoiseGPU\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\dwortman\Documents\UCCS\Courses\GDD 4800 - Shaders\Code Examples\Noise-Tutorial\NoiseGPU\NoiseGPU\obj\x86\Debug\NoiseGPU.exe
+C:\Users\dwortman\Documents\UCCS\Courses\GDD 4800 - Shaders\Code Examples\Noise-Tutorial\NoiseGPU\NoiseGPU\obj\x86\Debug\NoiseGPU.pdb
+C:\Users\dwortman\Documents\UCCS\Courses\GDD 4800 - Shaders\Code Examples\Noise-Tutorial\NoiseGPU\NoiseGPU\bin\x86\Debug\Content\Effects\PerlinNoiseEffect.xnb
+C:\Users\dwortman\Documents\UCCS\Courses\GDD 4800 - Shaders\Code Examples\Noise-Tutorial\NoiseGPU\NoiseGPU\bin\x86\Debug\Content\Models\sphere.xnb
+C:\Users\dwortman\Documents\UCCS\Courses\GDD 4800 - Shaders\Code Examples\Noise-Tutorial\NoiseGPU\NoiseGPU\bin\x86\Debug\Content\Models\utah-teapot.xnb
+C:\Users\dwortman\Documents\UCCS\Courses\GDD 4800 - Shaders\Code Examples\Noise-Tutorial\NoiseGPU\NoiseGPU\bin\x86\Debug\Content\Models\utah-teapot.fbx
+C:\Users\dwortman\Documents\UCCS\Courses\GDD 4800 - Shaders\Code Examples\Noise-Tutorial\NoiseGPU\NoiseGPU\obj\x86\Debug\NoiseGPU.csprojResolveAssemblyReference.cache
+C:\Users\dwortman\Documents\UCCS\Courses\GDD 4800 - Shaders\Code Examples\Noise-Tutorial\NoiseGPU\NoiseGPU\bin\x86\Debug\Content\Effects\CubeMap.xnb
+C:\Users\dwortman\Documents\UCCS\Courses\GDD 4800 - Shaders\Code Examples\Noise-Tutorial\NoiseGPU\NoiseGPU\bin\x86\Debug\Content\Textures\NvidiaCube.xnb
+C:\Users\dwortman\Documents\Visual Studio 2015\Projects\GDD4000-Engines-NoisyTeapots\NoiseyTeapots\NoiseGPU\NoiseGPU\bin\x86\Debug\Content\Effects\PerlinNoiseEffect.xnb
+C:\Users\dwortman\Documents\Visual Studio 2015\Projects\GDD4000-Engines-NoisyTeapots\NoiseyTeapots\NoiseGPU\NoiseGPU\bin\x86\Debug\Content\Effects\CubeMap.xnb
+C:\Users\dwortman\Documents\Visual Studio 2015\Projects\GDD4000-Engines-NoisyTeapots\NoiseyTeapots\NoiseGPU\NoiseGPU\bin\x86\Debug\Content\Models\sphere.xnb
+C:\Users\dwortman\Documents\Visual Studio 2015\Projects\GDD4000-Engines-NoisyTeapots\NoiseyTeapots\NoiseGPU\NoiseGPU\bin\x86\Debug\Content\Models\utah-teapot.xnb
+C:\Users\dwortman\Documents\Visual Studio 2015\Projects\GDD4000-Engines-NoisyTeapots\NoiseyTeapots\NoiseGPU\NoiseGPU\bin\x86\Debug\Content\Textures\NvidiaCube.xnb
+C:\Users\dwortman\Documents\Visual Studio 2015\Projects\GDD4000-Engines-NoisyTeapots\NoiseyTeapots\NoiseGPU\NoiseGPU\bin\x86\Debug\Content\Models\utah-teapot.fbx
+C:\Users\dwortman\Documents\Visual Studio 2015\Projects\GDD4000-Engines-NoisyTeapots\NoiseyTeapots\NoiseGPU\NoiseGPU\bin\x86\Debug\NoiseGPU.exe
+C:\Users\dwortman\Documents\Visual Studio 2015\Projects\GDD4000-Engines-NoisyTeapots\NoiseyTeapots\NoiseGPU\NoiseGPU\bin\x86\Debug\NoiseGPU.pdb
+C:\Users\dwortman\Documents\Visual Studio 2015\Projects\GDD4000-Engines-NoisyTeapots\NoiseyTeapots\NoiseGPU\NoiseGPU\obj\x86\Debug\NoiseGPU.csprojResolveAssemblyReference.cache
+C:\Users\dwortman\Documents\Visual Studio 2015\Projects\GDD4000-Engines-NoisyTeapots\NoiseyTeapots\NoiseGPU\NoiseGPU\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\dwortman\Documents\Visual Studio 2015\Projects\GDD4000-Engines-NoisyTeapots\NoiseyTeapots\NoiseGPU\NoiseGPU\obj\x86\Debug\NoiseGPU.exe
+C:\Users\dwortman\Documents\Visual Studio 2015\Projects\GDD4000-Engines-NoisyTeapots\NoiseyTeapots\NoiseGPU\NoiseGPU\obj\x86\Debug\NoiseGPU.pdb
+C:\Users\dwortman\Documents\Visual Studio 2015\Projects\GDD4000-Engines-Pool\Pool\NoiseGPU\NoiseGPU\bin\x86\Debug\Content\Effects\PerlinNoiseEffect.xnb
+C:\Users\dwortman\Documents\Visual Studio 2015\Projects\GDD4000-Engines-Pool\Pool\NoiseGPU\NoiseGPU\bin\x86\Debug\Content\Models\sphere.xnb
+C:\Users\dwortman\Documents\Visual Studio 2015\Projects\GDD4000-Engines-Pool\Pool\NoiseGPU\NoiseGPU\bin\x86\Debug\NoiseGPU.exe
+C:\Users\dwortman\Documents\Visual Studio 2015\Projects\GDD4000-Engines-Pool\Pool\NoiseGPU\NoiseGPU\bin\x86\Debug\NoiseGPU.pdb
+C:\Users\dwortman\Documents\Visual Studio 2015\Projects\GDD4000-Engines-Pool\Pool\NoiseGPU\NoiseGPU\obj\x86\Debug\NoiseGPU.csprojResolveAssemblyReference.cache
+C:\Users\dwortman\Documents\Visual Studio 2015\Projects\GDD4000-Engines-Pool\Pool\NoiseGPU\NoiseGPU\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\dwortman\Documents\Visual Studio 2015\Projects\GDD4000-Engines-Pool\Pool\NoiseGPU\NoiseGPU\obj\x86\Debug\NoiseGPU.exe
+C:\Users\dwortman\Documents\Visual Studio 2015\Projects\GDD4000-Engines-Pool\Pool\NoiseGPU\NoiseGPU\obj\x86\Debug\NoiseGPU.pdb
+C:\Users\Gray\Desktop\GDD4000-Engines-Pool\GDD4000-Engines-Pool\Pool\NoiseGPU\NoiseGPU\bin\x86\Debug\Content\Effects\PerlinNoiseEffect.xnb
+C:\Users\Gray\Desktop\GDD4000-Engines-Pool\GDD4000-Engines-Pool\Pool\NoiseGPU\NoiseGPU\bin\x86\Debug\Content\Models\sphere.xnb
+C:\Users\Gray\Desktop\GDD4000-Engines-Pool\GDD4000-Engines-Pool\Pool\NoiseGPU\NoiseGPU\bin\x86\Debug\NoiseGPU.exe
+C:\Users\Gray\Desktop\GDD4000-Engines-Pool\GDD4000-Engines-Pool\Pool\NoiseGPU\NoiseGPU\bin\x86\Debug\NoiseGPU.pdb
+C:\Users\Gray\Desktop\GDD4000-Engines-Pool\GDD4000-Engines-Pool\Pool\NoiseGPU\NoiseGPU\obj\x86\Debug\NoiseGPU.csprojResolveAssemblyReference.cache
+C:\Users\Gray\Desktop\GDD4000-Engines-Pool\GDD4000-Engines-Pool\Pool\NoiseGPU\NoiseGPU\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Gray\Desktop\GDD4000-Engines-Pool\GDD4000-Engines-Pool\Pool\NoiseGPU\NoiseGPU\obj\x86\Debug\NoiseGPU.exe
+C:\Users\Gray\Desktop\GDD4000-Engines-Pool\GDD4000-Engines-Pool\Pool\NoiseGPU\NoiseGPU\obj\x86\Debug\NoiseGPU.pdb
