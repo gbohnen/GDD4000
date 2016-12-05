@@ -339,6 +339,12 @@ VertexShaderOutput VertexShaderFunction(VertexShaderInput input)
 //////////////////////////////////////////////////////////////////////////
 // Pixel Shaders
 //////////////////////////////////////////////////////////////////////////
+float4 PixelShaderFunction_CueBall(VertexShaderOutput input) : COLOR0
+{
+	float4 output = (1, 1, 1, 1);
+	return output;
+}
+
 float4 PixelShaderFunction(VertexShaderOutput input) : COLOR0
 {
 	float3 p = input.wPosition;
@@ -584,6 +590,15 @@ float4 PixelShaderFunction_Wood(VertexShaderOutput input) : COLOR0
 //////////////////////////////////////////////////////////////////////////
 // Techniques
 //////////////////////////////////////////////////////////////////////////
+technique CueBall
+{
+	pass Pass1
+	{
+		VertexShader = compile vs_3_0 VertexShaderFunction();
+		PixelShader = compile ps_3_0 PixelShaderFunction_CueBall();
+	}
+}
+
 technique PerlinNoise_Scribbles
 {
 	pass Pass1

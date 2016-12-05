@@ -75,7 +75,7 @@ namespace NoiseGPU
             rotation += speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             // TODO: Create the bounding sphere here as it must be recalculated after movement
-            BoundingSphere = new BoundingSphere(Position, radius);
+            BoundingSphere = new BoundingSphere(Position, radius * .6f);
 
             base.Update(gameTime);
         }

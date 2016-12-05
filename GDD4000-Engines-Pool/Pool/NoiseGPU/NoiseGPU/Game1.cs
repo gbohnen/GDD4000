@@ -5,6 +5,8 @@ using System;
 
 namespace NoiseGPU
 {
+    public enum GameState { Placement, Shooting, Simulating, GameOver }
+
     /// <summary>
     /// This is the main type for your game
     /// </summary>
@@ -26,6 +28,12 @@ namespace NoiseGPU
         // physics constants
         float wallDamp = .8f;
         float feltFriction = .6f;
+
+        // scoring
+        int score = 0;
+        int highScore = 0;
+
+        public static GameState gameState = GameState.Placement;
 
         Random rand;
 
@@ -55,65 +63,36 @@ namespace NoiseGPU
 
             // calculate starting position of balls in triangle formation
             positions = new Vector3[10];
-
             for (int i = 0; i < positions.Length; i++)
             {
                 // first row
                 if (i < 4)
                 {
-                    float pos = i * spacing - spacing * 2;
+                    float pos = i * spacing - spacing * 1.5f;
                     positions[i] = new Vector3(pos, 4.75f, -40);
                 }
                 // second row
                 else if (i < 7)
                 {
-                    float pos = (i - 4) * spacing - spacing * 1.5f;
+                    float pos = (i - 4) * spacing - spacing;
                     positions[i] = new Vector3(pos, 4.75f, -35);
                 }
                 // third row
                 else if (i < 9)
                 {
-                    float pos = (i - 7) * spacing - spacing;
+                    float pos = (i - 7) * spacing - spacing * .5f;
                     positions[i] = new Vector3(pos, 4.75f, -30);
                 }
                 // last row
                 else
                 {
-                    positions[i] = new Vector3(spacing * -.5f, 4.75f, 50);
+                    positions[i] = new Vector3(0, 4.75f, -25);
                 }
             }
 
-            // Pool Balls
-            balls = new Ball[2];
-
-            // TODO: Change the initial locations for each ball so that they don't start at the
-            // same point.  
-            balls[0] = new Ball(this, camera, @"Models/sphere", @"Effects/PerlinNoiseEffect", "PerlinNoise_Wood",
-                            positions[0], 0.1f, new Vector3(1, 0, 0));
-            balls[1] = new Ball(this, camera, @"Models/sphere", @"Effects/PerlinNoiseEffect", "PerlinNoise_Turbulence",
-                            positions[1] + new Vector3(0, 0, 5), 0.1f, new Vector3(0, 0, 0));
-            //balls[2] = new Ball(this, camera, @"Models/sphere", @"Effects/PerlinNoiseEffect", "PerlinNoise_Marble",
-            //                positions[2], 0.1f, new Vector3(0, 0, 0));
-            //balls[3] = new Ball(this, camera, @"Models/sphere", @"Effects/PerlinNoiseEffect", "PerlinNoise_Cloud",
-            //                positions[3], 0.1f, new Vector3(0, 0, 0));
-
-            //balls[4] = new Ball(this, camera, @"Models/sphere", @"Effects/PerlinNoiseEffect", "PerlinNoise_Scribbles",
-            //                positions[4], 0.1f, new Vector3(0, 0, 0));
-            //balls[5] = new Ball(this, camera, @"Models/sphere", @"Effects/PerlinNoiseEffect", "PerlinNoise_Contours",
-            //                positions[5], 0.1f, new Vector3(0, 0, 0));
-            //balls[6] = new Ball(this, camera, @"Models/sphere", @"Effects/PerlinNoiseEffect", "PerlinNoise_Discard",
-            //                positions[6], 0.1f, new Vector3(0, 0, 0));
-
-            //balls[7] = new Ball(this, camera, @"Models/sphere", @"Effects/PerlinNoiseEffect", "PerlinNoise_Banding",
-            //                positions[7], 0.1f, new Vector3(0, 0, 0));
-            //balls[8] = new Ball(this, camera, @"Models/sphere", @"Effects/PerlinNoiseEffect", "PerlinNoise_Wood",
-            //                positions[8], 0.1f, new Vector3(0, 0, 0));
-
-            //balls[9] = new Ball(this, camera, @"Models/sphere", @"Effects/PerlinNoiseEffect", "PerlinNoise",
-            //                positions[9], 0.1f, new Vector3(0, 0, 0));
-
-            // new Vector3((float)rand.NextDouble() * 5.0f, 0.0f, (float)rand.NextDouble() * 5.0f)
-
+            // set up balls in game
+            ResetGame();
+            
             // Pool Table
             float tableWidth = 100f;
             float tableLength = 200f;
@@ -148,10 +127,6 @@ namespace NoiseGPU
             pockets[5] = new Box(this, camera, new Vector3(pocketSize, tableHeight + 2, pocketSize), new Vector3(rightPosition, 0, bottomPosition), Color.Black, new Vector3(0, 0, 0));   // bottom right
 
             Components.Add(camera);
-            foreach (Ball ball in balls)
-            {
-                Components.Add(ball);
-            }
 
             Components.Add(floor);
             foreach (Box wall in walls)
@@ -189,6 +164,45 @@ namespace NoiseGPU
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
+            camera.LookAt = balls[10].Position;
+
+            // game state machine
+            // placing cue ball
+            if (gameState == GameState.Placement)
+            {
+
+            }
+            // aiming cue
+            else if (gameState == GameState.Shooting)
+            {
+                
+            }
+            // resolving physics and collisions
+            else if (gameState == GameState.Simulating)
+            {
+
+            }
+            // gameover
+            else
+            {
+
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             foreach (Box wall in walls)
             {
                 foreach (Ball ball in balls)
@@ -221,37 +235,45 @@ namespace NoiseGPU
                 }
             }
 
-            foreach (Ball ball in balls)
+            for (int i = 0; i < balls.Length; i++)
             {
-                foreach (Ball otherBall in balls)
+                for (int j = i + 1; j < balls.Length; j++)
                 {
-                    if (ball != otherBall)
+                    if (balls[i] != balls[j])
                     {
                         // TODO: Put your collision handling with another ball code here
-                        if (ball.BoundingSphere.Intersects(otherBall.BoundingSphere))
+                        if (balls[i].BoundingSphere.Intersects(balls[j].BoundingSphere))
                         {
                             //    Console.WriteLine("Ball/ball collision");
 
                             // reset balls to no longer be intersecting
-                            Vector3 difference = otherBall.Position - ball.Position;    // get vector between 2 ball centers
+                            Vector3 difference = balls[j].Position - balls[i].Position;    // get vector between 2 ball centers
 
-                            //Console.WriteLine(difference.Length());
-                            //difference = Vector3.Normalize(difference) * ball.BoundingSphere.Radius;        // calculate the vector from center to edge of ball at collision
-                            //otherBall.Position = ball.Position + difference * 2;                          // reposition 2nd ball so bounding spheres contact at exactly one point
-                            //Console.WriteLine(difference.Length());
+                            //float xLeg = difference.X / 2;
+                            //float yLeg = difference.Y / 2;
 
-                            Console.WriteLine(difference);
+                            //double theta = Math.Atan(yLeg / xLeg);
+
+                            //double v1Length = balls[i].Velocity.Length() * Math.Cos(theta);
+                            //double v2Length = balls[i].Velocity.Length() * Math.Sin(theta);
+
+                            //Vector3 v1 = new Vector3((float)(v1Length * Math.Cos(theta)), 0, (float)(v1Length * Math.Sin(theta)));
+                            //Vector3 v2 = new Vector3((float)(v2Length * Math.Cos(90 - theta)), 0, (float)(v2Length * Math.Sin(90 - theta)));
+
+                            //balls[i].Velocity = v2;
+                            //balls[j].Velocity = v1;
+
                             // calculate vector components
                             difference.Normalize();
-                            Console.WriteLine(difference);
-                            float a1 = Vector3.Dot(ball.Velocity, difference);
-                            float a2 = Vector3.Dot(otherBall.Velocity, difference);
+                            float a1 = Vector3.Dot(balls[i].Velocity, difference);
+                            float a2 = Vector3.Dot(balls[j].Velocity, difference);
 
                             // using radius as mass
-                            float p = (2 * (a1 - a2)) / (ball.BoundingSphere.Radius + otherBall.BoundingSphere.Radius);
+                            float p = (2 * (a1 - a2)) / (balls[i].BoundingSphere.Radius + balls[j].BoundingSphere.Radius);
 
-                            ball.Velocity = ball.Velocity - p * otherBall.BoundingSphere.Radius * difference;
-                            otherBall.Velocity = otherBall.Velocity + p * ball.BoundingSphere.Radius * difference;
+                            balls[i].Velocity = balls[i].Velocity - p * balls[j].BoundingSphere.Radius * difference;
+                            balls[j].Velocity = balls[j].Velocity + p * balls[i].BoundingSphere.Radius * difference;
+
                         }
                     }
                 }
@@ -270,6 +292,47 @@ namespace NoiseGPU
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             base.Draw(gameTime);
+        }
+
+        protected void ResetGame()
+        {
+            // reset all balls
+            // Pool Balls
+            balls = new Ball[11];
+
+            // TODO: Change the initial locations for each ball so that they don't start at the
+            // same point.  
+            balls[0] = new Ball(this, camera, @"Models/sphere", @"Effects/PerlinNoiseEffect", "PerlinNoise_Wood",
+                            positions[0], 0.1f, new Vector3(0, 0, 0));
+            balls[1] = new Ball(this, camera, @"Models/sphere", @"Effects/PerlinNoiseEffect", "PerlinNoise_Turbulence",
+                            positions[1], 0.1f, new Vector3(0, 0, 0));
+            balls[2] = new Ball(this, camera, @"Models/sphere", @"Effects/PerlinNoiseEffect", "PerlinNoise_Marble",
+                            positions[2], 0.1f, new Vector3(0, 0, 0));
+            balls[3] = new Ball(this, camera, @"Models/sphere", @"Effects/PerlinNoiseEffect", "PerlinNoise_Cloud",
+                            positions[3], 0.1f, new Vector3(0, 0, 0));
+
+            balls[4] = new Ball(this, camera, @"Models/sphere", @"Effects/PerlinNoiseEffect", "PerlinNoise_Scribbles",
+                            positions[4], 0.1f, new Vector3(0, 0, 0));
+            balls[5] = new Ball(this, camera, @"Models/sphere", @"Effects/PerlinNoiseEffect", "PerlinNoise_Contours",
+                            positions[5], 0.1f, new Vector3(0, 0, 0));
+            balls[6] = new Ball(this, camera, @"Models/sphere", @"Effects/PerlinNoiseEffect", "PerlinNoise_Discard",
+                            positions[6], 0.1f, new Vector3(0, 0, 0));
+
+            balls[7] = new Ball(this, camera, @"Models/sphere", @"Effects/PerlinNoiseEffect", "PerlinNoise_Banding",
+                            positions[7], 0.1f, new Vector3(0, 0, 0));
+            balls[8] = new Ball(this, camera, @"Models/sphere", @"Effects/PerlinNoiseEffect", "PerlinNoise_Wood",
+                            positions[8], 0.1f, new Vector3(0, 0, 0));
+
+            balls[9] = new Ball(this, camera, @"Models/sphere", @"Effects/PerlinNoiseEffect", "PerlinNoise",
+                            positions[9], 0.1f, new Vector3(0, 0, 0));
+
+            balls[10] = new Ball(this, camera, @"Models/sphere", @"Effects/PerlinNoiseEffect", "CueBall",
+                            new Vector3(0, 4.75f, 50), 0.1f, new Vector3(0, 0, -10));
+
+            foreach (Ball ball in balls)
+            {
+                Components.Add(ball);
+            }
         }
     }
 }
