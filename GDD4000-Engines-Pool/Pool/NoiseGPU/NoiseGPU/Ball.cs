@@ -25,6 +25,7 @@ namespace NoiseGPU
         public float Scale { get; set; }
         public Vector3 Velocity { get; set; }
         public bool IsMoving { get; set; }
+        public bool SweetSpot { get; set; }
 
         public BoundingSphere BoundingSphere { get; set; }
 
@@ -75,14 +76,16 @@ namespace NoiseGPU
             Position += speed * Velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
             rotation += speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
+
             // add table friction
+            if (!SweetSpot)
+                Velocity += Vector3.Negate(Velocity) * .005f;
 
-
-            // check for moving
-            if (Velocity.Length() <= 0)
+            if (Velocity.Length() < .1)
+            {
+                Velocity = new Vector3(0, 0, 0);
                 IsMoving = false;
-            else
-                IsMoving = true;
+            }
 
             // TODO: Create the bounding sphere here as it must be recalculated after movement
             BoundingSphere = new BoundingSphere(Position, radius * .6f);

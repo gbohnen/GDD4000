@@ -28,30 +28,30 @@ namespace NoiseGPU
         {
             KeyboardState state = Keyboard.GetState();
 
-            if (state.IsKeyDown(Keys.A))
-            {
-                Position += new Vector3(-1.0f, 0.0f, 0.0f);
-            }
-            else if (state.IsKeyDown(Keys.D))
-            {
-                Position += new Vector3(1.0f, 0.0f, 0.0f);
-            }
-            if (state.IsKeyDown(Keys.W))
-            {
-                Position += new Vector3(0.0f, 1.0f, 0.0f);
-            }
-            else if (state.IsKeyDown(Keys.S))
-            {
-                Position += new Vector3(0.0f, -1.0f, 0.0f);
-            }
-            if (state.IsKeyDown(Keys.OemPlus))
-            {
-                Position += new Vector3(0.0f, 0.0f, -1.0f);
-            }
-            else if (state.IsKeyDown(Keys.OemMinus))
-            {
-                Position += new Vector3(0.0f, 0.0f, 1.0f);
-            }
+            //if (state.IsKeyDown(Keys.A))
+            //{
+            //    Position += new Vector3(-1.0f, 0.0f, 0.0f);
+            //}
+            //else if (state.IsKeyDown(Keys.D))
+            //{
+            //    Position += new Vector3(1.0f, 0.0f, 0.0f);
+            //}
+            //if (state.IsKeyDown(Keys.W))
+            //{
+            //    Position += new Vector3(0.0f, 1.0f, 0.0f);
+            //}
+            //else if (state.IsKeyDown(Keys.S))
+            //{
+            //    Position += new Vector3(0.0f, -1.0f, 0.0f);
+            //}
+            //if (state.IsKeyDown(Keys.OemPlus))
+            //{
+            //    Position += new Vector3(0.0f, 0.0f, -1.0f);
+            //}
+            //else if (state.IsKeyDown(Keys.OemMinus))
+            //{
+            //    Position += new Vector3(0.0f, 0.0f, 1.0f);
+            //}
             View = Matrix.CreateLookAt(Position, LookAt, Up);
         }
     }

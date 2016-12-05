@@ -18,6 +18,7 @@ namespace NoiseGPU
         Camera camera;
         Ball[] balls;
         Box floor;
+        Box cue;
         Box[] walls;
         Box[] pockets;
         Vector3[] positions;
@@ -51,6 +52,7 @@ namespace NoiseGPU
         int chargeTimer = 0;
         float cueAngle = 0;
         bool charging = false;
+        float power;
 
         Random rand;
 
@@ -183,6 +185,9 @@ namespace NoiseGPU
 
             currState = Keyboard.GetState();
 
+
+            camera.LookAt = balls[10].Position;
+
             // game state machine
             // placing cue ball
             if (gameState == GameState.Placement)
@@ -218,7 +223,6 @@ namespace NoiseGPU
                     balls[10].Position = new Vector3(balls[10].Position.X, balls[10].Position.Y, tableLength / 4 + balls[10].BoundingSphere.Radius);
 
                 camera.Position = new Vector3(balls[10].Position.X, camera.Position.Y, balls[10].Position.Z + 100);
-                camera.LookAt = balls[10].Position;
 
                 if (currState.IsKeyDown(Keys.Space))
                 {
@@ -226,6 +230,7 @@ namespace NoiseGPU
                     chargeTimer = 0;
                     cueAngle = 0;
                     charging = false;
+                    CreateCue();
                 }
             }
             // aiming cue
@@ -241,18 +246,24 @@ namespace NoiseGPU
                     cueAngle += 1f;
                 }
 
-                // clamp cue
-                if (cueAngle > 90)
-                    cueAngle = 90;
-                if (cueAngle < -90)
-                    cueAngle = -90;
+                // clamp if first time shooting
+                if (!ballSunk)
+                {
+                    // clamp cue
+                    if (cueAngle > 90)
+                        cueAngle = 90;
+                    if (cueAngle < -90)
+                        cueAngle = -90;
+                }
+
+                cue.Translate = Vector3.Transform(cue.Translate, Matrix.CreateRotationY(MathHelper.ToRadians(cueAngle)));
 
                 camera.Position = new Vector3((float)(100 * Math.Sin(MathHelper.ToRadians(cueAngle))) + balls[10].Position.X, camera.Position.Y, (float)(100 * Math.Cos(MathHelper.ToRadians(cueAngle))) + balls[10].Position.Z);
 
                 // begin charging shot
                 if (currState.IsKeyDown(Keys.Space) && !prevState.IsKeyDown(Keys.Space))
                 {
-                    bool charging = true;
+                    charging = true;
 
                     Console.WriteLine("Begin Charge");
                 }
@@ -260,7 +271,13 @@ namespace NoiseGPU
                 else if (currState.IsKeyDown(Keys.Space) && prevState.IsKeyDown(Keys.Space))
                 {
                     if (chargeTimer < 5000)
+                    {
                         chargeTimer += gameTime.ElapsedGameTime.Milliseconds;
+
+                        power = 3f * chargeTimer / 1000;
+                        if (power > 15)
+                            power = 15;
+                    }
 
                     Console.WriteLine("Charging:" + charging);
                 }
@@ -269,11 +286,12 @@ namespace NoiseGPU
                 {
                     if (charging)
                     {
-                        float power = 10f;
-                        balls[10].Velocity += new Vector3((float)(power * Math.Sin((MathHelper.ToRadians(180 + cueAngle)))), 0, -(float)(power * Math.Cos((MathHelper.ToRadians(180 + cueAngle)))));
-                        ballSunk = false;
 
-                        Console.WriteLine("Fire!");
+                        balls[10].Velocity += new Vector3((float)(power * Math.Sin((MathHelper.ToRadians(180 + cueAngle)))), 0, (float)(power * Math.Cos((MathHelper.ToRadians(180 + cueAngle)))));
+                        ballSunk = false;
+                        gameState = GameState.Simulating;
+
+                        Console.WriteLine("Fire!" + power);
                     }
                 }
             }
@@ -325,24 +343,10 @@ namespace NoiseGPU
                             // TODO: Put your collision handling with another ball code here
                             if (balls[i].BoundingSphere.Intersects(balls[j].BoundingSphere))
                             {
-                                //    Console.WriteLine("Ball/ball collision");
+                                Console.WriteLine("Ball/ball collision");
 
                                 // reset balls to no longer be intersecting
                                 Vector3 difference = balls[j].Position - balls[i].Position;    // get vector between 2 ball centers
-
-                                //float xLeg = difference.X / 2;
-                                //float yLeg = difference.Y / 2;
-
-                                //double theta = Math.Atan(yLeg / xLeg);
-
-                                //double v1Length = balls[i].Velocity.Length() * Math.Cos(theta);
-                                //double v2Length = balls[i].Velocity.Length() * Math.Sin(theta);
-
-                                //Vector3 v1 = new Vector3((float)(v1Length * Math.Cos(theta)), 0, (float)(v1Length * Math.Sin(theta)));
-                                //Vector3 v2 = new Vector3((float)(v2Length * Math.Cos(90 - theta)), 0, (float)(v2Length * Math.Sin(90 - theta)));
-
-                                //balls[i].Velocity = v2;
-                                //balls[j].Velocity = v1;
 
                                 // calculate vector components
                                 difference.Normalize();
@@ -355,6 +359,8 @@ namespace NoiseGPU
                                 balls[i].Velocity = balls[i].Velocity - p * balls[j].BoundingSphere.Radius * difference;
                                 balls[j].Velocity = balls[j].Velocity + p * balls[i].BoundingSphere.Radius * difference;
 
+                                balls[i].SweetSpot = false;
+                                balls[j].SweetSpot = false;
                             }
                         }
                     }
@@ -427,15 +433,21 @@ namespace NoiseGPU
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
+            spriteBatch.Begin();
+
+            if (gameState == GameState.Shooting)
+                spriteBatch.DrawString(myFont, "Power: " + power, new Vector2(10, 10), Color.White);
+
             if (gameState == GameState.GameOver)
             {
-                spriteBatch.Begin();
-
                 spriteBatch.DrawString(myFont, "Score: " + score, new Vector2(10, 10), Color.White);
                 spriteBatch.DrawString(myFont, "High Score: " + highScore, new Vector2(10, 10), Color.White);
-
-                spriteBatch.End();
             }
+
+            spriteBatch.End();
+
+            // reset depth for models draw correctly
+            graphics.GraphicsDevice.DepthStencilState = DepthStencilState.Default;
 
             base.Draw(gameTime);
         }
@@ -474,11 +486,23 @@ namespace NoiseGPU
 
             balls[10] = new Ball(this, camera, @"Models/sphere", @"Effects/PerlinNoiseEffect", "CueBall",
                             new Vector3(0, 4.75f, 50), 0.1f, new Vector3(0, 0, 0));
+            balls[10].SweetSpot = true;
 
             foreach (Ball ball in balls)
             {
                 Components.Add(ball);
             }
+        }
+
+        protected void CreateCue()
+        {
+            cue = new Box(this, camera, new Vector3(50, 1, 1), new Vector3(0, 0, 0), Color.Beige, new Vector3(0, 0, 0));
+            Components.Add(cue);
+        }
+
+        protected void RemoveCue()
+        {
+            Components.Remove(cue);
         }
     }
 }
